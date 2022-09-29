@@ -9,6 +9,7 @@ import { User } from "@supabase/supabase-js";
 import LogOutButton from "../modules/auth/components/LogOutButton";
 import { useUser } from "@supabase/auth-helpers-react";
 import { supabase } from "../common/utils/supabaseClient";
+import AppleLoginButton from "../modules/auth/components/AppleLoginButton";
 
 const Home: NextPage = () => {
     // const Home: NextPage<IndexProps> = (props: IndexProps) => {
@@ -25,6 +26,7 @@ const Home: NextPage = () => {
     let content = (
         <>
             <SpotifyLoginButton />
+            <AppleLoginButton />
             <LogOutButton />
         </>
     );
@@ -34,7 +36,9 @@ const Home: NextPage = () => {
 
     return (
         <Container maxWidth="lg">
-            {content}
+            <SpotifyLoginButton />
+            <AppleLoginButton />
+            <LogOutButton />
             <br />
             <Link href="/api/auth/user">User Data</Link>
             <Typography>loading: {isLoading.toString()}</Typography>

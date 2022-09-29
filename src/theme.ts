@@ -17,6 +17,10 @@ const theme = createTheme({
             main: "#1db954",
             contrastText: "#fff",
         },
+        apple: {
+            main: "#000",
+            contrastText: "#fff",
+        },
     },
 });
 
@@ -26,9 +30,11 @@ export default theme;
 declare module "@mui/material/styles" {
     interface Palette {
         spotify?: Palette["primary"];
+        apple?: Palette["primary"];
     }
     interface PaletteOptions {
         spotify?: PaletteOptions["primary"];
+        apple?: PaletteOptions["primary"];
     }
 }
 
@@ -36,5 +42,6 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Button" {
     interface ButtonPropsColorOverrides {
         spotify: true;
+        apple: true;
     }
 }
