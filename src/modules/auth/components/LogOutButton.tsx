@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button } from "@mui/material";
-import { supabase } from "../../../common/utils/supabaseClient";
-import { NextRouter, useRouter } from "next/router";
+import { useRouter } from "next/router";
+import { logOut } from "../utils/logout";
 
 export default function LogOutButton() {
     const router = useRouter();
@@ -15,11 +15,4 @@ export default function LogOutButton() {
             Log Out
         </Button>
     );
-}
-
-async function logOut(router: NextRouter) {
-    const { error } = await supabase.auth.signOut();
-    console.log(error);
-
-    router.push("/api/auth/logout");
 }

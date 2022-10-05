@@ -7,8 +7,9 @@ import Button from "@mui/material/Button";
 import Link from "../Link";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
+import { getUser, User, withPageAuth } from "@supabase/auth-helpers-nextjs";
 
-const About: NextPage = () => {
+const Account: NextPage = () => {
     return (
         <Container maxWidth="lg">
             <Box
@@ -21,7 +22,7 @@ const About: NextPage = () => {
                 }}
             >
                 <Typography variant="h4" component="h1" gutterBottom>
-                    MUI v5 + Next.js with TypeScript example
+                    Account
                 </Typography>
                 <Box maxWidth="sm">
                     <Button
@@ -40,4 +41,20 @@ const About: NextPage = () => {
     );
 };
 
-export default About;
+export default Account;
+
+export const getServerSideProps = withPageAuth({
+    authRequired: true,
+    redirectTo: "/",
+    // async getServerSideProps(ctx) {
+    //     // Access the user object
+    //     let { user, accessToken } = await getUser(ctx);
+
+    //     // if (!user) {}
+    //     return { props: user };
+    // },
+});
+
+// interface AccountProps {
+//     user: User;
+// }
