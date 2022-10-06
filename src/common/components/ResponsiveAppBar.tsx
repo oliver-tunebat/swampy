@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUser } from "@supabase/auth-helpers-react";
 import { logOut } from "../../modules/auth/utils/logout";
+import { Slide, useScrollTrigger } from "@mui/material";
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -42,173 +43,192 @@ const ResponsiveAppBar = () => {
     const userState = useUser();
 
     return (
-        <AppBar color="inherit" enableColorOnDark position="static">
-            <Container maxWidth="lg">
-                <Toolbar disableGutters>
-                    {/* logo & link to home */}
-                    <Link
-                        href={"/"}
-                        sx={{
-                            maxHeight: 32,
-                            display: "flex",
-                        }}
-                    >
-                        <Image
-                            src="/images/swampy-logo-black.svg"
-                            alt="Swampy Logo"
-                            width="164"
-                            height="32"
-                        />
-                    </Link>
-
-                    {/* horizontal spacer */}
-                    <Box
-                        sx={{
-                            flexGrow: 1,
-                            display: "flex",
-                        }}
-                    />
-
-                    {/* mobile navigation menu */}
-                    <Box
-                        sx={{
-                            display: { xs: "flex", md: "none" },
-                        }}
-                    >
-                        <IconButton
-                            size="large"
-                            aria-label="view navigation menu"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: "bottom",
-                                horizontal: "left",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "left",
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: "block", md: "none" },
-                            }}
-                        >
-                            {!userState.user && (
-                                <MenuItem>
-                                    <Typography variant="body2">
-                                        Sign In
-                                    </Typography>
-                                </MenuItem>
-                            )}
+        <>
+            <Slide appear={false} direction="down" in={!useScrollTrigger()}>
+                <AppBar color="inherit" enableColorOnDark>
+                    <Container maxWidth="lg">
+                        <Toolbar disableGutters>
+                            {/* logo & link to home */}
                             <Link
-                                href="/guide"
-                                color="inherit"
-                                underline="none"
-                            >
-                                <MenuItem>
-                                    <Typography variant="body2">
-                                        Guide
-                                    </Typography>
-                                </MenuItem>
-                            </Link>
-                        </Menu>
-                    </Box>
-
-                    {/* desktop navigation links */}
-                    <Box
-                        sx={{
-                            display: { xs: "none", md: "flex" },
-                        }}
-                    >
-                        <Link
-                            href="/guide"
-                            underline={"hover"}
-                            color="inherit"
-                            sx={{
-                                mx: 2,
-                                fontWeight: router.route.startsWith("/guide")
-                                    ? 600
-                                    : "auto",
-                            }}
-                            variant="button"
-                        >
-                            Guide
-                        </Link>
-                    </Box>
-
-                    {/* sign in button / account button */}
-                    <Box sx={{ flexGrow: 0 }}>
-                        {userState.user ? (
-                            <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{ p: 0, marginLeft: { xs: 1, md: 2 } }}
-                            >
-                                <Avatar
-                                    alt={userState.user.user_metadata.name}
-                                    src={
-                                        userState.user.user_metadata.avatar_url
-                                    }
-                                />
-                            </IconButton>
-                        ) : (
-                            <Button
-                                onClick={handleOpenUserMenu}
-                                variant="contained"
+                                href={"/"}
                                 sx={{
-                                    marginLeft: 2,
+                                    maxHeight: 32,
+                                    display: "flex",
+                                }}
+                            >
+                                <Image
+                                    src="/images/swampy-logo-black.svg"
+                                    alt="Swampy Logo"
+                                    width="164"
+                                    height="32"
+                                />
+                            </Link>
+
+                            {/* horizontal spacer */}
+                            <Box
+                                sx={{
+                                    flexGrow: 1,
+                                    display: "flex",
+                                }}
+                            />
+
+                            {/* mobile navigation menu */}
+                            <Box
+                                sx={{
+                                    display: { xs: "flex", md: "none" },
+                                }}
+                            >
+                                <IconButton
+                                    size="large"
+                                    aria-label="view navigation menu"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleOpenNavMenu}
+                                    color="inherit"
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorElNav}
+                                    anchorOrigin={{
+                                        vertical: "bottom",
+                                        horizontal: "left",
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: "top",
+                                        horizontal: "left",
+                                    }}
+                                    open={Boolean(anchorElNav)}
+                                    onClose={handleCloseNavMenu}
+                                    sx={{
+                                        display: { xs: "block", md: "none" },
+                                    }}
+                                >
+                                    {!userState.user && (
+                                        <MenuItem>
+                                            <Typography variant="body2">
+                                                Sign In
+                                            </Typography>
+                                        </MenuItem>
+                                    )}
+                                    <Link
+                                        href="/guide"
+                                        color="inherit"
+                                        underline="none"
+                                    >
+                                        <MenuItem>
+                                            <Typography variant="body2">
+                                                Guide
+                                            </Typography>
+                                        </MenuItem>
+                                    </Link>
+                                </Menu>
+                            </Box>
+
+                            {/* desktop navigation links */}
+                            <Box
+                                sx={{
                                     display: { xs: "none", md: "flex" },
                                 }}
                             >
-                                Sign In
-                            </Button>
-                        )}
-                        <Menu
-                            sx={{ mt: "45px" }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            <Link
-                                href="/account"
-                                color="inherit"
-                                underline="none"
-                            >
-                                <MenuItem>
-                                    <Typography variant="body2">
-                                        Account
-                                    </Typography>
-                                </MenuItem>
-                            </Link>
-                            <MenuItem
-                                onClick={async () => await logOut(router)}
-                            >
-                                <Typography variant="body2">Log Out</Typography>
-                            </MenuItem>
-                        </Menu>
-                    </Box>
-                </Toolbar>
-            </Container>
-        </AppBar>
+                                <Link
+                                    href="/guide"
+                                    underline={"hover"}
+                                    color="inherit"
+                                    sx={{
+                                        mx: 2,
+                                        fontWeight: router.route.startsWith(
+                                            "/guide"
+                                        )
+                                            ? 600
+                                            : "auto",
+                                    }}
+                                    variant="button"
+                                >
+                                    Guide
+                                </Link>
+                            </Box>
+
+                            {/* sign in button / account button */}
+                            <Box sx={{ flexGrow: 0 }}>
+                                {userState.user ? (
+                                    <IconButton
+                                        onClick={handleOpenUserMenu}
+                                        sx={{
+                                            p: 0,
+                                            marginLeft: { xs: 1, md: 2 },
+                                        }}
+                                    >
+                                        <Avatar
+                                            alt={
+                                                userState.user.user_metadata
+                                                    .name
+                                            }
+                                            src={
+                                                userState.user.user_metadata
+                                                    .avatar_url
+                                            }
+                                        />
+                                    </IconButton>
+                                ) : (
+                                    <Button
+                                        onClick={handleOpenUserMenu}
+                                        variant="contained"
+                                        sx={{
+                                            marginLeft: 2,
+                                            display: { xs: "none", md: "flex" },
+                                        }}
+                                    >
+                                        Sign In
+                                    </Button>
+                                )}
+                                <Menu
+                                    sx={{ mt: "45px" }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: "top",
+                                        horizontal: "right",
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: "top",
+                                        horizontal: "right",
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    <Link
+                                        href="/account"
+                                        color="inherit"
+                                        underline="none"
+                                    >
+                                        <MenuItem>
+                                            <Typography variant="body2">
+                                                Account
+                                            </Typography>
+                                        </MenuItem>
+                                    </Link>
+                                    <MenuItem
+                                        onClick={async () =>
+                                            await logOut(router)
+                                        }
+                                    >
+                                        <Typography variant="body2">
+                                            Log Out
+                                        </Typography>
+                                    </MenuItem>
+                                </Menu>
+                            </Box>
+                        </Toolbar>
+                    </Container>
+                </AppBar>
+            </Slide>
+            {/* empty toolbar to enforce proper top spacing for content with sliding appbar */}
+            <Toolbar />
+        </>
     );
 };
 export default ResponsiveAppBar;
