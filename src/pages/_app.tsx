@@ -4,11 +4,14 @@ import { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import theme from "../theme";
 import createEmotionCache from "../createEmotionCache";
 import { UserProvider } from "@supabase/auth-helpers-react";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import ResponsiveAppBar from "../common/components/ResponsiveAppBar";
+import { Box, PaletteMode } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import getDesignTokens from "../getDesignTokens";
+import Footer from "../common/components/Footer";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -23,6 +26,26 @@ export default function MyApp(props: MyAppProps) {
         emotionCache = clientSideEmotionCache,
         pageProps,
     } = props;
+
+    const [mode, setMode] = React.useState<PaletteMode>("light");
+    const colorMode = React.useMemo(
+        () => ({
+            // The dark mode switch would invoke this method
+            toggleColorMode: () => {
+                setMode((prevMode: PaletteMode) =>
+                    prevMode === "light" ? "dark" : "light"
+                );
+            },
+        }),
+        []
+    );
+
+    // Update the theme only if the mode changes
+    const theme = React.useMemo(
+        () => createTheme(getDesignTokens(mode)),
+        [mode]
+    );
+
     return (
         <UserProvider supabaseClient={supabaseClient}>
             <CacheProvider value={emotionCache}>
@@ -35,8 +58,20 @@ export default function MyApp(props: MyAppProps) {
                 <ThemeProvider theme={theme}>
                     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
-                    <ResponsiveAppBar />
-                    <Component {...pageProps} />
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            minHeight: "100vh",
+                        }}
+                    >
+                        <ResponsiveAppBar />
+                        <Component {...pageProps} />
+                        <Footer
+                            mode={mode}
+                            toggleColorMode={colorMode.toggleColorMode}
+                        />
+                    </Box>
                 </ThemeProvider>
             </CacheProvider>
         </UserProvider>

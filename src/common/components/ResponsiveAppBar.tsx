@@ -15,7 +15,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUser } from "@supabase/auth-helpers-react";
 import { logOut } from "../../modules/auth/utils/logout";
-import { Slide, useScrollTrigger } from "@mui/material";
+import { Divider, Slide, useScrollTrigger } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -41,11 +42,12 @@ const ResponsiveAppBar = () => {
 
     const router = useRouter();
     const userState = useUser();
+    const theme = useTheme();
 
     return (
         <>
             <Slide appear={false} direction="down" in={!useScrollTrigger()}>
-                <AppBar color="inherit" enableColorOnDark>
+                <AppBar color="default" enableColorOnDark elevation={0}>
                     <Container maxWidth="lg">
                         <Toolbar disableGutters>
                             {/* logo & link to home */}
@@ -57,7 +59,11 @@ const ResponsiveAppBar = () => {
                                 }}
                             >
                                 <Image
-                                    src="/images/swampy-logo-black.svg"
+                                    src={
+                                        theme.palette.mode === "dark"
+                                            ? "/images/swampy-logo-white.svg"
+                                            : "/images/swampy-logo-black.svg"
+                                    }
                                     alt="Swampy Logo"
                                     width="164"
                                     height="32"
@@ -224,10 +230,11 @@ const ResponsiveAppBar = () => {
                             </Box>
                         </Toolbar>
                     </Container>
+                    <Divider />
                 </AppBar>
             </Slide>
             {/* empty toolbar to enforce proper top spacing for content with sliding appbar */}
-            <Toolbar />
+            <Toolbar sx={{ flex: "0 1 auto" }} />
         </>
     );
 };

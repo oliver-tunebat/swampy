@@ -35,7 +35,7 @@ const Home: NextPage = () => {
     }
 
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ flex: "1 1 auto" }}>
             <SpotifyLoginButton />
             <AppleLoginButton />
             <LogOutButton />
