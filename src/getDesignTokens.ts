@@ -1,6 +1,6 @@
 import { alpha, darken, ThemeOptions } from "@mui/material/styles";
-import { green, grey } from "@mui/material/colors";
-import { PaletteMode } from "@mui/material";
+import { green, orange } from "@mui/material/colors";
+import { lighten, PaletteMode } from "@mui/material";
 
 const tonalOffset = 0.2;
 
@@ -12,14 +12,21 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             mode,
             primary: {
                 main: isLightMode ? green[800] : green["A200"],
+                contrastText: isLightMode ? "#fff" : "#000",
             },
             secondary: {
-                main: "#fcd655",
+                main: isLightMode ? "#bf360c" : orange["A200"],
+                contrastText: isLightMode ? "#fff" : "#000",
             },
             neutral: {
-                main: grey[600],
-                dark: darken(grey[600], tonalOffset),
-                contrastText: "#fff",
+                main: isLightMode ? "#000" : "#fff",
+                contrastText: isLightMode ? "#fff" : "#000",
+                dark: isLightMode
+                    ? lighten("#000", tonalOffset)
+                    : darken("#fff", tonalOffset),
+                light: isLightMode
+                    ? lighten("#000", tonalOffset)
+                    : darken("#fff", tonalOffset),
             },
             spotify: {
                 main: "#1db954",
@@ -69,20 +76,39 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                     ),
                                 },
                             };
-                        } else if (ownerState.variant === "text") {
+                        } else if (
+                            ownerState.variant === "text" ||
+                            ownerState.variant === "outlined"
+                        ) {
                             let sourceColor = theme.palette.primary.dark;
                             if (ownerState.color === "primary")
-                                sourceColor = theme.palette.primary.dark;
+                                sourceColor = isLightMode
+                                    ? theme.palette.primary.dark
+                                    : theme.palette.primary.light;
                             else if (ownerState.color === "secondary")
-                                sourceColor = theme.palette.secondary.dark;
+                                sourceColor = isLightMode
+                                    ? theme.palette.secondary.dark
+                                    : theme.palette.secondary.light;
                             else if (ownerState.color === "success")
-                                sourceColor = theme.palette.success.dark;
+                                sourceColor = isLightMode
+                                    ? theme.palette.success.dark
+                                    : theme.palette.success.light;
                             else if (ownerState.color === "error")
-                                sourceColor = theme.palette.error.dark;
+                                sourceColor = isLightMode
+                                    ? theme.palette.error.dark
+                                    : theme.palette.error.light;
                             else if (ownerState.color === "warning")
-                                sourceColor = theme.palette.warning.dark;
+                                sourceColor = isLightMode
+                                    ? theme.palette.warning.dark
+                                    : theme.palette.warning.light;
                             else if (ownerState.color === "info")
-                                sourceColor = theme.palette.info.dark;
+                                sourceColor = isLightMode
+                                    ? theme.palette.info.dark
+                                    : theme.palette.info.light;
+                            else if (ownerState.color === "neutral")
+                                sourceColor = isLightMode
+                                    ? theme.palette.neutral?.dark ?? ""
+                                    : theme.palette.neutral?.light ?? "";
                             else return {};
 
                             return {
@@ -94,6 +120,49 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 },
                             };
                         }
+                    },
+                },
+            },
+            MuiIconButton: {
+                styleOverrides: {
+                    root: ({ ownerState, theme }) => {
+                        let sourceColor = "#000";
+                        if (ownerState.color === "default")
+                            sourceColor = isLightMode ? "#000" : "#fff";
+                        else if (ownerState.color === "primary")
+                            sourceColor = isLightMode
+                                ? theme.palette.primary.dark
+                                : theme.palette.primary.light;
+                        else if (ownerState.color === "secondary")
+                            sourceColor = isLightMode
+                                ? theme.palette.secondary.dark
+                                : theme.palette.secondary.light;
+                        else if (ownerState.color === "success")
+                            sourceColor = isLightMode
+                                ? theme.palette.success.dark
+                                : theme.palette.success.light;
+                        else if (ownerState.color === "error")
+                            sourceColor = isLightMode
+                                ? theme.palette.primary.dark
+                                : theme.palette.primary.light;
+                        else if (ownerState.color === "warning")
+                            sourceColor = isLightMode
+                                ? theme.palette.warning.dark
+                                : theme.palette.warning.light;
+                        else if (ownerState.color === "info")
+                            sourceColor = isLightMode
+                                ? theme.palette.info.dark
+                                : theme.palette.info.light;
+                        else return {};
+
+                        return {
+                            ":hover": {
+                                backgroundColor: alpha(sourceColor, 0.08),
+                            },
+                            ":active": {
+                                backgroundColor: alpha(sourceColor, 0.16),
+                            },
+                        };
                     },
                 },
             },
