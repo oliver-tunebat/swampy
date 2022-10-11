@@ -16,6 +16,7 @@ import "@fontsource/inter/300.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/700.css";
+import { setCookie, getCookie, hasCookie } from "cookies-next";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -23,6 +24,8 @@ const clientSideEmotionCache = createEmotionCache();
 interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
 }
+
+const colorModeKey = "COLOR_MODE";
 
 export default function MyApp(props: MyAppProps) {
     const {
@@ -36,9 +39,17 @@ export default function MyApp(props: MyAppProps) {
         () => ({
             // The dark mode switch would invoke this method
             toggleColorMode: () => {
-                setMode((prevMode: PaletteMode) =>
-                    prevMode === "light" ? "dark" : "light"
-                );
+                setMode((prevMode: PaletteMode) => {
+                    const newMode = prevMode === "light" ? "dark" : "light";
+                    setCookie(colorModeKey, newMode);
+                    return newMode;
+                });
+            },
+            setColorMode: (colorMode: string) => {
+                setMode(() => {
+                    setCookie(colorModeKey, colorMode);
+                    return colorMode as PaletteMode;
+                });
             },
         }),
         []
@@ -49,6 +60,12 @@ export default function MyApp(props: MyAppProps) {
         () => createTheme(getDesignTokens(mode)),
         [mode]
     );
+
+    // on client side load, get color mode from cookie
+    React.useEffect(() => {
+        if (!hasCookie(colorModeKey)) return;
+        colorMode.setColorMode(getCookie(colorModeKey) as string);
+    });
 
     return (
         <UserProvider supabaseClient={supabaseClient}>
