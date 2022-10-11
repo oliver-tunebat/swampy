@@ -1,6 +1,6 @@
 import { alpha, darken, ThemeOptions } from "@mui/material/styles";
 import { green, orange } from "@mui/material/colors";
-import { lighten, PaletteMode } from "@mui/material";
+import { CSSInterpolation, lighten, PaletteMode } from "@mui/material";
 
 const tonalOffset = 0.2;
 
@@ -50,6 +50,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                 },
                 styleOverrides: {
                     root: ({ ownerState, theme }) => {
+                        const style: CSSInterpolation = {
+                            textTransform: "none",
+                        };
+
                         if (ownerState.variant === "contained") {
                             let sourceColor = theme.palette.primary.dark;
                             if (ownerState.color === "primary")
@@ -66,15 +70,12 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 sourceColor = theme.palette.info.dark;
                             else if (ownerState.color === "neutral")
                                 sourceColor = theme.palette.neutral?.dark ?? "";
-                            else return {};
 
-                            return {
-                                ":active": {
-                                    backgroundColor: darken(
-                                        sourceColor,
-                                        Number(theme.palette.tonalOffset)
-                                    ),
-                                },
+                            style[":active"] = {
+                                backgroundColor: darken(
+                                    sourceColor,
+                                    Number(theme.palette.tonalOffset)
+                                ),
                             };
                         } else if (
                             ownerState.variant === "text" ||
@@ -109,17 +110,16 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 sourceColor = isLightMode
                                     ? theme.palette.neutral?.dark ?? ""
                                     : theme.palette.neutral?.light ?? "";
-                            else return {};
 
-                            return {
-                                ":hover": {
-                                    backgroundColor: alpha(sourceColor, 0.08),
-                                },
-                                ":active": {
-                                    backgroundColor: alpha(sourceColor, 0.16),
-                                },
+                            style[":hover"] = {
+                                backgroundColor: alpha(sourceColor, 0.08),
+                            };
+                            style[":active"] = {
+                                backgroundColor: alpha(sourceColor, 0.16),
                             };
                         }
+
+                        return style;
                     },
                 },
             },
@@ -166,9 +166,31 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                     },
                 },
             },
+            MuiTypography: {
+                styleOverrides: {
+                    button: {
+                        textTransform: "none",
+                    },
+                },
+            },
         },
         shape: {
             borderRadius: 5,
+        },
+        typography: {
+            fontFamily: [
+                "Inter",
+                "-apple-system",
+                "BlinkMacSystemFont",
+                '"Segoe UI"',
+                "Roboto",
+                '"Helvetica Neue"',
+                "Arial",
+                "sans-serif",
+                '"Apple Color Emoji"',
+                '"Segoe UI Emoji"',
+                '"Segoe UI Symbol"',
+            ].join(","),
         },
     };
 };
