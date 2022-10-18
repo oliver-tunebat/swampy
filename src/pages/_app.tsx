@@ -17,6 +17,7 @@ import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/700.css";
 import { setCookie, getCookie, hasCookie } from "cookies-next";
+import AuthDialog from "../modules/auth/components/AuthDialog";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -93,6 +94,7 @@ export default function MyApp(props: MyAppProps) {
                             toggleColorMode={colorMode.toggleColorMode}
                         />
                     </Box>
+                    <AuthDialog />
                 </ThemeProvider>
             </CacheProvider>
         </UserProvider>

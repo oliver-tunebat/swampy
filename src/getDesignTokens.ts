@@ -175,7 +175,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             },
         },
         shape: {
-            borderRadius: 5,
+            borderRadius: 0,
         },
         typography: {
             fontFamily: [
@@ -191,6 +191,16 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                 '"Segoe UI Emoji"',
                 '"Segoe UI Symbol"',
             ].join(","),
+        },
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 900,
+                lg: 1200,
+                xl: 1536,
+                xxsContainer: 360,
+            },
         },
     };
 };
@@ -208,6 +218,14 @@ declare module "@mui/material/styles" {
         neutral?: PaletteOptions["primary"];
         spotify?: PaletteOptions["primary"];
         apple?: PaletteOptions["primary"];
+    }
+    interface BreakpointOverrides {
+        xs: true;
+        sm: true;
+        md: true;
+        lg: true;
+        xl: true;
+        xxsContainer: true;
     }
 }
 

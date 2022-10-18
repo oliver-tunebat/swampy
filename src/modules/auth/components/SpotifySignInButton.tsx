@@ -1,18 +1,17 @@
 import * as React from "react";
-import { Button } from "@mui/material";
+import { Button, ButtonProps } from "@mui/material";
 import { Spotify } from "mdi-material-ui";
 import { supabase } from "../../../common/utils/supabaseClient";
 
-export default function SpotifyLoginButton() {
+export default function SpotifyLoginButton(props: ButtonProps) {
     return (
         <Button
-            size="large"
-            variant="contained"
             color="spotify"
             startIcon={<Spotify />}
             onClick={async () => await signInWithSpotify()}
+            {...props}
         >
-            Login With Spotify
+            Continue with Spotify
         </Button>
     );
 }

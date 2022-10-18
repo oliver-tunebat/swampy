@@ -8,7 +8,7 @@ import NavLink from "../common/components/NavLink";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
 
-const Guide: NextPage = () => {
+const UserAgreement: NextPage = () => {
     return (
         <Container maxWidth="lg" sx={{ flex: "1 1 auto" }}>
             <Box
@@ -231,4 +231,4 @@ const Guide: NextPage = () => {
     );
 };
 
-export default Guide;
+export default UserAgreement;

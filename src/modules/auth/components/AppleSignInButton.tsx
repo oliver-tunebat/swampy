@@ -1,23 +1,22 @@
 import * as React from "react";
-import { Button } from "@mui/material";
+import { Button, ButtonProps } from "@mui/material";
 import { supabase } from "../../../common/utils/supabaseClient";
 import { Apple } from "@mui/icons-material";
 
-export default function AppleLoginButton() {
+export default function AppleLoginButton(props: ButtonProps) {
     return (
         <Button
-            size="large"
-            variant="contained"
             color="apple"
             startIcon={<Apple />}
-            onClick={async () => await signInWithSpotify()}
+            onClick={async () => await signInWithApple()}
+            {...props}
         >
-            Login With Apple
+            Continue with Apple
         </Button>
     );
 }
 
-async function signInWithSpotify() {
+async function signInWithApple() {
     const { user, session, error } = await supabase.auth.signIn(
         {
             provider: "apple",

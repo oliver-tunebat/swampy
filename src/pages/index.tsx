@@ -2,14 +2,14 @@ import * as React from "react";
 import type { NextPage } from "next";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Link from "../Link";
-import SpotifyLoginButton from "../modules/auth/components/SpotifyLoginButton";
+import NavLink from "../common/components/NavLink";
+import SpotifyLoginButton from "../modules/auth/components/SpotifySignInButton";
 import { getUser, withPageAuth } from "@supabase/auth-helpers-nextjs";
 import { User } from "@supabase/supabase-js";
 import LogOutButton from "../modules/auth/components/LogOutButton";
 import { useUser } from "@supabase/auth-helpers-react";
 import { supabase } from "../common/utils/supabaseClient";
-import AppleLoginButton from "../modules/auth/components/AppleLoginButton";
+import AppleLoginButton from "../modules/auth/components/AppleSignInButton";
 
 const Home: NextPage = () => {
     // const Home: NextPage<IndexProps> = (props: IndexProps) => {
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
             <AppleLoginButton />
             <LogOutButton />
             <br />
-            <Link href="/api/auth/user">User Data</Link>
+            <NavLink href="/api/auth/user">User Data</NavLink>
             <Typography>loading: {isLoading.toString()}</Typography>
             <Typography>email: {user?.email}</Typography>
         </Container>

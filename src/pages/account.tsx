@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Link from "../Link";
+import NavLink from "../common/components/NavLink";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
 import { getUser, User, withPageAuth } from "@supabase/auth-helpers-nextjs";
@@ -27,7 +27,7 @@ const Account: NextPage = () => {
                 <Box maxWidth="sm">
                     <Button
                         variant="contained"
-                        component={Link}
+                        component={NavLink}
                         noLinkStyle
                         href="/"
                     >

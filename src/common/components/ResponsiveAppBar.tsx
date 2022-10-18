@@ -10,13 +10,14 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import Link from "../../Link";
+import NavLink from "./NavLink";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUser } from "@supabase/auth-helpers-react";
 import { logOut } from "../../modules/auth/utils/logout";
-import { Divider, Slide, useScrollTrigger } from "@mui/material";
+import { Divider, Slide, useScrollTrigger, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import useAuthStore from "../../modules/auth/store";
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -44,6 +45,13 @@ const ResponsiveAppBar = () => {
     const userState = useUser();
     const theme = useTheme();
 
+    const showLogin = useAuthStore(
+        (state) => () => state.setAuthDialogOpen(true, "login")
+    );
+    const showSignUp = useAuthStore(
+        (state) => () => state.setAuthDialogOpen(true, "signUp")
+    );
+
     return (
         <>
             <Slide appear={false} direction="down" in={!useScrollTrigger()}>
@@ -51,7 +59,7 @@ const ResponsiveAppBar = () => {
                     <Container maxWidth="lg">
                         <Toolbar disableGutters>
                             {/* logo & link to home */}
-                            <Link
+                            <NavLink
                                 href={"/"}
                                 sx={{
                                     maxHeight: 32,
@@ -68,7 +76,7 @@ const ResponsiveAppBar = () => {
                                     width="164"
                                     height="32"
                                 />
-                            </Link>
+                            </NavLink>
 
                             {/* horizontal spacer */}
                             <Box
@@ -108,28 +116,39 @@ const ResponsiveAppBar = () => {
                                     }}
                                     open={Boolean(anchorElNav)}
                                     onClose={handleCloseNavMenu}
+                                    onClick={handleCloseNavMenu}
                                     sx={{
                                         display: { xs: "block", md: "none" },
                                     }}
                                 >
                                     {!userState.user && (
                                         <MenuItem>
-                                            <Typography variant="body2">
-                                                Sign In
+                                            <Button
+                                                onClick={showSignUp}
+                                                variant="contained"
+                                            >
+                                                Sign Up
+                                            </Button>
+                                        </MenuItem>
+                                    )}
+                                    {!userState.user && (
+                                        <MenuItem onClick={showLogin}>
+                                            <Typography variant="button">
+                                                Log In
                                             </Typography>
                                         </MenuItem>
                                     )}
-                                    <Link
+                                    <NavLink
                                         href="/guide"
                                         color="inherit"
                                         underline="none"
                                     >
                                         <MenuItem>
-                                            <Typography variant="body2">
+                                            <Typography variant="button">
                                                 Guide
                                             </Typography>
                                         </MenuItem>
-                                    </Link>
+                                    </NavLink>
                                 </Menu>
                             </Box>
 
@@ -139,7 +158,7 @@ const ResponsiveAppBar = () => {
                                     display: { xs: "none", md: "flex" },
                                 }}
                             >
-                                <Link
+                                <NavLink
                                     href="/guide"
                                     underline={"hover"}
                                     color="inherit"
@@ -154,6 +173,18 @@ const ResponsiveAppBar = () => {
                                     variant="button"
                                 >
                                     Guide
+                                </NavLink>
+                                <Link
+                                    component="button"
+                                    onClick={showLogin}
+                                    underline={"hover"}
+                                    color="inherit"
+                                    sx={{
+                                        mx: 2,
+                                    }}
+                                    variant="button"
+                                >
+                                    Log In
                                 </Link>
                             </Box>
 
@@ -180,14 +211,14 @@ const ResponsiveAppBar = () => {
                                     </IconButton>
                                 ) : (
                                     <Button
-                                        onClick={handleOpenUserMenu}
+                                        onClick={showSignUp}
                                         variant="contained"
                                         sx={{
                                             marginLeft: 2,
                                             display: { xs: "none", md: "flex" },
                                         }}
                                     >
-                                        Sign In
+                                        Sign Up
                                     </Button>
                                 )}
                                 <Menu
@@ -206,7 +237,7 @@ const ResponsiveAppBar = () => {
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
-                                    <Link
+                                    <NavLink
                                         href="/account"
                                         color="inherit"
                                         underline="none"
@@ -216,7 +247,7 @@ const ResponsiveAppBar = () => {
                                                 Account
                                             </Typography>
                                         </MenuItem>
-                                    </Link>
+                                    </NavLink>
                                     <MenuItem
                                         onClick={async () =>
                                             await logOut(router)
