@@ -20,7 +20,9 @@ import NavLink from "../../../common/components/NavLink";
 import { validateEmail } from "../../../common/utils/validateEmail";
 import SecureTextField from "../../../common/components/SecureTextField";
 
-export default function AuthForm() {
+export default function AuthForm(props: AuthFormProps) {
+    const { showTitle } = props;
+
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
@@ -46,6 +48,13 @@ export default function AuthForm() {
         }
     };
 
+    const title =
+        viewType === "login"
+            ? "Log In"
+            : viewType === "recoverPassword"
+            ? "Password Recovery"
+            : "Sign Up";
+
     const emailErrorText =
         email.length > 0 && !emailIsValid ? "invalid email address" : null;
 
@@ -54,9 +63,18 @@ export default function AuthForm() {
 
     return (
         <Container maxWidth="xxsContainer" disableGutters>
+            {showTitle && (
+                <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
+                    {title}
+                </Typography>
+            )}
             {(viewType === "signUp" || viewType === "login") && (
                 <>
-                    <Typography variant="caption">
+                    <Typography
+                        variant="caption"
+                        sx={{ mb: 4, mt: 2 }}
+                        paragraph
+                    >
                         By continuing, you{" "}
                         {viewType === "signUp"
                             ? "create a Swampy account and "
@@ -75,13 +93,13 @@ export default function AuthForm() {
                         size="large"
                         variant="contained"
                         fullWidth
-                        sx={{ my: 2 }}
+                        sx={{ mb: 2 }}
                     />
                     <SpotifySignInButton
                         size="large"
                         variant="contained"
                         fullWidth
-                        sx={{ mb: 2 }}
+                        sx={{ mb: 4 }}
                     />
                     <Divider>
                         <Typography variant="body2" color="text.secondary">
@@ -94,7 +112,7 @@ export default function AuthForm() {
                 <TextField
                     label="Email"
                     variant="outlined"
-                    sx={{ mt: 2 }}
+                    sx={{ mt: 4 }}
                     fullWidth
                     type="email"
                     value={email}
@@ -153,14 +171,14 @@ export default function AuthForm() {
                 color="primary"
                 variant="contained"
                 fullWidth
-                sx={{ mt: 2 }}
+                sx={{ mt: 4 }}
                 disabled={continueButtonDisabled}
                 onClick={handleContinueClick}
             >
                 Continue
             </Button>
             {(viewType === "signUp" || viewType === "completeSignUp") && (
-                <Box textAlign="center" sx={{ mt: 2 }}>
+                <Box textAlign="center" sx={{ mt: 2 }} color="text.secondary">
                     <Typography variant="caption">
                         Already have an account?{" "}
                     </Typography>
@@ -173,7 +191,7 @@ export default function AuthForm() {
                 </Box>
             )}
             {(viewType === "login" || viewType === "recoverPassword") && (
-                <Box textAlign="center" sx={{ mt: 2 }}>
+                <Box textAlign="center" sx={{ mt: 2 }} color="text.secondary">
                     <Typography variant="caption">
                         Don't have an account?{" "}
                     </Typography>
@@ -186,7 +204,7 @@ export default function AuthForm() {
                 </Box>
             )}
             {viewType === "login" && (
-                <Box textAlign="center" sx={{ mt: 1 }}>
+                <Box textAlign="center" sx={{ mt: 1 }} color="text.secondary">
                     <Typography variant="caption">Forgot </Typography>
                     <Link
                         component="button"
@@ -198,7 +216,7 @@ export default function AuthForm() {
                 </Box>
             )}
             {viewType === "recoverPassword" && (
-                <Box textAlign="center" sx={{ mt: 1 }}>
+                <Box textAlign="center" sx={{ mt: 1 }} color="text.secondary">
                     <Link
                         component="button"
                         onClick={() => setViewType("login")}
@@ -209,4 +227,8 @@ export default function AuthForm() {
             )}
         </Container>
     );
+}
+
+interface AuthFormProps {
+    showTitle?: boolean;
 }

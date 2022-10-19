@@ -265,7 +265,7 @@ const ResponsiveAppBar = () => {
                 </AppBar>
             </Slide>
             {/* empty toolbar to enforce proper top spacing for content with sliding appbar */}
-            <Toolbar sx={{ flex: "0 1 auto" }} />
+            <Toolbar sx={{ flex: "0 1 auto", mb: 4 }} />
         </>
     );
 };
