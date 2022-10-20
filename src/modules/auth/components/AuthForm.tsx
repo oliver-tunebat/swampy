@@ -1,5 +1,4 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import useAuthStore, { AuthFormViewType } from "../store";
 import {
@@ -19,17 +18,20 @@ import SpotifySignInButton from "./SpotifySignInButton";
 import NavLink from "../../../common/components/NavLink";
 import { validateEmail } from "../../../common/utils/validateEmail";
 import SecureTextField from "../../../common/components/SecureTextField";
+import Captcha from "../../../common/components/Captcha";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { supabaseClient } from "../../../common/utils/supabaseClient";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { validatePassword } from "../../../common/utils/validatePassword";
 
 export default function AuthForm(props: AuthFormProps) {
     const { showTitle } = props;
 
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-
-    const emailIsValid = validateEmail(email);
-    const passwordIsValid =
-        password.length >=
-        parseInt(process.env.NEXT_PUBLIC_PASSWORD_LENGTH ?? "0");
+    const [captchaToken, setCaptchaToken] = React.useState("");
+    const [continueButtonLoading, setContinueButtonLoading] =
+        React.useState(false);
 
     const viewType = useAuthStore((state) => state.authFormViewType);
     const setViewType = useAuthStore(
@@ -37,16 +39,15 @@ export default function AuthForm(props: AuthFormProps) {
             state.setAuthFormViewType(viewType)
     );
 
+    const captchaRef = React.useRef<HCaptcha>(null);
+
+    const emailIsValid = validateEmail(email);
+    const passwordIsValid = validatePassword(password);
+
     // if there's no valid email, disable completeSignUp view
     if (!emailIsValid && viewType === "completeSignUp") {
         setViewType("signUp");
     }
-
-    const handleContinueClick = () => {
-        if (viewType === "signUp") {
-            setViewType("completeSignUp");
-        }
-    };
 
     const title =
         viewType === "login"
@@ -58,8 +59,52 @@ export default function AuthForm(props: AuthFormProps) {
     const emailErrorText =
         email.length > 0 && !emailIsValid ? "invalid email address" : null;
 
+    // disable button if email is not valid
+    // or if the password isn't valid for sign up complete
+    // or if captcha isn't valie for sign up complete or recover password
     const continueButtonDisabled =
-        !emailIsValid || (!passwordIsValid && viewType === "completeSignUp");
+        !emailIsValid ||
+        (captchaToken.length < 1 && viewType !== "signUp") ||
+        (!passwordIsValid && viewType === "completeSignUp");
+
+    const handleContinueClick = async () => {
+        if (viewType === "signUp") {
+            setViewType("completeSignUp");
+        } else if (viewType === "login") {
+            setContinueButtonLoading(true);
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: password,
+                    options: { captchaToken },
+                });
+            captchaRef.current?.resetCaptcha();
+            setCaptchaToken("");
+            setContinueButtonLoading(false);
+        } else if (viewType === "completeSignUp") {
+            setContinueButtonLoading(true);
+            const { data, error } = await supabaseClient.auth.signUp({
+                email,
+                password,
+                options: { captchaToken },
+            });
+            captchaRef.current?.resetCaptcha();
+            setCaptchaToken("");
+            setContinueButtonLoading(false);
+        } else if (viewType === "recoverPassword") {
+            setContinueButtonLoading(true);
+            const { data, error } =
+                await supabaseClient.auth.resetPasswordForEmail(email, {
+                    captchaToken,
+                    redirectTo:
+                        `http://${process.env.NEXT_PUBLIC_CURRENT_DOMAIN}/change-password` ??
+                        undefined,
+                });
+            captchaRef.current?.resetCaptcha();
+            setCaptchaToken("");
+            setContinueButtonLoading(false);
+        }
+    };
 
     return (
         <Container maxWidth="xxsContainer" disableGutters>
@@ -166,7 +211,20 @@ export default function AuthForm(props: AuthFormProps) {
                     autoComplete="new-password"
                 />
             )}
-            <Button
+            {(viewType === "completeSignUp" ||
+                viewType === "recoverPassword" ||
+                (viewType === "login" && emailIsValid)) && (
+                <Container disableGutters sx={{ mt: 4 }}>
+                    <Captcha
+                        onVerify={(token) => setCaptchaToken(token)}
+                        ref={captchaRef}
+                        sitekey={
+                            process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? ""
+                        }
+                    />
+                </Container>
+            )}
+            <LoadingButton
                 size="large"
                 color="primary"
                 variant="contained"
@@ -174,9 +232,10 @@ export default function AuthForm(props: AuthFormProps) {
                 sx={{ mt: 4 }}
                 disabled={continueButtonDisabled}
                 onClick={handleContinueClick}
+                loading={continueButtonLoading}
             >
                 Continue
-            </Button>
+            </LoadingButton>
             {(viewType === "signUp" || viewType === "completeSignUp") && (
                 <Box textAlign="center" sx={{ mt: 2 }} color="text.secondary">
                     <Typography variant="caption">

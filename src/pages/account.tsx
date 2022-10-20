@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import NavLink from "../common/components/NavLink";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
-import { getUser, User, withPageAuth } from "@supabase/auth-helpers-nextjs";
+import { withPageAuth } from "@supabase/auth-helpers-nextjs";
 
 const Account: NextPage = () => {
     return (

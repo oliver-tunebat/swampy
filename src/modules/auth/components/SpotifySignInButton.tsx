@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button, ButtonProps } from "@mui/material";
 import { Spotify } from "mdi-material-ui";
-import { supabase } from "../../../common/utils/supabaseClient";
+import { supabaseClient } from "../../../common/utils/supabaseClient";
 
 export default function SpotifyLoginButton(props: ButtonProps) {
     return (
@@ -17,12 +17,10 @@ export default function SpotifyLoginButton(props: ButtonProps) {
 }
 
 async function signInWithSpotify() {
-    const { user, session, error } = await supabase.auth.signIn(
-        {
-            provider: "spotify",
-        },
-        {
+    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+        provider: "spotify",
+        options: {
             scopes: "user-top-read user-read-recently-played",
-        }
-    );
+        },
+    });
 }

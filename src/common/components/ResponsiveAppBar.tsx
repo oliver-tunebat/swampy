@@ -42,7 +42,7 @@ const ResponsiveAppBar = () => {
     };
 
     const router = useRouter();
-    const userState = useUser();
+    const user = useUser();
     const theme = useTheme();
 
     const showLogin = useAuthStore(
@@ -121,7 +121,7 @@ const ResponsiveAppBar = () => {
                                         display: { xs: "block", md: "none" },
                                     }}
                                 >
-                                    {!userState.user && (
+                                    {!user && (
                                         <MenuItem>
                                             <Button
                                                 onClick={showSignUp}
@@ -131,7 +131,7 @@ const ResponsiveAppBar = () => {
                                             </Button>
                                         </MenuItem>
                                     )}
-                                    {!userState.user && (
+                                    {!user && (
                                         <MenuItem onClick={showLogin}>
                                             <Typography variant="button">
                                                 Log In
@@ -190,7 +190,7 @@ const ResponsiveAppBar = () => {
 
                             {/* sign in button / account button */}
                             <Box sx={{ flexGrow: 0 }}>
-                                {userState.user ? (
+                                {user ? (
                                     <IconButton
                                         onClick={handleOpenUserMenu}
                                         sx={{
@@ -199,14 +199,8 @@ const ResponsiveAppBar = () => {
                                         }}
                                     >
                                         <Avatar
-                                            alt={
-                                                userState.user.user_metadata
-                                                    .name
-                                            }
-                                            src={
-                                                userState.user.user_metadata
-                                                    .avatar_url
-                                            }
+                                            alt={user.user_metadata.name}
+                                            src={user.user_metadata.avatar_url}
                                         />
                                     </IconButton>
                                 ) : (
@@ -236,6 +230,7 @@ const ResponsiveAppBar = () => {
                                     }}
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
+                                    onClick={handleCloseUserMenu}
                                 >
                                     <NavLink
                                         href="/account"

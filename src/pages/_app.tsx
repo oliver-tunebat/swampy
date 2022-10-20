@@ -5,8 +5,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../createEmotionCache";
-import { UserProvider } from "@supabase/auth-helpers-react";
-import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
+import { supabaseClient } from "../common/utils/supabaseClient";
 import ResponsiveAppBar from "../common/components/ResponsiveAppBar";
 import { Box, PaletteMode } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
@@ -24,6 +24,7 @@ const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
+    pageProps: { initialSession: Session };
 }
 
 const colorModeKey = "COLOR_MODE";
@@ -69,7 +70,10 @@ export default function MyApp(props: MyAppProps) {
     });
 
     return (
-        <UserProvider supabaseClient={supabaseClient}>
+        <SessionContextProvider
+            supabaseClient={supabaseClient}
+            initialSession={pageProps.initialSession}
+        >
             <CacheProvider value={emotionCache}>
                 <Head>
                     <meta
@@ -97,6 +101,6 @@ export default function MyApp(props: MyAppProps) {
                     <AuthDialog />
                 </ThemeProvider>
             </CacheProvider>
-        </UserProvider>
+        </SessionContextProvider>
     );
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button, ButtonProps } from "@mui/material";
-import { supabase } from "../../../common/utils/supabaseClient";
+import { supabaseClient } from "../../../common/utils/supabaseClient";
 import { Apple } from "@mui/icons-material";
 
 export default function AppleLoginButton(props: ButtonProps) {
@@ -17,12 +17,7 @@ export default function AppleLoginButton(props: ButtonProps) {
 }
 
 async function signInWithApple() {
-    const { user, session, error } = await supabase.auth.signIn(
-        {
-            provider: "apple",
-        },
-        {
-            // scopes: "",
-        }
-    );
+    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+        provider: "apple",
+    });
 }
