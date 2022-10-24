@@ -30,6 +30,7 @@ const ChangePassword: NextPage = () => {
                 flex: "1 1 auto",
                 flexDirection: "column",
                 justifyContent: "center",
+                alignItems: "center",
             }}
         >
             <Typography variant="h4" component="h1" sx={{ mb: 4 }}>

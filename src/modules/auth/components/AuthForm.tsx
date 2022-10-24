@@ -2,7 +2,9 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import useAuthStore, { AuthFormViewType } from "../store";
 import {
+    AlertProps,
     Box,
+    Button,
     Container,
     Divider,
     IconButton,
@@ -23,6 +25,9 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { supabaseClient } from "../../../common/utils/supabaseClient";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { validatePassword } from "../../../common/utils/validatePassword";
+import { useUser } from "@supabase/auth-helpers-react";
+import useNotificationsStore from "../../notifications/store";
+import AccountActivationBannerBody from "../../notifications/components/banner-bodies/AccountActivationBannerBody";
 
 export default function AuthForm(props: AuthFormProps) {
     const { showTitle } = props;
@@ -39,7 +44,13 @@ export default function AuthForm(props: AuthFormProps) {
             state.setAuthFormViewType(viewType)
     );
 
+    const setBanner = useNotificationsStore(
+        (state) => (showBanner: boolean, alertProps: AlertProps) =>
+            state.setBanner(showBanner, alertProps)
+    );
+
     const captchaRef = React.useRef<HCaptcha>(null);
+    const user = useUser();
 
     const emailIsValid = validateEmail(email);
     const passwordIsValid = validatePassword(password);
@@ -67,7 +78,12 @@ export default function AuthForm(props: AuthFormProps) {
         (captchaToken.length < 1 && viewType !== "signUp") ||
         (!passwordIsValid && viewType === "completeSignUp");
 
-    const handleContinueClick = async () => {
+    const handleContinueClick = async (
+        event: React.MouseEvent<HTMLElement>
+    ) => {
+        // prevent navigation
+        event.preventDefault();
+
         if (viewType === "signUp") {
             setViewType("completeSignUp");
         } else if (viewType === "login") {
@@ -91,6 +107,21 @@ export default function AuthForm(props: AuthFormProps) {
             captchaRef.current?.resetCaptcha();
             setCaptchaToken("");
             setContinueButtonLoading(false);
+
+            setBanner(true, {
+                children: <AccountActivationBannerBody />,
+                severity: "warning",
+            });
+            const removeBannerSignInListener =
+                supabaseClient.auth.onAuthStateChange((event, session) => {
+                    if (event === "SIGNED_IN") {
+                        // remove banner and listener
+                        setBanner(false, {});
+                        removeBannerSignInListener.data.subscription.unsubscribe();
+                    }
+                });
+
+            console.log(data);
         } else if (viewType === "recoverPassword") {
             setContinueButtonLoading(true);
             const { data, error } =
@@ -105,6 +136,19 @@ export default function AuthForm(props: AuthFormProps) {
             setContinueButtonLoading(false);
         }
     };
+
+    // if authenticated, only display a logout button
+    if (user) {
+        return (
+            <Button
+                variant="contained"
+                fullWidth={false}
+                onClick={async () => await supabaseClient.auth.signOut()}
+            >
+                Log Out
+            </Button>
+        );
+    }
 
     return (
         <Container maxWidth="xxsContainer" disableGutters>
@@ -153,89 +197,92 @@ export default function AuthForm(props: AuthFormProps) {
                     </Divider>
                 </>
             )}
-            {viewType !== "completeSignUp" && (
-                <TextField
-                    label="Email"
-                    variant="outlined"
-                    sx={{ mt: 4 }}
-                    fullWidth
-                    type="email"
-                    value={email}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                        setEmail(event.target.value)
-                    }
-                    error={Boolean(emailErrorText)}
-                    helperText={emailErrorText}
-                    name="email"
-                />
-            )}
-            {viewType === "completeSignUp" && (
-                <List>
-                    <ListItem
-                        disableGutters
-                        secondaryAction={
-                            <IconButton
-                                edge="end"
-                                aria-label="change email"
-                                onClick={() => setViewType("signUp")}
-                                size="small"
-                            >
-                                <Edit />
-                            </IconButton>
-                        }
-                    >
-                        <ListItemText primary={email} />
-                    </ListItem>
-                </List>
-            )}
-            {(viewType === "login" || viewType === "completeSignUp") && (
-                <SecureTextField
-                    label="Password"
-                    variant="outlined"
-                    sx={{ mt: 2 }}
-                    fullWidth
-                    value={password}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                        setPassword(event.target.value)
-                    }
-                    error={
-                        !passwordIsValid &&
-                        password.length > 0 &&
-                        viewType === "completeSignUp"
-                    }
-                    helperText={
-                        viewType === "completeSignUp"
-                            ? "password must be at least 8 characters long."
-                            : ""
-                    }
-                    autoComplete="new-password"
-                />
-            )}
-            {(viewType === "completeSignUp" ||
-                viewType === "recoverPassword" ||
-                (viewType === "login" && emailIsValid)) && (
-                <Container disableGutters sx={{ mt: 4 }}>
-                    <Captcha
-                        onVerify={(token) => setCaptchaToken(token)}
-                        ref={captchaRef}
-                        sitekey={
-                            process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? ""
-                        }
+            <form>
+                {viewType !== "completeSignUp" && (
+                    <TextField
+                        label="Email"
+                        variant="outlined"
+                        sx={{ mt: 4 }}
+                        fullWidth
+                        type="email"
+                        value={email}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ) => setEmail(event.target.value)}
+                        error={Boolean(emailErrorText)}
+                        helperText={emailErrorText}
+                        name="email"
                     />
-                </Container>
-            )}
-            <LoadingButton
-                size="large"
-                color="primary"
-                variant="contained"
-                fullWidth
-                sx={{ mt: 4 }}
-                disabled={continueButtonDisabled}
-                onClick={handleContinueClick}
-                loading={continueButtonLoading}
-            >
-                Continue
-            </LoadingButton>
+                )}
+                {viewType === "completeSignUp" && (
+                    <List>
+                        <ListItem
+                            disableGutters
+                            secondaryAction={
+                                <IconButton
+                                    edge="end"
+                                    aria-label="change email"
+                                    onClick={() => setViewType("signUp")}
+                                    size="small"
+                                >
+                                    <Edit />
+                                </IconButton>
+                            }
+                        >
+                            <ListItemText primary={email} />
+                        </ListItem>
+                    </List>
+                )}
+                {(viewType === "login" || viewType === "completeSignUp") && (
+                    <SecureTextField
+                        label="Password"
+                        variant="outlined"
+                        sx={{ mt: 2 }}
+                        fullWidth
+                        value={password}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ) => setPassword(event.target.value)}
+                        error={
+                            !passwordIsValid &&
+                            password.length > 0 &&
+                            viewType === "completeSignUp"
+                        }
+                        helperText={
+                            viewType === "completeSignUp"
+                                ? "password must be at least 8 characters long."
+                                : ""
+                        }
+                        autoComplete="new-password"
+                    />
+                )}
+                {(viewType === "completeSignUp" ||
+                    viewType === "recoverPassword" ||
+                    (viewType === "login" && emailIsValid)) && (
+                    <Container disableGutters sx={{ mt: 4 }}>
+                        <Captcha
+                            onVerify={(token) => setCaptchaToken(token)}
+                            ref={captchaRef}
+                            sitekey={
+                                process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? ""
+                            }
+                        />
+                    </Container>
+                )}
+                <LoadingButton
+                    size="large"
+                    color="primary"
+                    variant="contained"
+                    fullWidth
+                    sx={{ mt: 4 }}
+                    disabled={continueButtonDisabled}
+                    onClick={handleContinueClick}
+                    loading={continueButtonLoading}
+                    type="submit"
+                >
+                    Continue
+                </LoadingButton>
+            </form>
             {(viewType === "signUp" || viewType === "completeSignUp") && (
                 <Box textAlign="center" sx={{ mt: 2 }} color="text.secondary">
                     <Typography variant="caption">

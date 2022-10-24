@@ -23,6 +23,7 @@ const SignUp: NextPage = () => {
                 flex: "1 1 auto",
                 flexDirection: "column",
                 justifyContent: "center",
+                alignItems: "center",
             }}
         >
             <AuthForm showTitle />

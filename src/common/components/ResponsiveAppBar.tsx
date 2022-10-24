@@ -14,10 +14,11 @@ import NavLink from "./NavLink";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUser } from "@supabase/auth-helpers-react";
-import { logOut } from "../../modules/auth/utils/logout";
 import { Divider, Slide, useScrollTrigger, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useAuthStore from "../../modules/auth/store";
+import SiteBanner from "../../modules/notifications/components/SiteBanner";
+import { supabaseClient } from "../utils/supabaseClient";
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -56,6 +57,7 @@ const ResponsiveAppBar = () => {
         <>
             <Slide appear={false} direction="down" in={!useScrollTrigger()}>
                 <AppBar color="default" enableColorOnDark elevation={0}>
+                    <SiteBanner />
                     <Container maxWidth="lg">
                         <Toolbar disableGutters>
                             {/* logo & link to home */}
@@ -174,18 +176,20 @@ const ResponsiveAppBar = () => {
                                 >
                                     Guide
                                 </NavLink>
-                                <Link
-                                    component="button"
-                                    onClick={showLogin}
-                                    underline={"hover"}
-                                    color="inherit"
-                                    sx={{
-                                        mx: 2,
-                                    }}
-                                    variant="button"
-                                >
-                                    Log In
-                                </Link>
+                                {!user && (
+                                    <Link
+                                        component="button"
+                                        onClick={showLogin}
+                                        underline={"hover"}
+                                        color="inherit"
+                                        sx={{
+                                            mx: 2,
+                                        }}
+                                        variant="button"
+                                    >
+                                        Log In
+                                    </Link>
+                                )}
                             </Box>
 
                             {/* sign in button / account button */}
@@ -244,9 +248,13 @@ const ResponsiveAppBar = () => {
                                         </MenuItem>
                                     </NavLink>
                                     <MenuItem
-                                        onClick={async () =>
-                                            await logOut(router)
-                                        }
+                                        onClick={async () => {
+                                            const { error } =
+                                                await supabaseClient.auth.signOut();
+
+                                            // go to home page
+                                            router?.push("");
+                                        }}
                                     >
                                         <Typography variant="body2">
                                             Log Out
@@ -259,8 +267,12 @@ const ResponsiveAppBar = () => {
                     <Divider />
                 </AppBar>
             </Slide>
-            {/* empty toolbar to enforce proper top spacing for content with sliding appbar */}
-            <Toolbar sx={{ flex: "0 1 auto", mb: 4 }} />
+            {/* invisible site banner & empty toolbar to enforce proper 
+            top spacing for content with sliding appbar */}
+            <Box sx={{ visibility: "hidden" }}>
+                <SiteBanner />
+            </Box>
+            <Toolbar sx={{ flex: "0 1 auto", mb: 4 }}></Toolbar>
         </>
     );
 };
