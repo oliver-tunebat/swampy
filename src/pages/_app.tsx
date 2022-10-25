@@ -18,6 +18,7 @@ import "@fontsource/inter/500.css";
 import "@fontsource/inter/700.css";
 import { setCookie, getCookie, hasCookie } from "cookies-next";
 import AuthDialog from "../modules/auth/components/AuthDialog";
+import SiteSnackbar from "../modules/notifications/components/SiteSnackbar";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -99,6 +100,7 @@ export default function MyApp(props: MyAppProps) {
                         />
                     </Box>
                     <AuthDialog />
+                    <SiteSnackbar />
                 </ThemeProvider>
             </CacheProvider>
         </SessionContextProvider>
