@@ -3,12 +3,17 @@ import type { NextPage } from "next";
 import Container from "@mui/material/Container";
 import AuthForm from "../modules/auth/components/AuthForm";
 import useAuthStore, { AuthFormViewType } from "../modules/auth/store";
+import { useUser } from "@supabase/auth-helpers-react";
+import { Button } from "@mui/material";
+import { supabaseClient } from "../common/utils/supabaseClient";
 
 const SignUp: NextPage = () => {
     const setViewType = useAuthStore(
         (state) => (viewType: AuthFormViewType) =>
             state.setAuthFormViewType(viewType)
     );
+
+    const user = useUser();
 
     // force sign up view on mount, only executes once
     React.useEffect(() => {
@@ -26,7 +31,16 @@ const SignUp: NextPage = () => {
                 alignItems: "center",
             }}
         >
-            <AuthForm showTitle />
+            {user ? (
+                <Button
+                    variant="contained"
+                    onClick={async () => await supabaseClient.auth.signOut()}
+                >
+                    Log Out
+                </Button>
+            ) : (
+                <AuthForm showTitle />
+            )}
         </Container>
     );
 };

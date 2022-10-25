@@ -6,10 +6,16 @@ import SecureTextField from "../common/components/SecureTextField";
 import { Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { supabaseClient } from "../common/utils/supabaseClient";
+import useNotificationsStore from "../modules/notifications/store";
+import { SiteSnackbarProps } from "../modules/notifications/components/SiteSnackbar";
 
 const ChangePassword: NextPage = () => {
     const [password, setPassword] = React.useState("");
     const [buttonLoading, setbuttonLoading] = React.useState(false);
+
+    const showSnackbar = useNotificationsStore(
+        (state) => (props: SiteSnackbarProps) => state.showSiteSnackbar(props)
+    );
 
     const passwordIsValid = validatePassword(password);
 
@@ -20,6 +26,18 @@ const ChangePassword: NextPage = () => {
         });
         setPassword("");
         setbuttonLoading(false);
+
+        if (error)
+            showSnackbar({
+                message: "Unable to update password.",
+                severity: "error",
+            });
+        else {
+            showSnackbar({
+                message: "Succesfully updated password!",
+                severity: "success",
+            });
+        }
     };
 
     return (
@@ -30,7 +48,6 @@ const ChangePassword: NextPage = () => {
                 flex: "1 1 auto",
                 flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "center",
             }}
         >
             <Typography variant="h4" component="h1" sx={{ mb: 4 }}>

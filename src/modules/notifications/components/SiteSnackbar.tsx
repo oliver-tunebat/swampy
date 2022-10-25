@@ -19,6 +19,7 @@ export default function SiteSnackbar() {
             key={siteSnackbarProps.message}
             autoHideDuration={6000}
             onClose={hideSiteSnackbar}
+            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
         >
             <Alert
                 variant="filled"

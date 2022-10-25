@@ -30,8 +30,8 @@ export default function AuthDialog() {
     // prevents hCaptcha bug that occurs with multiple instances of the widget
     open =
         open &&
-        !router.pathname.startsWith("/sign-up") &&
-        !router.pathname.startsWith("/log-in");
+        !router.route.startsWith("/sign-up") &&
+        !router.route.startsWith("/log-in");
 
     return (
         <Dialog

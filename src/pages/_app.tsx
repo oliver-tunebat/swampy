@@ -19,6 +19,7 @@ import "@fontsource/inter/700.css";
 import { setCookie, getCookie, hasCookie } from "cookies-next";
 import AuthDialog from "../modules/auth/components/AuthDialog";
 import SiteSnackbar from "../modules/notifications/components/SiteSnackbar";
+import { setUpAuthStateChangeListeners } from "../modules/auth/utils/setUpAuthStateChangeListeners";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -63,6 +64,8 @@ export default function MyApp(props: MyAppProps) {
         () => createTheme(getDesignTokens(mode)),
         [mode]
     );
+
+    setUpAuthStateChangeListeners();
 
     // on client side load, get color mode from cookie
     React.useEffect(() => {

@@ -25,9 +25,9 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { supabaseClient } from "../../../common/utils/supabaseClient";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { validatePassword } from "../../../common/utils/validatePassword";
-import { useUser } from "@supabase/auth-helpers-react";
 import useNotificationsStore from "../../notifications/store";
 import AccountActivationBannerBody from "../../notifications/components/banner-bodies/AccountActivationBannerBody";
+import { SiteSnackbarProps } from "../../notifications/components/SiteSnackbar";
 
 export default function AuthForm(props: AuthFormProps) {
     const { showTitle } = props;
@@ -43,14 +43,19 @@ export default function AuthForm(props: AuthFormProps) {
         (state) => (viewType: AuthFormViewType) =>
             state.setAuthFormViewType(viewType)
     );
+    const closeAuthDialog = useAuthStore(
+        (state) => () => state.setAuthDialogOpen(false, viewType)
+    );
 
     const setBanner = useNotificationsStore(
         (state) => (showBanner: boolean, alertProps: AlertProps) =>
             state.setBanner(showBanner, alertProps)
     );
+    const showSnackbar = useNotificationsStore(
+        (state) => (props: SiteSnackbarProps) => state.showSiteSnackbar(props)
+    );
 
     const captchaRef = React.useRef<HCaptcha>(null);
-    const user = useUser();
 
     const emailIsValid = validateEmail(email);
     const passwordIsValid = validatePassword(password);
@@ -97,6 +102,19 @@ export default function AuthForm(props: AuthFormProps) {
             captchaRef.current?.resetCaptcha();
             setCaptchaToken("");
             setContinueButtonLoading(false);
+
+            if (error)
+                showSnackbar({
+                    message: "The email or password is incorrect.",
+                    severity: "error",
+                });
+            else {
+                closeAuthDialog();
+                showSnackbar({
+                    message: "You succesfully logged in!",
+                    severity: "success",
+                });
+            }
         } else if (viewType === "completeSignUp") {
             setContinueButtonLoading(true);
             const { data, error } = await supabaseClient.auth.signUp({
@@ -108,20 +126,31 @@ export default function AuthForm(props: AuthFormProps) {
             setCaptchaToken("");
             setContinueButtonLoading(false);
 
-            setBanner(true, {
-                children: <AccountActivationBannerBody />,
-                severity: "warning",
-            });
-            const removeBannerSignInListener =
-                supabaseClient.auth.onAuthStateChange((event, session) => {
-                    if (event === "SIGNED_IN") {
-                        // remove banner and listener
-                        setBanner(false, {});
-                        removeBannerSignInListener.data.subscription.unsubscribe();
-                    }
+            if (error)
+                showSnackbar({
+                    message: "Sign up failed.",
+                    severity: "error",
+                });
+            else {
+                closeAuthDialog();
+                setBanner(true, {
+                    children: <AccountActivationBannerBody />,
+                    severity: "warning",
                 });
 
-            console.log(data);
+                // create a listener to remove the banner when the user logs in
+                const removeBannerSignInListener =
+                    supabaseClient.auth.onAuthStateChange((event, session) => {
+                        if (event === "SIGNED_IN") {
+                            setBanner(false, {});
+                            showSnackbar({
+                                message: "You succesfully logged in!",
+                                severity: "success",
+                            });
+                            removeBannerSignInListener.data.subscription.unsubscribe();
+                        }
+                    });
+            }
         } else if (viewType === "recoverPassword") {
             setContinueButtonLoading(true);
             const { data, error } =
@@ -134,21 +163,21 @@ export default function AuthForm(props: AuthFormProps) {
             captchaRef.current?.resetCaptcha();
             setCaptchaToken("");
             setContinueButtonLoading(false);
+
+            if (error)
+                showSnackbar({
+                    message: "Unable to send a password recovery link.",
+                    severity: "error",
+                });
+            else {
+                showSnackbar({
+                    message:
+                        "A password recovery link has been sent to the email address.",
+                    severity: "success",
+                });
+            }
         }
     };
-
-    // if authenticated, only display a logout button
-    if (user) {
-        return (
-            <Button
-                variant="contained"
-                fullWidth={false}
-                onClick={async () => await supabaseClient.auth.signOut()}
-            >
-                Log Out
-            </Button>
-        );
-    }
 
     return (
         <Container maxWidth="xxsContainer" disableGutters>

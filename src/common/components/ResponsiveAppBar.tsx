@@ -251,9 +251,6 @@ const ResponsiveAppBar = () => {
                                         onClick={async () => {
                                             const { error } =
                                                 await supabaseClient.auth.signOut();
-
-                                            // go to home page
-                                            router?.push("");
                                         }}
                                     >
                                         <Typography variant="body2">
