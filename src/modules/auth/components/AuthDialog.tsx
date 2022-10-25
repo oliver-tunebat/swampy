@@ -6,10 +6,11 @@ import useAuthStore from "../store";
 import { useMediaQuery, useTheme } from "@mui/material";
 import DialogCloseButton from "../../../common/components/DialogCloseButton";
 import AuthForm from "./AuthForm";
+import { useRouter } from "next/router";
 
 export default function AuthDialog() {
     const viewType = useAuthStore((state) => state.authFormViewType);
-    const open = useAuthStore((state) => state.authDialogOpen);
+    let open = useAuthStore((state) => state.authDialogOpen);
     const closeDialog = useAuthStore(
         (state) => () => state.setAuthDialogOpen(false, viewType)
     );
@@ -23,6 +24,14 @@ export default function AuthDialog() {
 
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+    const router = useRouter();
+
+    // don't show dialog if the authform is displayed else where such as auth pages
+    // prevents hCaptcha bug that occurs with multiple instances of the widget
+    open =
+        open &&
+        !router.pathname.startsWith("/sign-up") &&
+        !router.pathname.startsWith("/log-in");
 
     return (
         <Dialog
