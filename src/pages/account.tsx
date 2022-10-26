@@ -1,43 +1,54 @@
 import * as React from "react";
 import type { NextPage } from "next";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import NavLink from "../common/components/NavLink";
-import ProTip from "../ProTip";
-import Copyright from "../Copyright";
-import { withPageAuth } from "@supabase/auth-helpers-nextjs";
+import { User, withPageAuth } from "@supabase/auth-helpers-nextjs";
 import PageContainer from "../common/components/PageContainer";
+import { Link, List, ListItem, ListItemText } from "@mui/material";
+import ConfirmationDialog from "../common/components/ConfirmationDialog";
 
-const Account: NextPage = () => {
+const Account: NextPage<AccountProps> = (props: AccountProps) => {
+    const { user } = props;
+
+    const [isDeleteAccountDialogOpen, setIsDeleteAccountDialogOpen] =
+        React.useState(false);
+
     return (
         <PageContainer>
-            <Box
-                sx={{
-                    my: 4,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <Typography variant="h4" component="h1" gutterBottom>
-                    Account
-                </Typography>
-                <Box maxWidth="sm">
-                    <Button
-                        variant="contained"
-                        component={NavLink}
-                        noLinkStyle
-                        href="/"
+            <Typography variant="h4" component="h1">
+                Your Account
+            </Typography>
+            <List>
+                <ListItem disableGutters>
+                    <ListItemText
+                        primary="Email Address"
+                        secondary={user.email}
+                    />
+                </ListItem>
+                <ListItem disableGutters>
+                    <NavLink href="/change-password">
+                        <ListItemText primary="Change Password" />
+                    </NavLink>
+                </ListItem>
+                <ListItem disableGutters>
+                    <Link
+                        component="button"
+                        color="error"
+                        onClick={() => setIsDeleteAccountDialogOpen(true)}
                     >
-                        Go to the home page
-                    </Button>
-                </Box>
-                <ProTip />
-                <Copyright />
-            </Box>
+                        <ListItemText primary="Delete Account" />
+                    </Link>
+                </ListItem>
+            </List>
+            <ConfirmationDialog
+                open={isDeleteAccountDialogOpen}
+                onClose={() => setIsDeleteAccountDialogOpen(false)}
+                titleText="Delete your account?"
+                content="Your account will be permanently deleted and cannot be recovered."
+                danger
+                confirmText="Delete Account"
+                onConfirm={() => console.log(111)}
+            />
         </PageContainer>
     );
 };
@@ -47,15 +58,16 @@ export default Account;
 export const getServerSideProps = withPageAuth({
     authRequired: true,
     redirectTo: "/",
-    // async getServerSideProps(ctx) {
-    //     // Access the user object
-    //     let { user, accessToken } = await getUser(ctx);
+    async getServerSideProps(ctx, supabaseClient) {
+        // Access the user object
+        const {
+            data: { user },
+        } = await supabaseClient.auth.getUser();
 
-    //     // if (!user) {}
-    //     return { props: user };
-    // },
+        return { props: user };
+    },
 });
 
-// interface AccountProps {
-//     user: User;
-// }
+interface AccountProps {
+    user: User;
+}

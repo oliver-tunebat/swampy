@@ -1,10 +1,8 @@
 import * as React from "react";
 import { Close } from "@mui/icons-material";
-import { IconButton, useTheme } from "@mui/material";
+import { IconButton, IconButtonProps, useTheme } from "@mui/material";
 
-export default function DialogCloseButton(props: DialogCloseButtonProps) {
-    const { onClick } = props;
-
+export default function DialogCloseButton(props: IconButtonProps) {
     const theme = useTheme();
 
     return (
@@ -15,13 +13,9 @@ export default function DialogCloseButton(props: DialogCloseButtonProps) {
                 right: theme.spacing(2),
                 top: theme.spacing(2),
             }}
-            onClick={onClick}
+            {...props}
         >
             <Close />
         </IconButton>
     );
-}
-
-interface DialogCloseButtonProps {
-    onClick: () => void;
 }

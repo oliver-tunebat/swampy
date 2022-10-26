@@ -1,5 +1,5 @@
 import { alpha, darken, ThemeOptions } from "@mui/material/styles";
-import { green, orange } from "@mui/material/colors";
+import { green, orange, red } from "@mui/material/colors";
 import { CSSInterpolation, lighten, PaletteMode } from "@mui/material";
 
 const tonalOffset = 0.2;
@@ -27,6 +27,9 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                 light: isLightMode
                     ? lighten("#000", tonalOffset)
                     : darken("#fff", tonalOffset),
+            },
+            error: {
+                main: isLightMode ? red[700] : red["A100"],
             },
             spotify: {
                 main: "#1db954",
