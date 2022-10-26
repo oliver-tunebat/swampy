@@ -6,6 +6,7 @@ import useAuthStore, { AuthFormViewType } from "../modules/auth/store";
 import { useUser } from "@supabase/auth-helpers-react";
 import { Button } from "@mui/material";
 import { supabaseClient } from "../common/utils/supabaseClient";
+import PageContainer from "../common/components/PageContainer";
 
 const SignUp: NextPage = () => {
     const setViewType = useAuthStore(
@@ -21,8 +22,7 @@ const SignUp: NextPage = () => {
     }, []);
 
     return (
-        <Container
-            maxWidth="lg"
+        <PageContainer
             sx={{
                 display: "flex",
                 flex: "1 1 auto",
@@ -41,7 +41,7 @@ const SignUp: NextPage = () => {
             ) : (
                 <AuthForm showTitle />
             )}
-        </Container>
+        </PageContainer>
     );
 };
 

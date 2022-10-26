@@ -8,10 +8,11 @@ import NavLink from "../common/components/NavLink";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
 import { withPageAuth } from "@supabase/auth-helpers-nextjs";
+import PageContainer from "../common/components/PageContainer";
 
 const Account: NextPage = () => {
     return (
-        <Container maxWidth="lg">
+        <PageContainer>
             <Box
                 sx={{
                     my: 4,
@@ -37,7 +38,7 @@ const Account: NextPage = () => {
                 <ProTip />
                 <Copyright />
             </Box>
-        </Container>
+        </PageContainer>
     );
 };
 

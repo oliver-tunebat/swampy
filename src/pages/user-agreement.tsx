@@ -7,10 +7,11 @@ import Button from "@mui/material/Button";
 import NavLink from "../common/components/NavLink";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
+import PageContainer from "../common/components/PageContainer";
 
 const UserAgreement: NextPage = () => {
     return (
-        <Container maxWidth="lg" sx={{ flex: "1 1 auto" }}>
+        <PageContainer>
             <Box
                 sx={{
                     my: 4,
@@ -227,7 +228,7 @@ const UserAgreement: NextPage = () => {
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Typography>
-        </Container>
+        </PageContainer>
     );
 };
 

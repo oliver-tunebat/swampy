@@ -8,6 +8,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { supabaseClient } from "../common/utils/supabaseClient";
 import useNotificationsStore from "../modules/notifications/store";
 import { SiteSnackbarProps } from "../modules/notifications/components/SiteSnackbar";
+import PageContainer from "../common/components/PageContainer";
 
 const ChangePassword: NextPage = () => {
     const [password, setPassword] = React.useState("");
@@ -41,7 +42,7 @@ const ChangePassword: NextPage = () => {
     };
 
     return (
-        <Container
+        <PageContainer
             maxWidth="xxsContainer"
             sx={{
                 display: "flex",
@@ -78,7 +79,7 @@ const ChangePassword: NextPage = () => {
             >
                 Continue
             </LoadingButton>
-        </Container>
+        </PageContainer>
     );
 };
 
