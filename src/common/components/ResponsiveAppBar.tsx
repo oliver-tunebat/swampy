@@ -77,6 +77,7 @@ const ResponsiveAppBar = () => {
                                     alt="Swampy Logo"
                                     width="164"
                                     height="32"
+                                    priority
                                 />
                             </NavLink>
 
