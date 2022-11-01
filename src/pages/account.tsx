@@ -6,6 +6,7 @@ import { User, withPageAuth } from "@supabase/auth-helpers-nextjs";
 import PageContainer from "../common/components/PageContainer";
 import { Link, List, ListItem, ListItemText } from "@mui/material";
 import ConfirmationDialog from "../common/components/ConfirmationDialog";
+import { deleteUser } from "../modules/auth/api/authAPI";
 
 const Account: NextPage<AccountProps> = (props: AccountProps) => {
     const { user } = props;
@@ -47,7 +48,8 @@ const Account: NextPage<AccountProps> = (props: AccountProps) => {
                 content="Your account will be permanently deleted and cannot be recovered."
                 danger
                 confirmText="Delete Account"
-                onConfirm={() => console.log(111)}
+                showLoading
+                onConfirm={deleteUser}
             />
         </PageContainer>
     );

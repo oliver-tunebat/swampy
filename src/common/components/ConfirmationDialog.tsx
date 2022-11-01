@@ -4,13 +4,26 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button, DialogActions, Typography } from "@mui/material";
 import ResponsiveDialog from "./ResponsiveDialog";
+import { LoadingButton } from "@mui/lab";
 
 export default function ConfirmationDialog(props: ConfirmationDialogProps) {
-    const { titleText, content, danger, confirmText, onConfirm, onClose } =
-        props;
+    const {
+        titleText,
+        content,
+        danger,
+        confirmText,
+        showLoading,
+        onConfirm,
+        onClose,
+    } = props;
 
-    const handleConfirm = (event: React.MouseEvent) => {
-        onConfirm();
+    const [isContinueButtonLoading, setIsContinueButtonLoading] =
+        React.useState(false);
+
+    const handleConfirm = async (event: React.MouseEvent) => {
+        setIsContinueButtonLoading(true);
+        await onConfirm();
+        setIsContinueButtonLoading(false);
         onClose?.(event, "escapeKeyDown");
     };
 
@@ -27,12 +40,13 @@ export default function ConfirmationDialog(props: ConfirmationDialogProps) {
                 >
                     Cancel
                 </Button>
-                <Button
+                <LoadingButton
                     color={danger ? "error" : "primary"}
                     onClick={(event) => handleConfirm(event)}
+                    loading={isContinueButtonLoading && showLoading}
                 >
                     {confirmText ?? "Continue"}
-                </Button>
+                </LoadingButton>
             </DialogActions>
         </ResponsiveDialog>
     );
@@ -43,5 +57,6 @@ interface ConfirmationDialogProps extends DialogProps {
     content?: string;
     danger?: boolean;
     confirmText?: string;
+    showLoading?: boolean;
     onConfirm: () => void;
 }
