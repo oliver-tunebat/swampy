@@ -8,10 +8,14 @@ import NavLink from "../common/components/NavLink";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
 import PageContainer from "../common/components/PageContainer";
+import Head from "next/head";
 
 const PrivacyPolicy: NextPage = () => {
     return (
         <PageContainer>
+            <Head>
+                <title>Privacy Policy | Swampy</title>
+            </Head>
             <Box
                 sx={{
                     my: 4,

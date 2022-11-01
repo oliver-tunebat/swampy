@@ -9,6 +9,7 @@ import { supabaseClient } from "../common/utils/supabaseClient";
 import useNotificationsStore from "../modules/notifications/store";
 import { SiteSnackbarProps } from "../modules/notifications/components/SiteSnackbar";
 import PageContainer from "../common/components/PageContainer";
+import Head from "next/head";
 
 const ChangePassword: NextPage = () => {
     const [password, setPassword] = React.useState("");
@@ -51,6 +52,9 @@ const ChangePassword: NextPage = () => {
                 justifyContent: "center",
             }}
         >
+            <Head>
+                <title>Change Password | Swampy</title>
+            </Head>
             <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
                 Change Password
             </Typography>

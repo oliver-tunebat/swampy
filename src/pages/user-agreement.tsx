@@ -8,6 +8,7 @@ import NavLink from "../common/components/NavLink";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
 import PageContainer from "../common/components/PageContainer";
+import Head from "next/head";
 
 const UserAgreement: NextPage = () => {
     return (
@@ -21,6 +22,9 @@ const UserAgreement: NextPage = () => {
                     alignItems: "center",
                 }}
             >
+                <Head>
+                    <title>User Agreement | Swampy</title>
+                </Head>
                 <Typography variant="h4" component="h1" gutterBottom>
                     MUI v5 + Next.js with TypeScript example
                 </Typography>

@@ -7,6 +7,7 @@ import { useUser } from "@supabase/auth-helpers-react";
 import { Button } from "@mui/material";
 import { supabaseClient } from "../common/utils/supabaseClient";
 import PageContainer from "../common/components/PageContainer";
+import Head from "next/head";
 
 const LogIn: NextPage = () => {
     const setViewType = useAuthStore(
@@ -31,6 +32,9 @@ const LogIn: NextPage = () => {
                 alignItems: "center",
             }}
         >
+            <Head>
+                <title>Log In | Swampy</title>
+            </Head>
             {user ? (
                 <Button
                     variant="contained"

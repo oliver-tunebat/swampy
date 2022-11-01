@@ -7,6 +7,7 @@ import PageContainer from "../common/components/PageContainer";
 import { Link, List, ListItem, ListItemText } from "@mui/material";
 import ConfirmationDialog from "../common/components/ConfirmationDialog";
 import { deleteUser } from "../modules/auth/api/authAPI";
+import Head from "next/head";
 
 const Account: NextPage<AccountProps> = (props: AccountProps) => {
     const { user } = props;
@@ -16,6 +17,9 @@ const Account: NextPage<AccountProps> = (props: AccountProps) => {
 
     return (
         <PageContainer>
+            <Head>
+                <title>Account | Swampy</title>
+            </Head>
             <Typography variant="h4" component="h1">
                 Your Account
             </Typography>

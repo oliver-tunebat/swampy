@@ -8,10 +8,18 @@ import NavLink from "../common/components/NavLink";
 import ProTip from "../ProTip";
 import Copyright from "../Copyright";
 import PageContainer from "../common/components/PageContainer";
+import Head from "next/head";
 
 const Guide: NextPage = () => {
     return (
         <PageContainer>
+            <Head>
+                <title>Swampy Guide - How to use Swampy</title>
+                <meta
+                    name="description"
+                    content="Get started with Swampy by following the quickstart guide."
+                />
+            </Head>
             <Box
                 sx={{
                     my: 4,
