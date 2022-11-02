@@ -227,6 +227,7 @@ export default function AuthForm(props: AuthFormProps) {
                         error={Boolean(emailErrorText)}
                         helperText={emailErrorText}
                         name="email"
+                        size="small"
                     />
                 )}
                 {viewType === "completeSignUp" && (
@@ -269,6 +270,7 @@ export default function AuthForm(props: AuthFormProps) {
                                 : ""
                         }
                         autoComplete="new-password"
+                        size="small"
                     />
                 )}
                 {(viewType === "completeSignUp" ||

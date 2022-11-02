@@ -1,5 +1,5 @@
 import { alpha, darken, ThemeOptions } from "@mui/material/styles";
-import { green, orange, red } from "@mui/material/colors";
+import { green, grey, orange, red } from "@mui/material/colors";
 import { CSSInterpolation, lighten, PaletteMode } from "@mui/material";
 
 const tonalOffset = 0.2;
@@ -12,32 +12,30 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             mode,
             primary: {
                 main: isLightMode ? green[800] : green["A200"],
-                contrastText: isLightMode ? "#fff" : "#000",
+                contrastText: isLightMode ? grey[50] : grey[900],
             },
             secondary: {
                 main: isLightMode ? "#bf360c" : orange["A200"],
-                contrastText: isLightMode ? "#fff" : "#000",
+                contrastText: isLightMode ? grey[50] : grey[900],
             },
             neutral: {
-                main: isLightMode ? "#000" : "#fff",
-                contrastText: isLightMode ? "#fff" : "#000",
+                main: isLightMode ? grey[900] : grey[50],
+                contrastText: isLightMode ? grey[50] : grey[900],
                 dark: isLightMode
-                    ? lighten("#000", tonalOffset)
-                    : darken("#fff", tonalOffset),
+                    ? lighten(grey[900], tonalOffset)
+                    : darken(grey[50], tonalOffset),
                 light: isLightMode
-                    ? lighten("#000", tonalOffset)
-                    : darken("#fff", tonalOffset),
+                    ? lighten(grey[900], tonalOffset)
+                    : darken(grey[50], tonalOffset),
             },
             error: {
                 main: isLightMode ? red[700] : red["A100"],
             },
             spotify: {
                 main: "#1db954",
-                contrastText: "#fff",
-            },
-            apple: {
-                main: "#000",
-                contrastText: "#fff",
+                contrastText: grey[50],
+                dark: darken("#1db954", tonalOffset),
+                light: lighten("#1db954", tonalOffset),
             },
             tonalOffset: tonalOffset,
         },
@@ -73,6 +71,8 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 sourceColor = theme.palette.info.dark;
                             else if (ownerState.color === "neutral")
                                 sourceColor = theme.palette.neutral?.dark ?? "";
+                            else if (ownerState.color === "spotify")
+                                sourceColor = theme.palette.spotify?.dark ?? "";
 
                             style[":active"] = {
                                 backgroundColor: darken(
@@ -113,6 +113,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 sourceColor = isLightMode
                                     ? theme.palette.neutral?.dark ?? ""
                                     : theme.palette.neutral?.light ?? "";
+                            else if (ownerState.color === "spotify")
+                                sourceColor = isLightMode
+                                    ? theme.palette.spotify?.dark ?? ""
+                                    : theme.palette.spotify?.light ?? "";
 
                             style[":hover"] = {
                                 backgroundColor: alpha(sourceColor, 0.08),
@@ -215,12 +219,10 @@ declare module "@mui/material/styles" {
     interface Palette {
         neutral?: Palette["primary"];
         spotify?: Palette["primary"];
-        apple?: Palette["primary"];
     }
     interface PaletteOptions {
         neutral?: PaletteOptions["primary"];
         spotify?: PaletteOptions["primary"];
-        apple?: PaletteOptions["primary"];
     }
     interface BreakpointOverrides {
         xs: true;
@@ -237,6 +239,5 @@ declare module "@mui/material/Button" {
     interface ButtonPropsColorOverrides {
         neutral: true;
         spotify: true;
-        apple: true;
     }
 }
