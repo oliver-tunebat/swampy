@@ -1,19 +1,23 @@
 import * as React from "react";
 import type { NextPage } from "next";
-import { validatePassword } from "../common/utils/validatePassword";
-import SecureTextField from "../common/components/SecureTextField";
-import { Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { supabaseClient } from "../common/utils/supabaseClient";
 import PageContainer from "../common/components/PageContainer";
 import Head from "next/head";
 import showSnackbar from "../modules/notifications/utils/showSnackbar";
+import { validateEmail } from "../common/utils/validateEmail";
+import { withPageAuth } from "@supabase/auth-helpers-nextjs";
 
-const ChangePassword: NextPage = () => {
-    const [password, setPassword] = React.useState("");
+const ChangeEmail: NextPage = () => {
+    const [email, setEmail] = React.useState("");
     const [buttonLoading, setbuttonLoading] = React.useState(false);
+    const [isSuccess, setIsSuccess] = React.useState(false);
 
-    const passwordIsValid = validatePassword(password);
+    const emailIsValid = validateEmail(email);
+
+    const emailErrorText =
+        email.length > 0 && !emailIsValid ? "invalid email address" : null;
 
     const handleContinueClick = async (
         event: React.MouseEvent<HTMLElement>
@@ -22,15 +26,16 @@ const ChangePassword: NextPage = () => {
         event.preventDefault();
 
         setbuttonLoading(true);
+        setIsSuccess(false);
         const { data, error } = await supabaseClient.auth.updateUser({
-            password: password,
+            email: email,
         });
-        setPassword("");
+        setEmail("");
         setbuttonLoading(false);
 
-        if (error) showSnackbar("Unable to update password.", "error");
+        if (error) showSnackbar("Unable to update email.", "error");
         else {
-            showSnackbar("Succesfully updated password!", "success");
+            setIsSuccess(true);
         }
     };
 
@@ -45,24 +50,25 @@ const ChangePassword: NextPage = () => {
             }}
         >
             <Head>
-                <title>Change Password | Swampy</title>
+                <title>Change Email | Swampy</title>
             </Head>
             <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
-                Change Password
+                Change Email
             </Typography>
             <form>
-                <SecureTextField
-                    label="New Password"
+                <TextField
+                    label="New Email"
                     variant="outlined"
                     sx={{ mt: 2 }}
                     fullWidth
-                    value={password}
+                    type="email"
+                    value={email}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                        setPassword(event.target.value)
+                        setEmail(event.target.value)
                     }
-                    error={!passwordIsValid && password.length > 0}
-                    helperText="password must be at least 8 characters long."
-                    autoComplete="new-password"
+                    error={Boolean(emailErrorText)}
+                    helperText={emailErrorText}
+                    name="email"
                 />
                 <LoadingButton
                     size="large"
@@ -70,7 +76,7 @@ const ChangePassword: NextPage = () => {
                     variant="contained"
                     fullWidth
                     sx={{ mt: 4 }}
-                    disabled={!passwordIsValid}
+                    disabled={!emailIsValid}
                     onClick={handleContinueClick}
                     loading={buttonLoading}
                     type="submit"
@@ -78,8 +84,22 @@ const ChangePassword: NextPage = () => {
                     Continue
                 </LoadingButton>
             </form>
+            {isSuccess && (
+                <Typography sx={{ mt: 4 }} variant="body2">
+                    A link was sent to both your old and new email addresses.
+                    Click both links to finish updating your email.
+                </Typography>
+            )}
         </PageContainer>
     );
 };
 
-export default ChangePassword;
+export default ChangeEmail;
+
+export const getServerSideProps = withPageAuth({
+    authRequired: true,
+    redirectTo: "/log-in",
+    async getServerSideProps(ctx, supabaseClient) {
+        return { props: undefined };
+    },
+});

@@ -31,6 +31,11 @@ const Account: NextPage<AccountProps> = (props: AccountProps) => {
                     />
                 </ListItem>
                 <ListItem disableGutters>
+                    <NavLink href="/change-email">
+                        <ListItemText primary="Change Email" />
+                    </NavLink>
+                </ListItem>
+                <ListItem disableGutters>
                     <NavLink href="/change-password">
                         <ListItemText primary="Change Password" />
                     </NavLink>
@@ -63,7 +68,7 @@ export default Account;
 
 export const getServerSideProps = withPageAuth({
     authRequired: true,
-    redirectTo: "/",
+    redirectTo: "/log-in",
     async getServerSideProps(ctx, supabaseClient) {
         // Access the user object
         const {

@@ -158,7 +158,7 @@ export default function AuthForm(props: AuthFormProps) {
                 );
             else {
                 showSnackbar(
-                    "A password recovery link has been sent to the email address.",
+                    "A password recovery link has been sent to your email address.",
                     "success"
                 );
             }
