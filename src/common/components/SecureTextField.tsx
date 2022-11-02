@@ -24,6 +24,7 @@ export default function SecureTextField(props: TextFieldProps) {
                                     ? "hide password"
                                     : "show password"
                             }
+                            size="small"
                         >
                             {textIsVisible ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
