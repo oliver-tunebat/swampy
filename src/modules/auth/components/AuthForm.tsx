@@ -27,7 +27,7 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { validatePassword } from "../../../common/utils/validatePassword";
 import useNotificationsStore from "../../notifications/store";
 import AccountActivationBannerBody from "../../notifications/components/banner-bodies/AccountActivationBannerBody";
-import { SiteSnackbarProps } from "../../notifications/components/SiteSnackbar";
+import showSnackbar from "../../notifications/utils/showSnackbar";
 
 export default function AuthForm(props: AuthFormProps) {
     const { showTitle } = props;
@@ -50,9 +50,6 @@ export default function AuthForm(props: AuthFormProps) {
     const setBanner = useNotificationsStore(
         (state) => (showBanner: boolean, alertProps: AlertProps) =>
             state.setBanner(showBanner, alertProps)
-    );
-    const showSnackbar = useNotificationsStore(
-        (state) => (props: SiteSnackbarProps) => state.showSiteSnackbar(props)
     );
 
     const captchaRef = React.useRef<HCaptcha>(null);
@@ -104,16 +101,10 @@ export default function AuthForm(props: AuthFormProps) {
             setContinueButtonLoading(false);
 
             if (error)
-                showSnackbar({
-                    message: "The email or password is incorrect.",
-                    severity: "error",
-                });
+                showSnackbar("The email or password is incorrect.", "error");
             else {
                 closeAuthDialog();
-                showSnackbar({
-                    message: "You succesfully logged in!",
-                    severity: "success",
-                });
+                showSnackbar("You succesfully logged in!", "success");
             }
         } else if (viewType === "completeSignUp") {
             setContinueButtonLoading(true);
@@ -126,11 +117,7 @@ export default function AuthForm(props: AuthFormProps) {
             setCaptchaToken("");
             setContinueButtonLoading(false);
 
-            if (error)
-                showSnackbar({
-                    message: "Sign up failed.",
-                    severity: "error",
-                });
+            if (error) showSnackbar("Sign up failed.", "error");
             else {
                 closeAuthDialog();
                 setBanner(true, {
@@ -143,10 +130,10 @@ export default function AuthForm(props: AuthFormProps) {
                     supabaseClient.auth.onAuthStateChange((event, session) => {
                         if (event === "SIGNED_IN") {
                             setBanner(false, {});
-                            showSnackbar({
-                                message: "You succesfully logged in!",
-                                severity: "success",
-                            });
+                            showSnackbar(
+                                "You succesfully logged in!",
+                                "success"
+                            );
                             removeBannerSignInListener.data.subscription.unsubscribe();
                         }
                     });
@@ -165,16 +152,15 @@ export default function AuthForm(props: AuthFormProps) {
             setContinueButtonLoading(false);
 
             if (error)
-                showSnackbar({
-                    message: "Unable to send a password recovery link.",
-                    severity: "error",
-                });
+                showSnackbar(
+                    "Unable to send a password recovery link.",
+                    "error"
+                );
             else {
-                showSnackbar({
-                    message:
-                        "A password recovery link has been sent to the email address.",
-                    severity: "success",
-                });
+                showSnackbar(
+                    "A password recovery link has been sent to the email address.",
+                    "success"
+                );
             }
         }
     };

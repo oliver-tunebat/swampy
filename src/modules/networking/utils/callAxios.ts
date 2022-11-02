@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
-import useNotificationsStore from "../../notifications/store";
+import showSnackbar from "../../notifications/utils/showSnackbar";
 
 // helper function for calling axios asynchronously
 export async function callAxiosMethod<T>(
@@ -58,10 +58,7 @@ export async function callAxiosMethod<T>(
                     : error.response?.data;
             }
 
-            useNotificationsStore.setState({
-                isSiteSnackbarShowing: true,
-                siteSnackbarProps: { message: message, severity: "error" },
-            });
+            showSnackbar(message, "error");
         }
 
         return { response: error.response, error: error };

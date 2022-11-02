@@ -6,18 +6,13 @@ import SecureTextField from "../common/components/SecureTextField";
 import { Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { supabaseClient } from "../common/utils/supabaseClient";
-import useNotificationsStore from "../modules/notifications/store";
-import { SiteSnackbarProps } from "../modules/notifications/components/SiteSnackbar";
 import PageContainer from "../common/components/PageContainer";
 import Head from "next/head";
+import showSnackbar from "../modules/notifications/utils/showSnackbar";
 
 const ChangePassword: NextPage = () => {
     const [password, setPassword] = React.useState("");
     const [buttonLoading, setbuttonLoading] = React.useState(false);
-
-    const showSnackbar = useNotificationsStore(
-        (state) => (props: SiteSnackbarProps) => state.showSiteSnackbar(props)
-    );
 
     const passwordIsValid = validatePassword(password);
 
@@ -29,16 +24,9 @@ const ChangePassword: NextPage = () => {
         setPassword("");
         setbuttonLoading(false);
 
-        if (error)
-            showSnackbar({
-                message: "Unable to update password.",
-                severity: "error",
-            });
+        if (error) showSnackbar("Unable to update password.", "error");
         else {
-            showSnackbar({
-                message: "Succesfully updated password!",
-                severity: "success",
-            });
+            showSnackbar("Succesfully updated password!", "success");
         }
     };
 

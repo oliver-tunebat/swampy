@@ -20,11 +20,11 @@ export default withApiAuth(async (req, res, supabaseClient) => {
             return;
         }
 
+        // clear auth token cookie to deauthenticate user
         res.setHeader("Set-Cookie", "supabase-auth-token=; Max-Age=0; Path=/");
         res.status(200).send({});
         return;
     }
 
-    // error for unimplemented methods
-    res.status(405).send({});
+    res.status(405).send("Operation unavailable.");
 });
