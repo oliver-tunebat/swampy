@@ -8,6 +8,7 @@ export default class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
+                    {/* generated with https://realfavicongenerator.net/ */}
                     <link
                         rel="apple-touch-icon"
                         sizes="180x180"
@@ -33,6 +34,7 @@ export default class MyDocument extends Document {
                     />
                     <meta name="msapplication-TileColor" content="#2e7d32" />
                     <meta name="theme-color" content="#2e7d32" />
+                    {/* end generated with https://realfavicongenerator.net/ */}
 
                     <meta name="emotion-insertion-point" content="" />
                     {(this.props as any).emotionStyleTags}
