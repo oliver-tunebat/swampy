@@ -11,7 +11,7 @@ import showSnackbar from "../modules/notifications/utils/showSnackbar";
 
 const ChangePassword: NextPage = () => {
     const [password, setPassword] = React.useState("");
-    const [buttonLoading, setbuttonLoading] = React.useState(false);
+    const [isButtonLoading, setIsButtonLoading] = React.useState(false);
 
     const passwordIsValid = validatePassword(password);
 
@@ -21,12 +21,12 @@ const ChangePassword: NextPage = () => {
         // prevent navigation
         event.preventDefault();
 
-        setbuttonLoading(true);
+        setIsButtonLoading(true);
         const { data, error } = await supabaseClient.auth.updateUser({
             password: password,
         });
         setPassword("");
-        setbuttonLoading(false);
+        setIsButtonLoading(false);
 
         if (error) showSnackbar("Unable to update password.", "error");
         else {
@@ -72,7 +72,7 @@ const ChangePassword: NextPage = () => {
                     sx={{ mt: 4 }}
                     disabled={!passwordIsValid}
                     onClick={handleContinueClick}
-                    loading={buttonLoading}
+                    loading={isButtonLoading}
                     type="submit"
                 >
                     Continue

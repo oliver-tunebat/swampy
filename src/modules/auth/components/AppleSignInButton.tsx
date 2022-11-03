@@ -5,25 +5,25 @@ import getCurrentURL from "../../../common/utils/getCurrentURL";
 import showSnackbar from "../../notifications/utils/showSnackbar";
 
 export default function AppleLoginButton(props: ButtonProps) {
+    const handleClick = async () => {
+        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+            provider: "apple",
+            options: {
+                redirectTo: getCurrentURL(true),
+            },
+        });
+
+        if (error) showSnackbar("Unable to login with Apple.");
+    };
+
     return (
         <Button
             color="neutral"
             startIcon={<Apple />}
-            onClick={async () => await signInWithApple()}
+            onClick={handleClick}
             {...props}
         >
             Continue with Apple
         </Button>
     );
-}
-
-async function signInWithApple() {
-    const { data, error } = await supabaseClient.auth.signInWithOAuth({
-        provider: "apple",
-        options: {
-            redirectTo: getCurrentURL(true),
-        },
-    });
-
-    if (error) showSnackbar("Unable to login with Apple.");
 }

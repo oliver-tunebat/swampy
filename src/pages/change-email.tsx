@@ -11,7 +11,7 @@ import { withPageAuth } from "@supabase/auth-helpers-nextjs";
 
 const ChangeEmail: NextPage = () => {
     const [email, setEmail] = React.useState("");
-    const [buttonLoading, setbuttonLoading] = React.useState(false);
+    const [isButtonLoading, setIsButtonLoading] = React.useState(false);
     const [isSuccess, setIsSuccess] = React.useState(false);
 
     const emailIsValid = validateEmail(email);
@@ -25,13 +25,13 @@ const ChangeEmail: NextPage = () => {
         // prevent navigation
         event.preventDefault();
 
-        setbuttonLoading(true);
+        setIsButtonLoading(true);
         setIsSuccess(false);
         const { data, error } = await supabaseClient.auth.updateUser({
             email: email,
         });
         setEmail("");
-        setbuttonLoading(false);
+        setIsButtonLoading(false);
 
         if (error) showSnackbar("Unable to update email.", "error");
         else {
@@ -78,7 +78,7 @@ const ChangeEmail: NextPage = () => {
                     sx={{ mt: 4 }}
                     disabled={!emailIsValid}
                     onClick={handleContinueClick}
-                    loading={buttonLoading}
+                    loading={isButtonLoading}
                     type="submit"
                 >
                     Continue
