@@ -1,12 +1,5 @@
-import * as React from "react";
 import type { NextPage } from "next";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import NavLink from "../common/components/NavLink";
-import ProTip from "../ProTip";
-import Copyright from "../Copyright";
 import PageContainer from "../common/components/PageContainer";
 import Head from "next/head";
 
@@ -16,31 +9,6 @@ const PrivacyPolicy: NextPage = () => {
             <Head>
                 <title>Privacy Policy | Swampy</title>
             </Head>
-            <Box
-                sx={{
-                    my: 4,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <Typography variant="h4" component="h1" gutterBottom>
-                    MUI v5 + Next.js with TypeScript example
-                </Typography>
-                <Box maxWidth="sm">
-                    <Button
-                        variant="contained"
-                        component={NavLink}
-                        noLinkStyle
-                        href="/"
-                    >
-                        Go to the home page
-                    </Button>
-                </Box>
-                <ProTip />
-                <Copyright />
-            </Box>
             <Typography>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
