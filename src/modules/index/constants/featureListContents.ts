@@ -37,7 +37,7 @@ export const frontEndFeatures: FeatureListFeature[] = [
     },
     {
         text: "Footer",
-        status: "progress",
+        status: "implemented",
         nestLevel: 1,
     },
     {
