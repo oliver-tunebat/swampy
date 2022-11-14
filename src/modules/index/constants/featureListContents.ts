@@ -370,6 +370,14 @@ export const userFeatures: FeatureListFeature[] = [
         status: "unimplemented",
         nestLevel: 1,
     },
+
+    // contact us page
+    {
+        text: "Contact Us Page",
+        detailText: "Secured with hCaptcha",
+        status: "progress",
+        href: "/contact-us",
+    },
 ];
 
 export const otherFeatures: FeatureListFeature[] = [

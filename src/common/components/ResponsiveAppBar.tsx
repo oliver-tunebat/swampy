@@ -157,6 +157,19 @@ const ResponsiveAppBar = () => {
                                             </Typography>
                                         </MenuItem>
                                     </NavLink>
+                                    <Link
+                                        href="https://github.com/oliver-tunebat/swampy"
+                                        color="inherit"
+                                        underline="none"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <MenuItem>
+                                            <Typography variant="button">
+                                                GitHub
+                                            </Typography>
+                                        </MenuItem>
+                                    </Link>
                                 </Menu>
                             </Box>
 
@@ -168,7 +181,7 @@ const ResponsiveAppBar = () => {
                             >
                                 <NavLink
                                     href="/guide"
-                                    underline={"hover"}
+                                    underline="hover"
                                     color="inherit"
                                     sx={{
                                         mx: 2,
@@ -182,6 +195,19 @@ const ResponsiveAppBar = () => {
                                 >
                                     Guide
                                 </NavLink>
+                                <Link
+                                    href="https://github.com/oliver-tunebat/swampy"
+                                    underline="hover"
+                                    color="inherit"
+                                    sx={{
+                                        mx: 2,
+                                    }}
+                                    variant="button"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    GitHub
+                                </Link>
                                 {!user && (
                                     <Link
                                         component="button"
