@@ -180,9 +180,40 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                     },
                 },
             },
+            MuiPaper: {
+                defaultProps: {
+                    variant: "outlined",
+                },
+                styleOverrides: {
+                    outlined: {
+                        backgroundColor: isLightMode ? grey[50] : grey[900],
+                    },
+                },
+            },
+            MuiTooltip: {
+                styleOverrides: {
+                    tooltip: {
+                        borderRadius: 0,
+                    },
+                },
+            },
+            MuiCardActionArea: {
+                styleOverrides: {
+                    root: ({ ownerState, theme }) => {
+                        return {
+                            ":hover .MuiCardActionArea-focusHighlight": {
+                                opacity: 0.04,
+                            },
+                            ":active .MuiCardActionArea-focusHighlight": {
+                                opacity: 0.08,
+                            },
+                        };
+                    },
+                },
+            },
         },
         shape: {
-            borderRadius: 0,
+            borderRadius: 10,
         },
         typography: {
             fontFamily: [

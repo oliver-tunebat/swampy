@@ -56,9 +56,14 @@ const ResponsiveAppBar = () => {
     return (
         <>
             <Slide appear={false} direction="down" in={!useScrollTrigger()}>
-                <AppBar color="default" enableColorOnDark elevation={0}>
+                <AppBar
+                    color="default"
+                    enableColorOnDark
+                    elevation={0}
+                    variant="elevation"
+                >
                     <SiteBanner />
-                    <Container maxWidth="lg">
+                    <Container maxWidth="md">
                         <Toolbar disableGutters>
                             {/* logo & link to home */}
                             <NavLink
@@ -270,7 +275,7 @@ const ResponsiveAppBar = () => {
             <Box sx={{ visibility: "hidden" }}>
                 <SiteBanner />
             </Box>
-            <Toolbar sx={{ flex: "0 1 auto", mb: 4 }}></Toolbar>
+            <Toolbar sx={{ flex: "0 1 auto" }}></Toolbar>
         </>
     );
 };
