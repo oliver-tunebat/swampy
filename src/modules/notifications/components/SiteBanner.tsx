@@ -26,7 +26,7 @@ export default function SiteBanner() {
             {...alertProps}
         >
             <Container
-                maxWidth="lg"
+                maxWidth="maxSiteWidth"
                 sx={{
                     display: "flex",
                     alignItems: "center",

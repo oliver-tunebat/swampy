@@ -238,6 +238,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                 lg: 1200,
                 xl: 1536,
                 xxsContainer: 360,
+                maxSiteWidth: 900,
             },
         },
     };
@@ -262,6 +263,7 @@ declare module "@mui/material/styles" {
         lg: true;
         xl: true;
         xxsContainer: true;
+        maxSiteWidth: true;
     }
 }
 

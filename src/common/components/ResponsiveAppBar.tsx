@@ -63,7 +63,7 @@ const ResponsiveAppBar = () => {
                     variant="elevation"
                 >
                     <SiteBanner />
-                    <Container maxWidth="md">
+                    <Container maxWidth="maxSiteWidth">
                         <Toolbar disableGutters>
                             {/* logo & link to home */}
                             <NavLink

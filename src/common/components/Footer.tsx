@@ -29,7 +29,7 @@ export default function Footer(props: FooterProps) {
             }}
         >
             <Divider />
-            <Container maxWidth="md" sx={{ py: 8 }}>
+            <Container maxWidth="maxSiteWidth" sx={{ py: 8 }}>
                 <Stack
                     direction={{ xs: "column", sm: "row" }}
                     spacing={4}

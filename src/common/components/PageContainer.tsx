@@ -5,7 +5,7 @@ export default function PageContainer(props: ContainerProps) {
 
     return (
         <Container
-            maxWidth="md"
+            maxWidth="maxSiteWidth"
             sx={{
                 flex: "1 1 auto",
                 // 100% view height minus y margins and toolbar height
