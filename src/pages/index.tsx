@@ -14,15 +14,15 @@ import {
     Rabbit,
     Bullseye,
 } from "mdi-material-ui";
-import TechnologyCard from "../modules/index/components/TechnologyCard";
+import TechnologyCard from "../modules/pages/index/components/TechnologyCard";
 import { CloudOutlined, Email } from "@mui/icons-material";
-import { FeaturesList } from "../modules/index/components/FeaturesList";
+import { FeaturesList } from "../modules/pages/index/components/FeaturesList";
 import {
     backEndFeatures,
     frontEndFeatures,
-    otherFeatures as developerFeatures,
+    developerFeatures,
     userFeatures,
-} from "../modules/index/constants/featureListContents";
+} from "../modules/pages/index/constants/featureListContents";
 
 const Home: NextPage = () => {
     return (
@@ -208,6 +208,15 @@ const Home: NextPage = () => {
                         icon={<Email />}
                         iconColor="#3368fa"
                         href="https://sendgrid.com/"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
+                        title="Plausible"
+                        subheader="Analytics"
+                        icon={"P"}
+                        iconColor="#5850ec"
+                        href="https://plausible.io/"
                     />
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>

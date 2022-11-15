@@ -380,12 +380,26 @@ export const userFeatures: FeatureListFeature[] = [
     },
 ];
 
-export const otherFeatures: FeatureListFeature[] = [
+export const developerFeatures: FeatureListFeature[] = [
     // analytics
     {
         text: "Analytics",
-        detailText: `Implimented with one of GA4, Plausible, or Splitbee`,
+        detailText: `Implimented with Plausible`,
         status: "unimplemented",
+        href: "https://plausible.io/",
+    },
+    {
+        text: "Event Tracking",
+        status: "unimplemented",
+        nestLevel: 1,
+        href: "https://plausible.io/docs/goal-conversions",
+    },
+    {
+        text: "Proxy",
+        detailText: "For circumventing adblockers",
+        status: "unimplemented",
+        nestLevel: 1,
+        href: "https://plausible.io/docs/proxy/introduction",
     },
 
     // error tracking

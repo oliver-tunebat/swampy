@@ -12,7 +12,7 @@ import {
     Typography,
     useTheme,
 } from "@mui/material";
-import { TooltipHelpButton } from "../../../common/components/TooltipHelpButton";
+import { TooltipHelpButton } from "../../../../common/components/TooltipHelpButton";
 
 export function FeaturesList(props: FeaturesListProps) {
     const { features, heading } = props;
