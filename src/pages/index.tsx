@@ -43,7 +43,7 @@ const Home: NextPage = () => {
                 component="h1"
                 color="primary"
                 align="center"
-                sx={{ fontWeight: 700, mt: 8 }}
+                sx={{ fontWeight: 700 }}
             >
                 Swampy
             </Typography>

@@ -47,14 +47,14 @@ const ChangePassword: NextPage = () => {
             <Head>
                 <title>Change Password | Swampy</title>
             </Head>
-            <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
+            <Typography variant="h4" component="h1">
                 Change Password
             </Typography>
             <form>
                 <SecureTextField
                     label="New Password"
                     variant="outlined"
-                    sx={{ mt: 2 }}
+                    sx={{ mt: 6 }}
                     fullWidth
                     value={password}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) =>

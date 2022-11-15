@@ -26,7 +26,6 @@ export default function Footer(props: FooterProps) {
                 backgroundColor: isLightMode ? grey[100] : grey[900],
                 width: "100%",
                 flex: "0 1 auto",
-                mt: 8,
             }}
         >
             <Divider />

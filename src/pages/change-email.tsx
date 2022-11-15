@@ -52,14 +52,14 @@ const ChangeEmail: NextPage = () => {
             <Head>
                 <title>Change Email | Swampy</title>
             </Head>
-            <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
+            <Typography variant="h4" component="h1">
                 Change Email
             </Typography>
             <form>
                 <TextField
                     label="New Email"
                     variant="outlined"
-                    sx={{ mt: 2 }}
+                    sx={{ mt: 6 }}
                     fullWidth
                     type="email"
                     value={email}
