@@ -19,7 +19,7 @@ export default function SiteSnackbar() {
             key={siteSnackbarProps.message}
             autoHideDuration={6000}
             onClose={hideSiteSnackbar}
-            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+            anchorOrigin={{ horizontal: "center", vertical: "top" }}
         >
             <Alert
                 variant="filled"
@@ -34,7 +34,7 @@ export default function SiteSnackbar() {
 }
 
 function SlideComponent(props: SlideProps) {
-    return <Slide {...props} direction="up" />;
+    return <Slide {...props} direction="down" />;
 }
 
 export interface SiteSnackbarProps {

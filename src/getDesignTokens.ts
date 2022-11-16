@@ -37,6 +37,9 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                 dark: darken("#1db954", tonalOffset),
                 light: lighten("#1db954", tonalOffset),
             },
+            background: {
+                paper: isLightMode ? grey[50] : grey[900],
+            },
             tonalOffset: tonalOffset,
         },
         components: {
@@ -184,11 +187,11 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                 defaultProps: {
                     variant: "outlined",
                 },
-                styleOverrides: {
-                    outlined: {
-                        backgroundColor: isLightMode ? grey[50] : grey[900],
-                    },
-                },
+                // styleOverrides: {
+                //     outlined: {
+                //         backgroundColor: isLightMode ? grey[50] : grey[900],
+                //     },
+                // },
             },
             MuiTooltip: {
                 styleOverrides: {
@@ -208,6 +211,13 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 opacity: 0.08,
                             },
                         };
+                    },
+                },
+            },
+            MuiCardActions: {
+                styleOverrides: {
+                    root: {
+                        justifyContent: "flex-end",
                     },
                 },
             },
