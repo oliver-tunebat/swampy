@@ -232,6 +232,7 @@ const ResponsiveAppBar = () => {
                                         sx={{
                                             p: 0,
                                             marginLeft: { xs: 1, md: 2 },
+                                            borderRadius: "50%",
                                         }}
                                     >
                                         <Avatar

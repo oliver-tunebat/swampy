@@ -136,6 +136,8 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             MuiIconButton: {
                 styleOverrides: {
                     root: ({ ownerState, theme }) => {
+                        const constantStyles = { borderRadius: 10 };
+
                         let sourceColor = "#000";
                         if (ownerState.color === "default")
                             sourceColor = isLightMode ? "#000" : "#fff";
@@ -163,9 +165,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                             sourceColor = isLightMode
                                 ? theme.palette.info.dark
                                 : theme.palette.info.light;
-                        else return {};
+                        else return { ...constantStyles };
 
                         return {
+                            ...constantStyles,
                             ":hover": {
                                 backgroundColor: alpha(sourceColor, 0.08),
                             },
