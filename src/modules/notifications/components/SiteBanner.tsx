@@ -18,6 +18,8 @@ export default function SiteBanner() {
             variant="filled"
             sx={{
                 justifyContent: "center",
+                borderRadius: 0,
+                border: "none",
                 "& .MuiAlert-message": {
                     width: "100%",
                 },
