@@ -1,8 +1,16 @@
 import { alpha, darken, ThemeOptions } from "@mui/material/styles";
 import { green, grey, orange, red } from "@mui/material/colors";
 import { CSSInterpolation, lighten, PaletteMode } from "@mui/material";
+import { Inter } from "@next/font/google";
 
 const tonalOffset = 0.2;
+
+export const inter = Inter({
+    weight: ["300", "400", "500", "700"],
+    subsets: ["latin"],
+    display: "swap",
+    fallback: ["Helvetica", "Arial", "sans-serif"],
+});
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
     const isLightMode = mode === "light";
@@ -229,19 +237,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             borderRadius: 10,
         },
         typography: {
-            fontFamily: [
-                "Inter",
-                "-apple-system",
-                "BlinkMacSystemFont",
-                '"Segoe UI"',
-                "Roboto",
-                '"Helvetica Neue"',
-                "Arial",
-                "sans-serif",
-                '"Apple Color Emoji"',
-                '"Segoe UI Emoji"',
-                '"Segoe UI Symbol"',
-            ].join(","),
+            fontFamily: inter.style.fontFamily,
         },
         breakpoints: {
             values: {
