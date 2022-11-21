@@ -14,7 +14,7 @@ import NavLink from "./NavLink";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUser } from "@supabase/auth-helpers-react";
-import { Divider, Slide, useScrollTrigger, Link } from "@mui/material";
+import { Divider, Slide, useScrollTrigger, Link, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useAuthStore from "../../modules/auth/store";
 import SiteBanner from "../../modules/notifications/components/SiteBanner";
@@ -45,6 +45,8 @@ const ResponsiveAppBar = () => {
     const router = useRouter();
     const user = useUser();
     const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down("md"));
+    const scrollTrigger = useScrollTrigger();
 
     const showLogin = useAuthStore(
         (state) => () => state.setAuthDialogOpen(true, "login")
@@ -55,7 +57,7 @@ const ResponsiveAppBar = () => {
 
     return (
         <>
-            <Slide appear={false} direction="down" in={!useScrollTrigger()}>
+            <Slide appear={false} direction="down" in={mobile ? !scrollTrigger : true}>
                 <AppBar
                     color="default"
                     enableColorOnDark
