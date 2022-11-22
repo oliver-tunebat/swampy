@@ -23,7 +23,6 @@ export default function ResponsiveDialog(props: ResponsiveDialogProps) {
     useEffect(() => {
         // when the dialog hash is removed from the route, close the dialog
         const handleHashChangeStart = (url: string) => {
-            console.log(url);
             if (!url.includes(dialogHash)) {
                 onClose?.("hashChange");
             }
@@ -67,7 +66,7 @@ export default function ResponsiveDialog(props: ResponsiveDialogProps) {
     );
 }
 
-interface ResponsiveDialogProps extends DialogProps {
+export interface ResponsiveDialogProps extends DialogProps {
     onClose?: (
         reason:
             | "escapeKeyDown"
