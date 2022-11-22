@@ -9,7 +9,7 @@ export default function AuthDialog() {
     const viewType = useAuthStore((state) => state.authFormViewType);
     let open = useAuthStore((state) => state.authDialogOpen);
     const closeDialog = useAuthStore(
-        (state) => () => state.setAuthDialogOpen(false, viewType)
+        (state) => () => state.setAuthDialogOpen(false)
     );
 
     const title =

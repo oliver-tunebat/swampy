@@ -44,7 +44,7 @@ export default function AuthForm(props: AuthFormProps) {
             state.setAuthFormViewType(viewType)
     );
     const closeAuthDialog = useAuthStore(
-        (state) => () => state.setAuthDialogOpen(false, viewType)
+        (state) => () => state.setAuthDialogOpen(false)
     );
 
     const setBanner = useNotificationsStore(
