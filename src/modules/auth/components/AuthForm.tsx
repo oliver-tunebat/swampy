@@ -4,7 +4,6 @@ import useAuthStore, { AuthFormViewType } from "../store";
 import {
     AlertProps,
     Box,
-    Button,
     Container,
     Divider,
     IconButton,
@@ -66,8 +65,8 @@ export default function AuthForm(props: AuthFormProps) {
         viewType === "login"
             ? "Log In"
             : viewType === "recoverPassword"
-            ? "Password Recovery"
-            : "Sign Up";
+                ? "Password Recovery"
+                : "Sign Up";
 
     const emailErrorText =
         email.length > 0 && !emailIsValid ? "invalid email address" : null;
@@ -90,7 +89,7 @@ export default function AuthForm(props: AuthFormProps) {
             setViewType("completeSignUp");
         } else if (viewType === "login") {
             setContinueButtonLoading(true);
-            const { data, error } =
+            const { error } =
                 await supabaseClient.auth.signInWithPassword({
                     email: email,
                     password: password,
@@ -108,7 +107,7 @@ export default function AuthForm(props: AuthFormProps) {
             }
         } else if (viewType === "completeSignUp") {
             setContinueButtonLoading(true);
-            const { data, error } = await supabaseClient.auth.signUp({
+            const { error } = await supabaseClient.auth.signUp({
                 email,
                 password,
                 options: { captchaToken },
@@ -127,7 +126,7 @@ export default function AuthForm(props: AuthFormProps) {
 
                 // create a listener to remove the banner when the user logs in
                 const removeBannerSignInListener =
-                    supabaseClient.auth.onAuthStateChange((event, session) => {
+                    supabaseClient.auth.onAuthStateChange((event) => {
                         if (event === "SIGNED_IN") {
                             setBanner(false, {});
                             showSnackbar(
@@ -140,7 +139,7 @@ export default function AuthForm(props: AuthFormProps) {
             }
         } else if (viewType === "recoverPassword") {
             setContinueButtonLoading(true);
-            const { data, error } =
+            const { error } =
                 await supabaseClient.auth.resetPasswordForEmail(email, {
                     captchaToken,
                     redirectTo:

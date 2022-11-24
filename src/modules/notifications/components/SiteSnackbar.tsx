@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Alert, AlertColor, Slide, SlideProps, Snackbar } from "@mui/material";
 import useNotificationsStore from "../store";
 

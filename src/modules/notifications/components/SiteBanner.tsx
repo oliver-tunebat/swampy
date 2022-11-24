@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Close } from "@mui/icons-material";
 import { Alert, Container, IconButton } from "@mui/material";
 import useNotificationsStore from "../store";

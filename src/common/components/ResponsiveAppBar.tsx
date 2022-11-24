@@ -294,8 +294,7 @@ const ResponsiveAppBar = () => {
                                     </NavLink>
                                     <MenuItem
                                         onClick={async () => {
-                                            const { error } =
-                                                await supabaseClient.auth.signOut();
+                                            await supabaseClient.auth.signOut();
                                         }}
                                     >
                                         <Typography variant="body2">

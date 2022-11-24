@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Slide, SlideProps, Snackbar } from "@mui/material";
 import { Box } from "@mui/system";
 import NotificationsActionCard from "../../user/components/NotificationsActionCard";

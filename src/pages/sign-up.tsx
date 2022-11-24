@@ -3,8 +3,6 @@ import type { NextPage } from "next";
 import AuthForm from "../modules/auth/components/AuthForm";
 import useAuthStore, { AuthFormViewType } from "../modules/auth/store";
 import { useUser } from "@supabase/auth-helpers-react";
-import { Button } from "@mui/material";
-import { supabaseClient } from "../common/utils/supabaseClient";
 import PageContainer from "../common/components/PageContainer";
 import Head from "next/head";
 import { useRouter } from "next/router";

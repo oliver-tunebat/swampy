@@ -213,7 +213,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             },
             MuiCardActionArea: {
                 styleOverrides: {
-                    root: ({ ownerState, theme }) => {
+                    root: () => {
                         return {
                             ":hover .MuiCardActionArea-focusHighlight": {
                                 opacity: 0.04,

@@ -7,7 +7,7 @@ let isAlreadySetUp = false;
 export function setUpAuthStateChangeListeners() {
     if (isAlreadySetUp) return;
 
-    supabaseClient.auth.onAuthStateChange(async (event, session) => {
+    supabaseClient.auth.onAuthStateChange(async (event) => {
         if (event == "SIGNED_IN") {
             // display notification consent request
             // for logged in users that haven't made a choice

@@ -1,3 +1,4 @@
+import * as React from "react";
 import type { NextPage } from "next";
 import Typography from "@mui/material/Typography";
 import PageContainer from "../common/components/PageContainer";

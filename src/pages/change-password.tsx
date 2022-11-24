@@ -22,7 +22,7 @@ const ChangePassword: NextPage = () => {
         event.preventDefault();
 
         setIsButtonLoading(true);
-        const { data, error } = await supabaseClient.auth.updateUser({
+        const { error } = await supabaseClient.auth.updateUser({
             password: password,
         });
         setPassword("");

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { DialogProps } from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button, DialogActions, Typography } from "@mui/material";
@@ -20,7 +19,7 @@ export default function ConfirmationDialog(props: ConfirmationDialogProps) {
     const [isContinueButtonLoading, setIsContinueButtonLoading] =
         React.useState(false);
 
-    const handleConfirm = async (event: React.MouseEvent) => {
+    const handleConfirm = async () => {
         setIsContinueButtonLoading(true);
         await onConfirm();
         setIsContinueButtonLoading(false);
@@ -41,13 +40,13 @@ export default function ConfirmationDialog(props: ConfirmationDialogProps) {
             <DialogActions>
                 <Button
                     color="neutral"
-                    onClick={(event) => onClose?.("closeButtonClick")}
+                    onClick={() => onClose?.("closeButtonClick")}
                 >
                     Cancel
                 </Button>
                 <LoadingButton
                     color={danger ? "error" : "primary"}
-                    onClick={(event) => handleConfirm(event)}
+                    onClick={() => handleConfirm()}
                     loading={isContinueButtonLoading && showLoading}
                 >
                     {confirmText ?? "Continue"}

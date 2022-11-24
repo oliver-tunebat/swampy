@@ -1,3 +1,4 @@
+import * as React from "react";
 import type { NextPage } from "next";
 import NavLink from "../common/components/NavLink";
 import PageContainer from "../common/components/PageContainer";

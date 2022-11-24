@@ -27,7 +27,7 @@ const ChangeEmail: NextPage = () => {
 
         setIsButtonLoading(true);
         setIsSuccess(false);
-        const { data, error } = await supabaseClient.auth.updateUser({
+        const { error } = await supabaseClient.auth.updateUser({
             email: email,
         });
         setEmail("");
@@ -99,7 +99,8 @@ export default ChangeEmail;
 export const getServerSideProps = withPageAuth({
     authRequired: true,
     redirectTo: "/log-in",
-    async getServerSideProps(ctx, supabaseClient) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async getServerSideProps(_ctx, _supabaseClient) {
         return { props: undefined };
     },
 });

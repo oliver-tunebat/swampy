@@ -1,3 +1,4 @@
+import * as React from "react";
 import Dialog, { DialogProps } from "@mui/material/Dialog";
 import { useMediaQuery, useTheme } from "@mui/material";
 import DialogCloseButton from "./DialogCloseButton";

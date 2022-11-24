@@ -384,7 +384,7 @@ export const developerFeatures: FeatureListFeature[] = [
     // analytics
     {
         text: "Analytics",
-        detailText: `Implimented with Plausible`,
+        detailText: "Implimented with Plausible",
         status: "unimplemented",
         href: "https://plausible.io/",
     },

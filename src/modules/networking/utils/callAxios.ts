@@ -15,32 +15,32 @@ export async function callAxiosMethod<T>(
         | "putForm"
         | "patchForm",
     url: string,
-    showErrorSnack: boolean = false,
+    showErrorSnack = false,
     config?: AxiosRequestConfig,
     errorSnackMessage?: string
 ): Promise<{ response?: AxiosResponse<T>; error?: AxiosError }> {
     try {
         switch (method) {
-            case "get":
-                return { response: await axios.get(url, config) };
-            case "delete":
-                return { response: await axios.delete(url, config) };
-            case "head":
-                return { response: await axios.head(url, config) };
-            case "options":
-                return { response: await axios.options(url, config) };
-            case "post":
-                return { response: await axios.post(url, config) };
-            case "put":
-                return { response: await axios.put(url, config) };
-            case "patch":
-                return { response: await axios.patch(url, config) };
-            case "postForm":
-                return { response: await axios.postForm(url, config) };
-            case "putForm":
-                return { response: await axios.putForm(url, config) };
-            case "patchForm":
-                return { response: await axios.patchForm(url, config) };
+        case "get":
+            return { response: await axios.get(url, config) };
+        case "delete":
+            return { response: await axios.delete(url, config) };
+        case "head":
+            return { response: await axios.head(url, config) };
+        case "options":
+            return { response: await axios.options(url, config) };
+        case "post":
+            return { response: await axios.post(url, config) };
+        case "put":
+            return { response: await axios.put(url, config) };
+        case "patch":
+            return { response: await axios.patch(url, config) };
+        case "postForm":
+            return { response: await axios.postForm(url, config) };
+        case "putForm":
+            return { response: await axios.putForm(url, config) };
+        case "patchForm":
+            return { response: await axios.patchForm(url, config) };
         }
     } catch (error) {
         // throw if it's not an axios error, allowing it be handled elsewhere
@@ -68,7 +68,7 @@ export async function callAxiosMethod<T>(
 export const callAxios = {
     get: async (
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -82,7 +82,7 @@ export const callAxios = {
     },
     delete: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -96,7 +96,7 @@ export const callAxios = {
     },
     head: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -110,7 +110,7 @@ export const callAxios = {
     },
     options: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -124,7 +124,7 @@ export const callAxios = {
     },
     post: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -138,7 +138,7 @@ export const callAxios = {
     },
     put: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -152,7 +152,7 @@ export const callAxios = {
     },
     patch: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -166,7 +166,7 @@ export const callAxios = {
     },
     postForm: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -180,7 +180,7 @@ export const callAxios = {
     },
     putForm: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {
@@ -194,7 +194,7 @@ export const callAxios = {
     },
     patchForm: async <T>(
         url: string,
-        showErrorSnack: boolean = false,
+        showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string
     ) => {

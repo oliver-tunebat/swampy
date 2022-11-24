@@ -1,3 +1,4 @@
+import React from "react";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import useAuthStore from "../store";
@@ -16,8 +17,8 @@ export default function AuthDialog() {
         viewType === "login"
             ? "Log In"
             : viewType === "recoverPassword"
-            ? "Password Recovery"
-            : "Sign Up";
+                ? "Password Recovery"
+                : "Sign Up";
 
     const router = useRouter();
 

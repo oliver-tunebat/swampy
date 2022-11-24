@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, ButtonProps } from "@mui/material";
 import { supabaseClient } from "../../../common/utils/supabaseClient";
 import { Apple } from "@mui/icons-material";
@@ -6,7 +7,7 @@ import showSnackbar from "../../notifications/utils/showSnackbar";
 
 export default function AppleLoginButton(props: ButtonProps) {
     const handleClick = async () => {
-        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+        const { error } = await supabaseClient.auth.signInWithOAuth({
             provider: "apple",
             options: {
                 redirectTo: getCurrentURL(true),

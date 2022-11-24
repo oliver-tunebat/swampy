@@ -1,3 +1,4 @@
+// TODO replace deprecated method
 import { withApiAuth } from "@supabase/auth-helpers-nextjs";
 import { adminSupabaseClient } from "../../../common/utils/adminSupabaseClient";
 
@@ -12,7 +13,7 @@ export default withApiAuth(async (req, res, supabaseClient) => {
             return;
         }
 
-        const { data, error } = await adminSupabaseClient.auth.admin.deleteUser(
+        const { error } = await adminSupabaseClient.auth.admin.deleteUser(
             user.id
         );
         if (error) {
