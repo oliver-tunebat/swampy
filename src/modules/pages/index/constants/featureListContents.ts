@@ -46,6 +46,12 @@ export const frontEndFeatures: FeatureListFeature[] = [
         nestLevel: 1,
     },
     {
+        text: "Mobile Friendly Dialog",
+        detailText: "Dialogs convert to full screen on mobile, and use url hashing to support proper back navigation.",
+        status: "implemented",
+        nestLevel: 1,
+    },
+    {
         text: "Alert Banner",
         status: "implemented",
         nestLevel: 1,
@@ -171,8 +177,15 @@ export const backEndFeatures: FeatureListFeature[] = [
     {
         text: "SQL Database",
         detailText: "PostgresSQL database provided by Supabase",
-        status: "unimplemented",
+        status: "implemented",
         href: "https://supabase.com/database",
+    },
+    {
+        text: "Object-Relational Mapping (ORM)",
+        detailText: "Implemented with Prisma",
+        status: "implemented",
+        nestLevel: 1,
+        href: "https://www.prisma.io/",
     },
 
     // transactional emails
@@ -312,6 +325,22 @@ export const userFeatures: FeatureListFeature[] = [
         status: "unimplemented",
         nestLevel: 2,
     },
+    {
+        text: "Localization",
+        status: "unimplemented",
+        nestLevel: 1,
+        href: "https://stripe.com/docs/payments/checkout/present-local-currencies",
+    },
+    {
+        text: "Multiple Currencies",
+        status: "unimplemented",
+        nestLevel: 2,
+    },
+    {
+        text: "Localized Pricing",
+        status: "unimplemented",
+        nestLevel: 2,
+    },
 
     // affiliate program
     {
@@ -419,8 +448,9 @@ export const developerFeatures: FeatureListFeature[] = [
     // clean project structure
     {
         text: "Code Formatting",
-        detailText: "Currently uses Prettier, will be changed to ESLint",
-        status: "progress",
+        detailText: "Using ESLint",
+        status: "implemented",
+        href: "https://eslint.org/",
     },
 
     // unit tests
