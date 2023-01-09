@@ -14,7 +14,7 @@ export default withApiAuth(async (req, res, supabaseClient) => {
         }
 
         const { error } = await adminSupabaseClient.auth.admin.deleteUser(
-            user.id
+            user.id,
         );
         if (error) {
             res.status(500).send({});

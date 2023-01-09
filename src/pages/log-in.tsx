@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 const LogIn: NextPage = () => {
     const setViewType = useAuthStore(
         (state) => (viewType: AuthFormViewType) =>
-            state.setAuthFormViewType(viewType)
+            state.setAuthFormViewType(viewType),
     );
 
     const router = useRouter();

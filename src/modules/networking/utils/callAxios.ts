@@ -17,7 +17,7 @@ export async function callAxiosMethod<T>(
     url: string,
     showErrorSnack = false,
     config?: AxiosRequestConfig,
-    errorSnackMessage?: string
+    errorSnackMessage?: string,
 ): Promise<{ response?: AxiosResponse<T>; error?: AxiosError }> {
     try {
         switch (method) {
@@ -70,140 +70,140 @@ export const callAxios = {
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod(
             "get",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     delete: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "delete",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     head: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "head",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     options: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "options",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     post: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "post",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     put: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "put",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     patch: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "patch",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     postForm: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "postForm",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     putForm: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "putForm",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
     patchForm: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
-        errorSnackMessage?: string
+        errorSnackMessage?: string,
     ) => {
         return await callAxiosMethod<T>(
             "patchForm",
             url,
             showErrorSnack,
             config,
-            errorSnackMessage
+            errorSnackMessage,
         );
     },
 };

@@ -28,10 +28,10 @@ import { supabaseClient } from "../utils/supabaseClient";
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-        null
+        null,
     );
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-        null
+        null,
     );
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -55,10 +55,10 @@ const ResponsiveAppBar = () => {
     const scrollTrigger = useScrollTrigger();
 
     const showLogin = useAuthStore(
-        (state) => () => state.setAuthDialogOpen(true, "login")
+        (state) => () => state.setAuthDialogOpen(true, "login"),
     );
     const showSignUp = useAuthStore(
-        (state) => () => state.setAuthDialogOpen(true, "signUp")
+        (state) => () => state.setAuthDialogOpen(true, "signUp"),
     );
 
     return (
@@ -198,7 +198,7 @@ const ResponsiveAppBar = () => {
                                     sx={{
                                         mx: 2,
                                         fontWeight: router.route.startsWith(
-                                            "/guide"
+                                            "/guide",
                                         )
                                             ? 600
                                             : "auto",
@@ -308,7 +308,7 @@ const ResponsiveAppBar = () => {
                     <Divider />
                 </AppBar>
             </Slide>
-            {/* invisible site banner & empty toolbar to enforce proper 
+            {/* invisible site banner & empty toolbar to enforce proper
             top spacing for content with sliding appbar */}
             <Box sx={{ visibility: "hidden" }}>
                 <SiteBanner />

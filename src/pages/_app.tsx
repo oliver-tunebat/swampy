@@ -53,20 +53,22 @@ export default function MyApp(props: MyAppProps) {
                 });
             },
         }),
-        []
+        [],
     );
 
     // Update the theme only if the mode changes
     const theme = React.useMemo(
         () => createTheme(getDesignTokens(mode)),
-        [mode]
+        [mode],
     );
 
     setUpAuthStateChangeListeners();
 
     // on client side load, get color mode from cookie
     React.useEffect(() => {
-        if (!hasCookie(colorModeKey)) return;
+        if (!hasCookie(colorModeKey)) {
+            return;
+        }
         colorMode.setColorMode(getCookie(colorModeKey) as string);
     });
 

@@ -6,10 +6,10 @@ import useNotificationsStore from "../store";
 
 export default function SiteActionSnackbar() {
     const siteActionSnackbarContent = useNotificationsStore(
-        (state) => state.siteActionSnackbarContent
+        (state) => state.siteActionSnackbarContent,
     );
     const isSiteActionSnackbarShowing = useNotificationsStore(
-        (state) => state.isSiteActionSnackbarShowing
+        (state) => state.isSiteActionSnackbarShowing,
     );
 
     const content = siteActionSnackbarContent === "NOTIFICATIONS" && (

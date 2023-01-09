@@ -14,7 +14,9 @@ export default function AppleLoginButton(props: ButtonProps) {
             },
         });
 
-        if (error) showSnackbar("Unable to login with Apple.");
+        if (error) {
+            showSnackbar("Unable to login with Apple.");
+        }
     };
 
     return (

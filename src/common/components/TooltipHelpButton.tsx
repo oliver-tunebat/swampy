@@ -7,7 +7,9 @@ export function TooltipHelpButton(props: TooltipHelpButtonProps) {
 
     const theme = useTheme();
 
-    if (!tooltipTitle) return <></>;
+    if (!tooltipTitle) {
+        return <></>;
+    }
 
     return (
         <Tooltip title={tooltipTitle} placement={placement ? placement : "top"}>

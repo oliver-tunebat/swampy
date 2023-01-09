@@ -15,7 +15,9 @@ export default function SpotifyLoginButton(props: ButtonProps) {
             },
         });
 
-        if (error) showSnackbar("Unable to login with Spotify.");
+        if (error) {
+            showSnackbar("Unable to login with Spotify.");
+        }
     };
 
     return (

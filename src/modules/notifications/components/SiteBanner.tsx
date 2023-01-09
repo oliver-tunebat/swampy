@@ -6,13 +6,15 @@ import useNotificationsStore from "../store";
 export default function SiteBanner() {
     const alertProps = useNotificationsStore((state) => state.alertProps);
     const isBannerShowing = useNotificationsStore(
-        (state) => state.isBannerShowing
+        (state) => state.isBannerShowing,
     );
     const closeBanner = useNotificationsStore(
-        (state) => () => state.setBanner(false, {})
+        (state) => () => state.setBanner(false, {}),
     );
 
-    if (!isBannerShowing) return <></>;
+    if (!isBannerShowing) {
+        return <></>;
+    }
 
     return (
         <Alert

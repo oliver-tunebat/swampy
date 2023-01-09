@@ -31,7 +31,20 @@
             "error",
             "always"
         ],
+        "no-trailing-spaces": 2,
         "react/display-name": "off",
-        "react/no-unescaped-entities": "off"
+        "react/no-unescaped-entities": "off",
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "curly": [
+            "error",
+            "all"
+        ],
+        "brace-style": [
+            "error",
+            "1tbs"
+        ]
     }
 }

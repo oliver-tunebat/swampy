@@ -16,7 +16,7 @@ const ChangePassword: NextPage = () => {
     const passwordIsValid = validatePassword(password);
 
     const handleContinueClick = async (
-        event: React.MouseEvent<HTMLElement>
+        event: React.MouseEvent<HTMLElement>,
     ) => {
         // prevent navigation
         event.preventDefault();
@@ -28,8 +28,9 @@ const ChangePassword: NextPage = () => {
         setPassword("");
         setIsButtonLoading(false);
 
-        if (error) showSnackbar("Unable to update password.", "error");
-        else {
+        if (error) {
+            showSnackbar("Unable to update password.", "error");
+        } else {
             showSnackbar("Succesfully updated password!", "success");
         }
     };

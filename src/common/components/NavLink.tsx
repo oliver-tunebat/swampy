@@ -64,7 +64,7 @@ export type LinkProps = {
 // https://nextjs.org/docs/api-reference/next/link
 const NavLink = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     props,
-    ref
+    ref,
 ) {
     const {
         activeClassName = "active",
@@ -77,6 +77,7 @@ const NavLink = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
         noLinkStyle,
         prefetch,
         replace,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         role, // Link don't have roles.
         scroll,
         shallow,

@@ -20,7 +20,7 @@ const ChangeEmail: NextPage = () => {
         email.length > 0 && !emailIsValid ? "invalid email address" : null;
 
     const handleContinueClick = async (
-        event: React.MouseEvent<HTMLElement>
+        event: React.MouseEvent<HTMLElement>,
     ) => {
         // prevent navigation
         event.preventDefault();
@@ -33,8 +33,9 @@ const ChangeEmail: NextPage = () => {
         setEmail("");
         setIsButtonLoading(false);
 
-        if (error) showSnackbar("Unable to update email.", "error");
-        else {
+        if (error) {
+            showSnackbar("Unable to update email.", "error");
+        } else {
             setIsSuccess(true);
         }
     };
