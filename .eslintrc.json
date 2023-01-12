@@ -50,6 +50,8 @@
         "brace-style": [
             "error",
             "1tbs"
-        ]
+        ],
+        "space-infix-ops": "error",
+        "space-unary-ops": "error"
     }
 }

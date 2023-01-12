@@ -12,7 +12,7 @@ interface NextLinkComposedProps
     extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">,
         Omit<
             NextLinkProps,
-            "href" | "as" | "onClick" | "onMouseEnter" | "onTouchStart"
+            "href" | "as" | "passHref" | "onMouseEnter" | "onTouchStart" | "onClick" | "onTouchStart"
         > {
     to: NextLinkProps["href"];
     linkAs?: NextLinkProps["as"];
