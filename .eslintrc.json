@@ -4,8 +4,7 @@
         "es2021": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
+        "next/core-web-vitals",
         "plugin:@typescript-eslint/recommended"
     ],
     "overrides": [],
@@ -39,6 +38,7 @@
         "no-trailing-spaces": 2,
         "react/display-name": "off",
         "react/no-unescaped-entities": "off",
+        "react-hooks/exhaustive-deps": "off",
         "comma-dangle": [
             "error",
             "always-multiline"
