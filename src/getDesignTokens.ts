@@ -236,6 +236,13 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                     },
                 },
             },
+            MuiAlert: {
+                styleOverrides: {
+                    root: {
+                        color: grey[50],
+                    },
+                },
+            },
         },
         shape: {
             borderRadius: 10,
