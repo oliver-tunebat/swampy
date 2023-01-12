@@ -1,20 +1,22 @@
-// TODO replace deprecated method
-import { withApiAuth } from "@supabase/auth-helpers-nextjs";
+import { NextApiHandler } from "next";
 import { adminSupabaseClient } from "../../../common/utils/adminSupabaseClient";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
-export default withApiAuth(async (req, res, supabaseClient) => {
+const handler: NextApiHandler = async (req, res) => {
     if (req.method === "DELETE") {
-        const {
-            data: { user },
-        } = await supabaseClient.auth.getUser();
+        const supabaseClient = createServerSupabaseClient({req, res});
 
-        if (!user?.id) {
-            res.status(400).send("Unable to delete user.");
+        const {
+            data: { session },
+        } = await supabaseClient.auth.getSession();
+
+        if (!session) {
+            res.status(401).send("Unable to verify user.");
             return;
         }
 
         const { error } = await adminSupabaseClient.auth.admin.deleteUser(
-            user.id,
+            session?.user?.id,
         );
         if (error) {
             res.status(500).send({});
@@ -28,4 +30,6 @@ export default withApiAuth(async (req, res, supabaseClient) => {
     }
 
     res.status(405).send("Operation unavailable.");
-});
+};
+
+export default handler;
