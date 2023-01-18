@@ -52,6 +52,11 @@
             "1tbs"
         ],
         "space-infix-ops": "error",
-        "space-unary-ops": "error"
+        "space-unary-ops": "error",
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "key-spacing": "error"
     }
 }

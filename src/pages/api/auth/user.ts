@@ -4,7 +4,7 @@ import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 const handler: NextApiHandler = async (req, res) => {
     if (req.method === "DELETE") {
-        const supabaseClient = createServerSupabaseClient({req, res});
+        const supabaseClient = createServerSupabaseClient({ req, res });
 
         const {
             data: { session },
