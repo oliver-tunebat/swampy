@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import { TextField, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { supabaseClient } from "../common/utils/supabaseClient";
@@ -7,7 +7,7 @@ import PageContainer from "../common/components/PageContainer";
 import Head from "next/head";
 import showSnackbar from "../modules/notifications/utils/showSnackbar";
 import { validateEmail } from "../common/utils/validateEmail";
-import { withPageAuth } from "@supabase/auth-helpers-nextjs";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 const ChangeEmail: NextPage = () => {
     const [email, setEmail] = React.useState("");
@@ -97,11 +97,21 @@ const ChangeEmail: NextPage = () => {
 
 export default ChangeEmail;
 
-export const getServerSideProps = withPageAuth({
-    authRequired: true,
-    redirectTo: "/log-in",
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async getServerSideProps(_ctx, _supabaseClient) {
-        return { props: undefined };
-    },
-});
+export const getServerSideProps: GetServerSideProps = async(context) => {
+    const supabase = createServerSupabaseClient(context);
+
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: "/log-in",
+                permanent: false,
+            },
+        };
+    }
+
+    return { props: {} };
+};

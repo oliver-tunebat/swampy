@@ -1,8 +1,8 @@
 import * as React from "react";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Typography from "@mui/material/Typography";
 import NavLink from "../common/components/NavLink";
-import { User, withPageAuth } from "@supabase/auth-helpers-nextjs";
+import { createServerSupabaseClient, User } from "@supabase/auth-helpers-nextjs";
 import PageContainer from "../common/components/PageContainer";
 import { Link, List, ListItem, ListItemText } from "@mui/material";
 import ConfirmationDialog from "../common/components/ConfirmationDialog";
@@ -66,18 +66,24 @@ const Account: NextPage<AccountProps> = (props: AccountProps) => {
 
 export default Account;
 
-export const getServerSideProps = withPageAuth({
-    authRequired: true,
-    redirectTo: "/log-in",
-    async getServerSideProps(ctx, supabaseClient) {
-        // Access the user object
-        const {
-            data: { user },
-        } = await supabaseClient.auth.getUser();
+export const getServerSideProps: GetServerSideProps = async(context) => {
+    const supabase = createServerSupabaseClient(context);
 
-        return { props: user };
-    },
-});
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: "/log-in",
+                permanent: false,
+            },
+        };
+    }
+
+    return { props: { user: session.user } };
+};
 
 interface AccountProps {
     user: User;
