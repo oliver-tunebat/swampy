@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Button, ButtonProps } from "@mui/material";
 import { Spotify } from "mdi-material-ui";
 import { supabaseClient } from "../../../common/utils/supabaseClient";
@@ -14,7 +15,9 @@ export default function SpotifyLoginButton(props: ButtonProps) {
             },
         });
 
-        if (error) showSnackbar("Unable to login with Spotify.");
+        if (error) {
+            showSnackbar("Unable to login with Spotify.");
+        }
     };
 
     return (

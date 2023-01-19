@@ -12,7 +12,10 @@ const useAuthStore = create<AuthState>((set) => ({
     setAuthFormViewType: (viewType?) => set({ authFormViewType: viewType }),
     authDialogOpen: false,
     setAuthDialogOpen: (open, formType?) =>
-        set({ authDialogOpen: open, authFormViewType: formType ?? "signUp" }),
+        set((state) => ({
+            authDialogOpen: open,
+            authFormViewType: formType ?? state.authFormViewType,
+        })),
 }));
 
 export default useAuthStore;

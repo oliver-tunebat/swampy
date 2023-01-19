@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
     CheckCircle,
     Pending,
@@ -10,14 +11,11 @@ import {
     ListItemIcon,
     ListItemText,
     Typography,
-    useTheme,
 } from "@mui/material";
 import { TooltipHelpButton } from "../../../../common/components/TooltipHelpButton";
 
 export function FeaturesList(props: FeaturesListProps) {
     const { features, heading } = props;
-
-    const theme = useTheme();
 
     return (
         <>

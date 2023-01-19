@@ -14,7 +14,13 @@ import NavLink from "./NavLink";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUser } from "@supabase/auth-helpers-react";
-import { Divider, Slide, useScrollTrigger, Link } from "@mui/material";
+import {
+    Divider,
+    Slide,
+    useScrollTrigger,
+    Link,
+    useMediaQuery,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useAuthStore from "../../modules/auth/store";
 import SiteBanner from "../../modules/notifications/components/SiteBanner";
@@ -22,10 +28,10 @@ import { supabaseClient } from "../utils/supabaseClient";
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-        null
+        null,
     );
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-        null
+        null,
     );
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -45,17 +51,23 @@ const ResponsiveAppBar = () => {
     const router = useRouter();
     const user = useUser();
     const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down("md"));
+    const scrollTrigger = useScrollTrigger();
 
     const showLogin = useAuthStore(
-        (state) => () => state.setAuthDialogOpen(true, "login")
+        (state) => () => state.setAuthDialogOpen(true, "login"),
     );
     const showSignUp = useAuthStore(
-        (state) => () => state.setAuthDialogOpen(true, "signUp")
+        (state) => () => state.setAuthDialogOpen(true, "signUp"),
     );
 
     return (
         <>
-            <Slide appear={false} direction="down" in={!useScrollTrigger()}>
+            <Slide
+                appear={false}
+                direction="down"
+                in={mobile ? !scrollTrigger : true}
+            >
                 <AppBar
                     color="default"
                     enableColorOnDark
@@ -186,7 +198,7 @@ const ResponsiveAppBar = () => {
                                     sx={{
                                         mx: 2,
                                         fontWeight: router.route.startsWith(
-                                            "/guide"
+                                            "/guide",
                                         )
                                             ? 600
                                             : "auto",
@@ -282,8 +294,7 @@ const ResponsiveAppBar = () => {
                                     </NavLink>
                                     <MenuItem
                                         onClick={async () => {
-                                            const { error } =
-                                                await supabaseClient.auth.signOut();
+                                            await supabaseClient.auth.signOut();
                                         }}
                                     >
                                         <Typography variant="body2">
@@ -297,7 +308,7 @@ const ResponsiveAppBar = () => {
                     <Divider />
                 </AppBar>
             </Slide>
-            {/* invisible site banner & empty toolbar to enforce proper 
+            {/* invisible site banner & empty toolbar to enforce proper
             top spacing for content with sliding appbar */}
             <Box sx={{ visibility: "hidden" }}>
                 <SiteBanner />

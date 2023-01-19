@@ -13,7 +13,7 @@ const Captcha = React.forwardRef(
                 {...props}
             />
         );
-    }
+    },
 );
 
 export default Captcha;

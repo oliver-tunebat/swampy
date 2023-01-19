@@ -1,8 +1,16 @@
 import { alpha, darken, ThemeOptions } from "@mui/material/styles";
 import { green, grey, orange, red } from "@mui/material/colors";
 import { CSSInterpolation, lighten, PaletteMode } from "@mui/material";
+import { Inter } from "@next/font/google";
 
 const tonalOffset = 0.2;
+
+export const inter = Inter({
+    weight: ["300", "400", "500", "700"],
+    subsets: ["latin"],
+    display: "swap",
+    fallback: ["Helvetica", "Arial", "sans-serif"],
+});
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
     const isLightMode = mode === "light";
@@ -60,27 +68,28 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
 
                         if (ownerState.variant === "contained") {
                             let sourceColor = theme.palette.primary.dark;
-                            if (ownerState.color === "primary")
+                            if (ownerState.color === "primary") {
                                 sourceColor = theme.palette.primary.dark;
-                            else if (ownerState.color === "secondary")
+                            } else if (ownerState.color === "secondary") {
                                 sourceColor = theme.palette.secondary.dark;
-                            else if (ownerState.color === "success")
+                            } else if (ownerState.color === "success") {
                                 sourceColor = theme.palette.success.dark;
-                            else if (ownerState.color === "error")
+                            } else if (ownerState.color === "error") {
                                 sourceColor = theme.palette.error.dark;
-                            else if (ownerState.color === "warning")
+                            } else if (ownerState.color === "warning") {
                                 sourceColor = theme.palette.warning.dark;
-                            else if (ownerState.color === "info")
+                            } else if (ownerState.color === "info") {
                                 sourceColor = theme.palette.info.dark;
-                            else if (ownerState.color === "neutral")
+                            } else if (ownerState.color === "neutral") {
                                 sourceColor = theme.palette.neutral?.dark ?? "";
-                            else if (ownerState.color === "spotify")
+                            } else if (ownerState.color === "spotify") {
                                 sourceColor = theme.palette.spotify?.dark ?? "";
+                            }
 
                             style[":active"] = {
                                 backgroundColor: darken(
                                     sourceColor,
-                                    Number(theme.palette.tonalOffset)
+                                    Number(theme.palette.tonalOffset),
                                 ),
                             };
                         } else if (
@@ -88,38 +97,39 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                             ownerState.variant === "outlined"
                         ) {
                             let sourceColor = theme.palette.primary.dark;
-                            if (ownerState.color === "primary")
+                            if (ownerState.color === "primary") {
                                 sourceColor = isLightMode
                                     ? theme.palette.primary.dark
                                     : theme.palette.primary.light;
-                            else if (ownerState.color === "secondary")
+                            } else if (ownerState.color === "secondary") {
                                 sourceColor = isLightMode
                                     ? theme.palette.secondary.dark
                                     : theme.palette.secondary.light;
-                            else if (ownerState.color === "success")
+                            } else if (ownerState.color === "success") {
                                 sourceColor = isLightMode
                                     ? theme.palette.success.dark
                                     : theme.palette.success.light;
-                            else if (ownerState.color === "error")
+                            } else if (ownerState.color === "error") {
                                 sourceColor = isLightMode
                                     ? theme.palette.error.dark
                                     : theme.palette.error.light;
-                            else if (ownerState.color === "warning")
+                            } else if (ownerState.color === "warning") {
                                 sourceColor = isLightMode
                                     ? theme.palette.warning.dark
                                     : theme.palette.warning.light;
-                            else if (ownerState.color === "info")
+                            } else if (ownerState.color === "info") {
                                 sourceColor = isLightMode
                                     ? theme.palette.info.dark
                                     : theme.palette.info.light;
-                            else if (ownerState.color === "neutral")
+                            } else if (ownerState.color === "neutral") {
                                 sourceColor = isLightMode
                                     ? theme.palette.neutral?.dark ?? ""
                                     : theme.palette.neutral?.light ?? "";
-                            else if (ownerState.color === "spotify")
+                            } else if (ownerState.color === "spotify") {
                                 sourceColor = isLightMode
                                     ? theme.palette.spotify?.dark ?? ""
                                     : theme.palette.spotify?.light ?? "";
+                            }
 
                             style[":hover"] = {
                                 backgroundColor: alpha(sourceColor, 0.08),
@@ -139,33 +149,35 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                         const constantStyles = { borderRadius: 10 };
 
                         let sourceColor = "#000";
-                        if (ownerState.color === "default")
+                        if (ownerState.color === "default") {
                             sourceColor = isLightMode ? "#000" : "#fff";
-                        else if (ownerState.color === "primary")
+                        } else if (ownerState.color === "primary") {
                             sourceColor = isLightMode
                                 ? theme.palette.primary.dark
                                 : theme.palette.primary.light;
-                        else if (ownerState.color === "secondary")
+                        } else if (ownerState.color === "secondary") {
                             sourceColor = isLightMode
                                 ? theme.palette.secondary.dark
                                 : theme.palette.secondary.light;
-                        else if (ownerState.color === "success")
+                        } else if (ownerState.color === "success") {
                             sourceColor = isLightMode
                                 ? theme.palette.success.dark
                                 : theme.palette.success.light;
-                        else if (ownerState.color === "error")
+                        } else if (ownerState.color === "error") {
                             sourceColor = isLightMode
                                 ? theme.palette.primary.dark
                                 : theme.palette.primary.light;
-                        else if (ownerState.color === "warning")
+                        } else if (ownerState.color === "warning") {
                             sourceColor = isLightMode
                                 ? theme.palette.warning.dark
                                 : theme.palette.warning.light;
-                        else if (ownerState.color === "info")
+                        } else if (ownerState.color === "info") {
                             sourceColor = isLightMode
                                 ? theme.palette.info.dark
                                 : theme.palette.info.light;
-                        else return { ...constantStyles };
+                        } else {
+                            return { ...constantStyles };
+                        }
 
                         return {
                             ...constantStyles,
@@ -205,7 +217,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             },
             MuiCardActionArea: {
                 styleOverrides: {
-                    root: ({ ownerState, theme }) => {
+                    root: () => {
                         return {
                             ":hover .MuiCardActionArea-focusHighlight": {
                                 opacity: 0.04,
@@ -224,24 +236,19 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                     },
                 },
             },
+            MuiAlert: {
+                styleOverrides: {
+                    root: {
+                        color: grey[50],
+                    },
+                },
+            },
         },
         shape: {
             borderRadius: 10,
         },
         typography: {
-            fontFamily: [
-                "Inter",
-                "-apple-system",
-                "BlinkMacSystemFont",
-                '"Segoe UI"',
-                "Roboto",
-                '"Helvetica Neue"',
-                "Arial",
-                "sans-serif",
-                '"Apple Color Emoji"',
-                '"Segoe UI Emoji"',
-                '"Segoe UI Symbol"',
-            ].join(","),
+            fontFamily: inter.style.fontFamily,
         },
         breakpoints: {
             values: {

@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Close } from "@mui/icons-material";
 import { Alert, Container, IconButton } from "@mui/material";
 import useNotificationsStore from "../store";
@@ -5,19 +6,23 @@ import useNotificationsStore from "../store";
 export default function SiteBanner() {
     const alertProps = useNotificationsStore((state) => state.alertProps);
     const isBannerShowing = useNotificationsStore(
-        (state) => state.isBannerShowing
+        (state) => state.isBannerShowing,
     );
     const closeBanner = useNotificationsStore(
-        (state) => () => state.setBanner(false, {})
+        (state) => () => state.setBanner(false, {}),
     );
 
-    if (!isBannerShowing) return <></>;
+    if (!isBannerShowing) {
+        return <></>;
+    }
 
     return (
         <Alert
             variant="filled"
             sx={{
                 justifyContent: "center",
+                borderRadius: 0,
+                border: "none",
                 "& .MuiAlert-message": {
                     width: "100%",
                 },

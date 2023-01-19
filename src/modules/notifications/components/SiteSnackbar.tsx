@@ -1,15 +1,16 @@
+import * as React from "react";
 import { Alert, AlertColor, Slide, SlideProps, Snackbar } from "@mui/material";
 import useNotificationsStore from "../store";
 
 export default function SiteSnackbar() {
     const siteSnackbarProps = useNotificationsStore(
-        (state) => state.siteSnackbarProps
+        (state) => state.siteSnackbarProps,
     );
     const isSiteSnackbarShowing = useNotificationsStore(
-        (state) => state.isSiteSnackbarShowing
+        (state) => state.isSiteSnackbarShowing,
     );
     const hideSiteSnackbar = useNotificationsStore(
-        (state) => () => state.hideSiteSnackbar()
+        (state) => () => state.hideSiteSnackbar(),
     );
 
     return (

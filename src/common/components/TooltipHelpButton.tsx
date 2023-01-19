@@ -1,3 +1,4 @@
+import * as React from "react";
 import { HelpOutlineRounded } from "@mui/icons-material";
 import { IconButton, IconButtonProps, Tooltip, useTheme } from "@mui/material";
 
@@ -6,7 +7,9 @@ export function TooltipHelpButton(props: TooltipHelpButtonProps) {
 
     const theme = useTheme();
 
-    if (!tooltipTitle) return <></>;
+    if (!tooltipTitle) {
+        return <></>;
+    }
 
     return (
         <Tooltip title={tooltipTitle} placement={placement ? placement : "top"}>

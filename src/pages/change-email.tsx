@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import { TextField, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { supabaseClient } from "../common/utils/supabaseClient";
@@ -7,7 +7,7 @@ import PageContainer from "../common/components/PageContainer";
 import Head from "next/head";
 import showSnackbar from "../modules/notifications/utils/showSnackbar";
 import { validateEmail } from "../common/utils/validateEmail";
-import { withPageAuth } from "@supabase/auth-helpers-nextjs";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 const ChangeEmail: NextPage = () => {
     const [email, setEmail] = React.useState("");
@@ -20,21 +20,22 @@ const ChangeEmail: NextPage = () => {
         email.length > 0 && !emailIsValid ? "invalid email address" : null;
 
     const handleContinueClick = async (
-        event: React.MouseEvent<HTMLElement>
+        event: React.MouseEvent<HTMLElement>,
     ) => {
         // prevent navigation
         event.preventDefault();
 
         setIsButtonLoading(true);
         setIsSuccess(false);
-        const { data, error } = await supabaseClient.auth.updateUser({
+        const { error } = await supabaseClient.auth.updateUser({
             email: email,
         });
         setEmail("");
         setIsButtonLoading(false);
 
-        if (error) showSnackbar("Unable to update email.", "error");
-        else {
+        if (error) {
+            showSnackbar("Unable to update email.", "error");
+        } else {
             setIsSuccess(true);
         }
     };
@@ -96,10 +97,21 @@ const ChangeEmail: NextPage = () => {
 
 export default ChangeEmail;
 
-export const getServerSideProps = withPageAuth({
-    authRequired: true,
-    redirectTo: "/log-in",
-    async getServerSideProps(ctx, supabaseClient) {
-        return { props: undefined };
-    },
-});
+export const getServerSideProps: GetServerSideProps = async(context) => {
+    const supabase = createServerSupabaseClient(context);
+
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: "/log-in",
+                permanent: false,
+            },
+        };
+    }
+
+    return { props: {} };
+};

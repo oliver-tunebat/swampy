@@ -1,3 +1,4 @@
+import React from "react";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import useAuthStore from "../store";
@@ -9,15 +10,15 @@ export default function AuthDialog() {
     const viewType = useAuthStore((state) => state.authFormViewType);
     let open = useAuthStore((state) => state.authDialogOpen);
     const closeDialog = useAuthStore(
-        (state) => () => state.setAuthDialogOpen(false, viewType)
+        (state) => () => state.setAuthDialogOpen(false),
     );
 
     const title =
         viewType === "login"
             ? "Log In"
             : viewType === "recoverPassword"
-            ? "Password Recovery"
-            : "Sign Up";
+                ? "Password Recovery"
+                : "Sign Up";
 
     const router = useRouter();
 

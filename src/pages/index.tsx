@@ -1,3 +1,4 @@
+import * as React from "react";
 import type { NextPage } from "next";
 import NavLink from "../common/components/NavLink";
 import PageContainer from "../common/components/PageContainer";
@@ -13,6 +14,8 @@ import {
     Elephant,
     Rabbit,
     Bullseye,
+    Pyramid,
+    Eslint,
 } from "mdi-material-ui";
 import TechnologyCard from "../modules/pages/index/components/TechnologyCard";
 import { CloudOutlined, Email } from "@mui/icons-material";
@@ -31,8 +34,8 @@ const Home: NextPage = () => {
                 <title>Swampy - A Boilerplate for Web Apps</title>
                 <meta
                     name="description"
-                    content="Swampy is a boilerplate project that can be used to create any kind of web app. 
-                        It comes with many prebuilt, generalized features. 
+                    content="Swampy is a boilerplate project that can be used to create any kind of web app.
+                        It comes with many prebuilt, generalized features.
                         Swampy is built with Typescript, Next.js, Material UI, and Supabase."
                 />
             </Head>
@@ -167,6 +170,33 @@ const Home: NextPage = () => {
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                     <TechnologyCard
+                        title="ESLint"
+                        subheader="Code Formatting"
+                        icon={<Eslint />}
+                        iconColor="#4c33be"
+                        href="https://eslint.org/"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
+                        title="Vercel"
+                        subheader="Hosting"
+                        icon={<Triangle />}
+                        iconColor="#000"
+                        href="https://vercel.com/"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
+                        title="Prisma"
+                        subheader="ORM"
+                        icon={<Pyramid />}
+                        iconColor="#5a67d8"
+                        href="https://www.prisma.io/"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
                         title="Zustand"
                         subheader="State Management"
                         icon={<TeddyBear />}
@@ -235,15 +265,6 @@ const Home: NextPage = () => {
                         icon={<CloudOutlined />}
                         iconColor="#f63"
                         href="https://www.cloudflare.com/"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="Vercel"
-                        subheader="Hosting"
-                        icon={<Triangle />}
-                        iconColor="#000"
-                        href="https://vercel.com/"
                     />
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>

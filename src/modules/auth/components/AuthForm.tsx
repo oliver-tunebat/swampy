@@ -4,7 +4,6 @@ import useAuthStore, { AuthFormViewType } from "../store";
 import {
     AlertProps,
     Box,
-    Button,
     Container,
     Divider,
     IconButton,
@@ -41,15 +40,15 @@ export default function AuthForm(props: AuthFormProps) {
     const viewType = useAuthStore((state) => state.authFormViewType);
     const setViewType = useAuthStore(
         (state) => (viewType: AuthFormViewType) =>
-            state.setAuthFormViewType(viewType)
+            state.setAuthFormViewType(viewType),
     );
     const closeAuthDialog = useAuthStore(
-        (state) => () => state.setAuthDialogOpen(false, viewType)
+        (state) => () => state.setAuthDialogOpen(false),
     );
 
     const setBanner = useNotificationsStore(
         (state) => (showBanner: boolean, alertProps: AlertProps) =>
-            state.setBanner(showBanner, alertProps)
+            state.setBanner(showBanner, alertProps),
     );
 
     const captchaRef = React.useRef<HCaptcha>(null);
@@ -66,8 +65,8 @@ export default function AuthForm(props: AuthFormProps) {
         viewType === "login"
             ? "Log In"
             : viewType === "recoverPassword"
-            ? "Password Recovery"
-            : "Sign Up";
+                ? "Password Recovery"
+                : "Sign Up";
 
     const emailErrorText =
         email.length > 0 && !emailIsValid ? "invalid email address" : null;
@@ -81,7 +80,7 @@ export default function AuthForm(props: AuthFormProps) {
         (!passwordIsValid && viewType === "completeSignUp");
 
     const handleContinueClick = async (
-        event: React.MouseEvent<HTMLElement>
+        event: React.MouseEvent<HTMLElement>,
     ) => {
         // prevent navigation
         event.preventDefault();
@@ -90,7 +89,7 @@ export default function AuthForm(props: AuthFormProps) {
             setViewType("completeSignUp");
         } else if (viewType === "login") {
             setContinueButtonLoading(true);
-            const { data, error } =
+            const { error } =
                 await supabaseClient.auth.signInWithPassword({
                     email: email,
                     password: password,
@@ -100,15 +99,15 @@ export default function AuthForm(props: AuthFormProps) {
             setCaptchaToken("");
             setContinueButtonLoading(false);
 
-            if (error)
+            if (error) {
                 showSnackbar("The email or password is incorrect.", "error");
-            else {
+            } else {
                 closeAuthDialog();
                 showSnackbar("You succesfully logged in!", "success");
             }
         } else if (viewType === "completeSignUp") {
             setContinueButtonLoading(true);
-            const { data, error } = await supabaseClient.auth.signUp({
+            const { error } = await supabaseClient.auth.signUp({
                 email,
                 password,
                 options: { captchaToken },
@@ -117,8 +116,9 @@ export default function AuthForm(props: AuthFormProps) {
             setCaptchaToken("");
             setContinueButtonLoading(false);
 
-            if (error) showSnackbar("Sign up failed.", "error");
-            else {
+            if (error) {
+                showSnackbar("Sign up failed.", "error");
+            } else {
                 closeAuthDialog();
                 setBanner(true, {
                     children: <AccountActivationBannerBody />,
@@ -127,12 +127,12 @@ export default function AuthForm(props: AuthFormProps) {
 
                 // create a listener to remove the banner when the user logs in
                 const removeBannerSignInListener =
-                    supabaseClient.auth.onAuthStateChange((event, session) => {
+                    supabaseClient.auth.onAuthStateChange((event) => {
                         if (event === "SIGNED_IN") {
                             setBanner(false, {});
                             showSnackbar(
                                 "You succesfully logged in!",
-                                "success"
+                                "success",
                             );
                             removeBannerSignInListener.data.subscription.unsubscribe();
                         }
@@ -140,7 +140,7 @@ export default function AuthForm(props: AuthFormProps) {
             }
         } else if (viewType === "recoverPassword") {
             setContinueButtonLoading(true);
-            const { data, error } =
+            const { error } =
                 await supabaseClient.auth.resetPasswordForEmail(email, {
                     captchaToken,
                     redirectTo:
@@ -151,15 +151,15 @@ export default function AuthForm(props: AuthFormProps) {
             setCaptchaToken("");
             setContinueButtonLoading(false);
 
-            if (error)
+            if (error) {
                 showSnackbar(
                     "Unable to send a password recovery link.",
-                    "error"
+                    "error",
                 );
-            else {
+            } else {
                 showSnackbar(
                     "A password recovery link has been sent to your email address.",
-                    "success"
+                    "success",
                 );
             }
         }
@@ -222,7 +222,7 @@ export default function AuthForm(props: AuthFormProps) {
                         type="email"
                         value={email}
                         onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
+                            event: React.ChangeEvent<HTMLInputElement>,
                         ) => setEmail(event.target.value)}
                         error={Boolean(emailErrorText)}
                         helperText={emailErrorText}
@@ -257,7 +257,7 @@ export default function AuthForm(props: AuthFormProps) {
                         fullWidth
                         value={password}
                         onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
+                            event: React.ChangeEvent<HTMLInputElement>,
                         ) => setPassword(event.target.value)}
                         error={
                             !passwordIsValid &&

@@ -16,20 +16,21 @@ const ChangePassword: NextPage = () => {
     const passwordIsValid = validatePassword(password);
 
     const handleContinueClick = async (
-        event: React.MouseEvent<HTMLElement>
+        event: React.MouseEvent<HTMLElement>,
     ) => {
         // prevent navigation
         event.preventDefault();
 
         setIsButtonLoading(true);
-        const { data, error } = await supabaseClient.auth.updateUser({
+        const { error } = await supabaseClient.auth.updateUser({
             password: password,
         });
         setPassword("");
         setIsButtonLoading(false);
 
-        if (error) showSnackbar("Unable to update password.", "error");
-        else {
+        if (error) {
+            showSnackbar("Unable to update password.", "error");
+        } else {
             showSnackbar("Succesfully updated password!", "success");
         }
     };

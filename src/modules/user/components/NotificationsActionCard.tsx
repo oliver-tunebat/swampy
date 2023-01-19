@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
     Badge,
     Button,
@@ -10,7 +11,7 @@ import useNotificationsStore from "../../notifications/store";
 
 export default function NotificationsActionCard() {
     const hideSiteActionSnackbar = useNotificationsStore(
-        (state) => () => state.hideSiteActionSnackbar()
+        (state) => () => state.hideSiteActionSnackbar(),
     );
 
     return (

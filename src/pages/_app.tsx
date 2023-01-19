@@ -12,10 +12,6 @@ import { Box, PaletteMode } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import getDesignTokens from "../getDesignTokens";
 import Footer from "../common/components/Footer";
-import "@fontsource/inter/300.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/700.css";
 import { setCookie, getCookie, hasCookie } from "cookies-next";
 import AuthDialog from "../modules/auth/components/AuthDialog";
 import SiteSnackbar from "../modules/notifications/components/SiteSnackbar";
@@ -57,20 +53,22 @@ export default function MyApp(props: MyAppProps) {
                 });
             },
         }),
-        []
+        [],
     );
 
     // Update the theme only if the mode changes
     const theme = React.useMemo(
         () => createTheme(getDesignTokens(mode)),
-        [mode]
+        [mode],
     );
 
     setUpAuthStateChangeListeners();
 
     // on client side load, get color mode from cookie
     React.useEffect(() => {
-        if (!hasCookie(colorModeKey)) return;
+        if (!hasCookie(colorModeKey)) {
+            return;
+        }
         colorMode.setColorMode(getCookie(colorModeKey) as string);
     });
 
