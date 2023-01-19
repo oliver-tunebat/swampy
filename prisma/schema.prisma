@@ -24,7 +24,6 @@ model UserSettings {
     id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
     isEmailNotificationsEnabled Boolean @default(false)
-    testSetting                 Boolean @default(false)
 
     user   User   @relation(fields: [userId], references: [id])
     userId String @unique @db.Uuid
