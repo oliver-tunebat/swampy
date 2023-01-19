@@ -7,7 +7,9 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+        "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest",
+        "vercel-build": "prisma generate && prisma migrate deploy && next build",
+        "prisma:generate": "prisma generate"
     },
     "dependencies": {
         "@emotion/cache": "11.10.5",
@@ -19,7 +21,7 @@
         "@mui/lab": "5.0.0-alpha.115",
         "@mui/material": "5.11.4",
         "@next/font": "13.1.1",
-        "@prisma/client": "4.8.1",
+        "@prisma/client": "4.9.0",
         "@supabase/auth-helpers-nextjs": "0.5.2",
         "@supabase/auth-helpers-react": "0.3.1",
         "@supabase/supabase-js": "2.4.0",
@@ -40,7 +42,7 @@
         "eslint": "8.31.0",
         "eslint-config-next": "13.1.1",
         "eslint-plugin-react": "7.32.0",
-        "prisma": "4.8.1",
+        "prisma": "4.9.0",
         "typescript": "4.9.4"
     }
 }

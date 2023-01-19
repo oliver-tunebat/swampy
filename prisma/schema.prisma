@@ -6,15 +6,16 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+    provider          = "postgresql"
+    url               = env("DATABASE_URL")
+    shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model User {
-    id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-    supabaseId String? @db.Uuid
-    email String @unique
-    createdAt DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)")) @db.Timestamptz(3) 
+    id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    supabaseId String?  @db.Uuid
+    email      String   @unique
+    createdAt  DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)")) @db.Timestamptz(3)
 
     userSettings UserSettings?
 }
@@ -23,7 +24,8 @@ model UserSettings {
     id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 
     isEmailNotificationsEnabled Boolean @default(false)
+    testSetting                 Boolean @default(false)
 
-    user User @relation(fields: [userId], references: [id])
+    user   User   @relation(fields: [userId], references: [id])
     userId String @unique @db.Uuid
 }
