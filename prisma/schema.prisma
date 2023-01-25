@@ -12,10 +12,10 @@ datasource db {
 }
 
 model User {
-    id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-    supabaseId String?  @db.Uuid
-    email      String   @unique
-    createdAt  DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)")) @db.Timestamptz(3)
+    // the user's supabase user id
+    id        String   @id @db.Uuid
+    email     String   @unique
+    createdAt DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)")) @db.Timestamptz(3)
 
     userSettings UserSettings?
 }
