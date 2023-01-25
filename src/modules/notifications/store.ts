@@ -1,5 +1,5 @@
 import { AlertProps } from "@mui/material";
-import create from "zustand";
+import { create } from "zustand";
 import { SiteActionSnackbarContent } from "./components/SiteActionSnackbar";
 import { SiteSnackbarProps } from "./components/SiteSnackbar";
 
