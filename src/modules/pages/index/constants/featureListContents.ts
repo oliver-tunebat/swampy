@@ -56,6 +56,11 @@ export const frontEndFeatures: FeatureListFeature[] = [
         status: "implemented",
         nestLevel: 1,
     },
+    {
+        text: "Action & Consent Popup ",
+        status: "implemented",
+        nestLevel: 1,
+    },
 
     // seo optimization
     {
@@ -374,6 +379,11 @@ export const userFeatures: FeatureListFeature[] = [
         nestLevel: 1,
         href: "https://supabase.com/docs/reference/javascript/auth-admin-deleteuser",
     },
+    {
+        text: "Configure Email Preferences",
+        status: "implemented",
+        nestLevel: 1,
+    },
 
     // privacy
     {
@@ -396,8 +406,10 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Privacy First Analytics",
-        status: "unimplemented",
+        detailText: "Implemented with Plausible",
+        status: "progress",
         nestLevel: 1,
+        href: "https://plausible.io/data-policy#gdpr-ccpa-and-pecr-compliant-web-analytics",
     },
 
     // contact us page

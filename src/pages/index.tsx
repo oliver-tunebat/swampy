@@ -198,10 +198,19 @@ const Home: NextPage = () => {
                 <Grid item md={4} sm={6} xs={12}>
                     <TechnologyCard
                         title="Zustand"
-                        subheader="State Management"
+                        subheader="Client State"
                         icon={<TeddyBear />}
                         iconColor="#56283b"
                         href="https://github.com/pmndrs/zustand"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
+                        title="SWR"
+                        subheader="Client-Server State"
+                        icon={"S"}
+                        iconColor="#000"
+                        href="https://swr.vercel.app/"
                     />
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>

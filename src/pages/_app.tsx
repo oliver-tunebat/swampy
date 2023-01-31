@@ -17,6 +17,7 @@ import AuthDialog from "../modules/auth/components/AuthDialog";
 import SiteSnackbar from "../modules/notifications/components/SiteSnackbar";
 import { setUpAuthStateChangeListeners } from "../modules/auth/utils/setUpAuthStateChangeListeners";
 import EmailNotificationsActionSnackbar from "../modules/profile/components/EmailNotificationsActionSnackbar";
+import PlausibleProvider from "next-plausible";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -73,39 +74,44 @@ export default function MyApp(props: MyAppProps) {
     });
 
     return (
-        <SessionContextProvider
-            supabaseClient={supabaseClient}
-            initialSession={pageProps.initialSession}
+        <PlausibleProvider
+            domain={process.env.NEXT_PUBLIC_CURRENT_DOMAIN ?? ""}
+            trackOutboundLinks
         >
-            <CacheProvider value={emotionCache}>
-                <Head>
-                    <meta
-                        name="viewport"
-                        content="initial-scale=1, width=device-width"
-                    />
-                </Head>
-                <ThemeProvider theme={theme}>
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            minHeight: "100vh",
-                        }}
-                    >
-                        <ResponsiveAppBar />
-                        <Component {...pageProps} />
-                        <Footer
-                            mode={mode}
-                            toggleColorMode={colorMode.toggleColorMode}
+            <SessionContextProvider
+                supabaseClient={supabaseClient}
+                initialSession={pageProps.initialSession}
+            >
+                <CacheProvider value={emotionCache}>
+                    <Head>
+                        <meta
+                            name="viewport"
+                            content="initial-scale=1, width=device-width"
                         />
-                    </Box>
-                    <AuthDialog />
-                    <SiteSnackbar />
-                    <EmailNotificationsActionSnackbar />
-                </ThemeProvider>
-            </CacheProvider>
-        </SessionContextProvider>
+                    </Head>
+                    <ThemeProvider theme={theme}>
+                        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                        <CssBaseline />
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                minHeight: "100vh",
+                            }}
+                        >
+                            <ResponsiveAppBar />
+                            <Component {...pageProps} />
+                            <Footer
+                                mode={mode}
+                                toggleColorMode={colorMode.toggleColorMode}
+                            />
+                        </Box>
+                        <AuthDialog />
+                        <SiteSnackbar />
+                        <EmailNotificationsActionSnackbar />
+                    </ThemeProvider>
+                </CacheProvider>
+            </SessionContextProvider>
+        </PlausibleProvider>
     );
 }
