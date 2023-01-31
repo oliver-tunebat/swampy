@@ -2,18 +2,15 @@
 run this in the SQL editor
 */
 
--- inserts a row into public.User and public.UserSettings
+-- inserts a row into public.Profile
 create function public.handle_new_user()
 returns trigger
 language plpgsql
 security definer set search_path = public
 as $$
 begin
-  insert into public."User" ("id", "email")
+  insert into public."Profile" ("id", "email")
   values (new.id, new.email);
-
-  insert into public."UserSettings" ("userId")
-  values (new.id);
   return new;
 end;
 $$;

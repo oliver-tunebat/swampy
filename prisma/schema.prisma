@@ -11,20 +11,10 @@ datasource db {
     shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model User {
-    // the user's supabase user id
-    id        String   @id @db.Uuid
-    email     String   @unique
-    createdAt DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)")) @db.Timestamptz(3)
-
-    userSettings UserSettings?
-}
-
-model UserSettings {
-    id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-
-    isEmailNotificationsEnabled Boolean @default(false)
-
-    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-    userId String @unique @db.Uuid
+model Profile {
+    // the profile's supabase user id
+    id                          String   @id @db.Uuid
+    email                       String   @unique
+    createdAt                   DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)")) @db.Timestamptz(3)
+    isEmailNotificationsEnabled Boolean?
 }

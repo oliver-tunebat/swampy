@@ -1,7 +1,7 @@
 import { NextApiHandler } from "next";
 import { adminSupabaseClient } from "../../../common/utils/adminSupabaseClient";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { PrismaClient } from "@prisma/client";
+import { prismaClient } from "../../../common/utils/prismaClient";
 
 const handler: NextApiHandler = async (req, res) => {
     if (req.method === "DELETE") {
@@ -9,19 +9,17 @@ const handler: NextApiHandler = async (req, res) => {
 
         // get authenticated user
         const {
-            data: { session },
-        } = await supabaseClient.auth.getSession();
+            data: { user },
+        } = await supabaseClient.auth.getUser();
 
-        const userId = session?.user?.id;
-
-        if (!userId) {
+        if (!user) {
             res.status(401).send("Unable to verify user.");
             return;
         }
 
         // delete user from supabase
         const { error } = await adminSupabaseClient.auth.admin.deleteUser(
-            userId,
+            user.id,
         );
 
         if (error) {
@@ -30,10 +28,9 @@ const handler: NextApiHandler = async (req, res) => {
         }
 
         // delete user from database
-        const prisma = new PrismaClient();
-        await prisma.user.delete({
+        await prismaClient.profile.delete({
             where: {
-                id: userId,
+                id: user.id,
             },
         });
 

@@ -1,6 +1,5 @@
 import { AlertProps } from "@mui/material";
 import { create } from "zustand";
-import { SiteActionSnackbarContent } from "./components/SiteActionSnackbar";
 import { SiteSnackbarProps } from "./components/SiteSnackbar";
 
 interface NotificationsState {
@@ -12,11 +11,6 @@ interface NotificationsState {
     isSiteSnackbarShowing: boolean;
     showSiteSnackbar: (props: SiteSnackbarProps) => void;
     hideSiteSnackbar: () => void;
-
-    siteActionSnackbarContent: SiteActionSnackbarContent;
-    isSiteActionSnackbarShowing: boolean;
-    showSiteActionSnackbar: (content: SiteActionSnackbarContent) => void;
-    hideSiteActionSnackbar: () => void;
 }
 
 const useNotificationsStore = create<NotificationsState>((set) => ({
@@ -30,15 +24,6 @@ const useNotificationsStore = create<NotificationsState>((set) => ({
     showSiteSnackbar: (props: SiteSnackbarProps) =>
         set({ isSiteSnackbarShowing: true, siteSnackbarProps: props }),
     hideSiteSnackbar: () => set({ isSiteSnackbarShowing: false }),
-
-    siteActionSnackbarContent: undefined,
-    isSiteActionSnackbarShowing: false,
-    showSiteActionSnackbar: (content: SiteActionSnackbarContent) =>
-        set({
-            isSiteActionSnackbarShowing: true,
-            siteActionSnackbarContent: content,
-        }),
-    hideSiteActionSnackbar: () => set({ isSiteActionSnackbarShowing: false }),
 }));
 
 export default useNotificationsStore;
