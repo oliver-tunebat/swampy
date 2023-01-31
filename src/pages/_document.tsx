@@ -4,7 +4,6 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import createEmotionCache from "../createEmotionCache";
 import { inter } from "../getDesignTokens";
-import getCurrentURL from "../common/utils/getCurrentURL";
 
 export default class MyDocument extends Document {
     render() {

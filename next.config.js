@@ -4,8 +4,8 @@ module.exports = {
     async rewrites() {
         return [
             {
-                source: "/js/script.outbound-link.js",
-                destination: "https://plausible.io/js/script.js",
+                source: "/js/script.js",
+                destination: "https://plausible.io/js/script.outbound-link.js",
             },
             {
                 source: "/api/event",
