@@ -26,8 +26,11 @@ import {
     developerFeatures,
     userFeatures,
 } from "../modules/pages/index/constants/featureListContents";
+import { usePlausible } from "next-plausible";
 
 const Home: NextPage = () => {
+    const plausible = usePlausible();
+
     return (
         <PageContainer>
             <Head>
