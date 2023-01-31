@@ -40,6 +40,8 @@ export default class MyDocument extends Document {
 
                     <meta name="emotion-insertion-point" content="" />
                     {(this.props as any).emotionStyleTags}
+
+                    <script defer data-domain="dev.swampy.rocks" src="https://plausible.io/js/script.js"></script>
                 </Head>
                 <body>
                     <Main />
