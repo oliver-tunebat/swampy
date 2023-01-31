@@ -42,7 +42,7 @@ export default class MyDocument extends Document {
                     <meta name="emotion-insertion-point" content="" />
                     {(this.props as any).emotionStyleTags}
 
-                    <script defer data-domain={getCurrentURL(true)} src="/js/script.js"></script>
+                    <script defer data-domain={process.env.NEXT_PUBLIC_CURRENT_DOMAIN} src="/js/script.js"></script>
                 </Head>
                 <body>
                     <Main />
