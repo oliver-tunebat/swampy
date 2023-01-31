@@ -75,7 +75,7 @@ export default function MyApp(props: MyAppProps) {
 
     return (
         <PlausibleProvider
-            domain={process.env.NEXT_PUBLIC_CURRENT_DOMAIN ?? ""}
+            domain={"dev.swampy.rocks"}
             trackOutboundLinks
         >
             <SessionContextProvider

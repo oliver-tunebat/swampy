@@ -2,7 +2,7 @@ import * as React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Typography from "@mui/material/Typography";
 import NavLink from "../common/components/NavLink";
-import { createServerSupabaseClient, User } from "@supabase/auth-helpers-nextjs";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import PageContainer from "../common/components/PageContainer";
 import { Checkbox, FormControlLabel, Link, List, ListItem, ListItemText, Skeleton } from "@mui/material";
 import ConfirmationDialog from "../common/components/ConfirmationDialog";
