@@ -144,7 +144,7 @@ export default function AuthForm(props: AuthFormProps) {
                 await supabaseClient.auth.resetPasswordForEmail(email, {
                     captchaToken,
                     redirectTo:
-                        `http://${process.env.NEXT_PUBLIC_CURRENT_DOMAIN}/change-password` ??
+                        `${process.env.NEXT_PUBLIC_CURRENT_URL}/change-password` ??
                         undefined,
                 });
             captchaRef.current?.resetCaptcha();

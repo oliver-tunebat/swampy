@@ -161,7 +161,7 @@ export const frontEndFeatures: FeatureListFeature[] = [
         text: "404",
         status: "implemented",
         nestLevel: 1,
-        href: "/400",
+        href: "/404",
     },
     {
         text: "5XX",
@@ -407,7 +407,7 @@ export const userFeatures: FeatureListFeature[] = [
     {
         text: "Privacy First Analytics",
         detailText: "Implemented with Plausible",
-        status: "progress",
+        status: "implemented",
         nestLevel: 1,
         href: "https://plausible.io/data-policy#gdpr-ccpa-and-pecr-compliant-web-analytics",
     },
@@ -426,19 +426,19 @@ export const developerFeatures: FeatureListFeature[] = [
     {
         text: "Analytics",
         detailText: "Implimented with Plausible",
-        status: "unimplemented",
+        status: "implemented",
         href: "https://plausible.io/",
     },
     {
         text: "Event Tracking",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 1,
         href: "https://plausible.io/docs/goal-conversions",
     },
     {
         text: "Proxy",
         detailText: "For circumventing adblockers",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 1,
         href: "https://plausible.io/docs/proxy/introduction",
     },

@@ -3,6 +3,7 @@ import useSWR from "swr";
 import swrFetcher from "../../common/utils/swrFetcher";
 import { Profile } from "@prisma/client";
 import { useUser } from "@supabase/auth-helpers-react";
+import { trackEvent } from "../analytics/utils/plausible";
 
 // GET DATA
 
@@ -22,6 +23,7 @@ export async function deleteProfile() {
     const { error } = await callAxios.delete("/api/profile/delete", true);
 
     if (!error) {
+        trackEvent("Deleted Profile");
         location.reload();
     }
 }

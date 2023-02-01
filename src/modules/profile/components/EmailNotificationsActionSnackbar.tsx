@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { enableEmailNotifications, useGetProfile } from "../apiCalls";
 import ActionSnackbar from "../../notifications/components/ActionSnackbar";
+import { trackEvent } from "../../analytics/utils/plausible";
 
 export default function EmailNotificationsActionSnackbar() {
     const { profile, mutate } = useGetProfile();
@@ -34,7 +35,9 @@ export default function EmailNotificationsActionSnackbar() {
                 populateCache: true,
                 revalidate: true,
             },
-        );
+        ).then(() => {
+            trackEvent("Clicked Email Preferences Snack", { consented: affirm });
+        });
     };
 
     return (
