@@ -392,7 +392,7 @@ export const userFeatures: FeatureListFeature[] = [
             long way in complying with privacy regulations. 
             It is your responsibility to ensure anything you create with 
             Swampy complies with privacy regulations.`,
-        status: "unimplemented",
+        status: "progress",
     },
     {
         text: "Tracking Consent Management",

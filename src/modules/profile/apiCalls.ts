@@ -13,11 +13,29 @@ export function useGetProfile() {
     // only fetch if user is logged in
     const key = user ? "/api/profile/get" : null;
     const { data, error, mutate } = useSWR<Profile, unknown>(key, swrFetcher);
+
+    // handle new user
+    if (data && !data.createdAt) {
+        mutate(createProfile(data));
+    }
+
     return { profile: data, error, mutate };
 }
 
 
 // MODIFY DATA
+
+async function createProfile(profile: Profile) {
+    const { response } = await callAxios.post<Profile>("/api/profile/create", false);
+
+    if (!response?.data?.createdAt) {
+        return profile;
+    }
+
+    trackEvent("Signed Up");
+
+    return response.data;
+}
 
 export async function deleteProfile() {
     const { error } = await callAxios.delete("/api/profile/delete", true);
