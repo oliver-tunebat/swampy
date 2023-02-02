@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
+import { trackEvent } from "../../analytics/utils/plausible";
 import showSnackbar from "../../notifications/utils/showSnackbar";
 
 // helper function for calling axios asynchronously
@@ -46,6 +47,18 @@ export async function callAxiosMethod<T>(
         // throw if it's not an axios error, allowing it be handled elsewhere
         if (!axios.isAxiosError(error)) {
             throw error;
+        }
+
+        if (error.response) {
+            console.log(url);
+            trackEvent("Axios Error", {
+                status: error.response.status,
+                // handle full urls and relative paths
+                path: new URL(
+                    url.indexOf(process.env.NEXT_PUBLIC_CURRENT_URL ?? " ") === -1
+                        ? `${process.env.NEXT_PUBLIC_CURRENT_URL}${url}`
+                        : url).pathname,
+            });
         }
 
         // snack message logic for errors

@@ -1,6 +1,6 @@
 import { callAxios } from "../networking/utils/callAxios";
 import useSWR from "swr";
-import swrFetcher from "../../common/utils/swrFetcher";
+import swrFetcher from "../networking/utils/swrFetcher";
 import { Profile } from "@prisma/client";
 import { useUser } from "@supabase/auth-helpers-react";
 import { trackEvent } from "../analytics/utils/plausible";

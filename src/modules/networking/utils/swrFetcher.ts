@@ -1,3 +1,5 @@
+import { trackEvent } from "../../analytics/utils/plausible";
+
 export default async function swrFetcher<JSON = unknown>(
     input: RequestInfo,
     init?: RequestInit,
@@ -6,6 +8,7 @@ export default async function swrFetcher<JSON = unknown>(
 
     if (!res.ok) {
         const error = new SWRFetcherError(res.statusText, res.status);
+        trackEvent("Fetcher Error", { status: res.status, path: new URL(res.url).pathname });
         throw error;
     }
 

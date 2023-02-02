@@ -446,7 +446,8 @@ export const developerFeatures: FeatureListFeature[] = [
     // error tracking
     {
         text: "Error Tracking",
-        status: "unimplemented",
+        detailText: "Tracking added for http errors.",
+        status: "progress",
     },
 
     // clean project structure

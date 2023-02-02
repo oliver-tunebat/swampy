@@ -27,6 +27,7 @@ const handler: NextApiHandler = async (req, res) => {
     }
 
     res.status(405).send("Operation unavailable.");
+    return;
 };
 
 export default handler;
