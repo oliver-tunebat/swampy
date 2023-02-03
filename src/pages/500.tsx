@@ -4,8 +4,14 @@ import PageContainer from "../common/components/PageContainer";
 import Head from "next/head";
 import { Typography } from "@mui/material";
 import NavLink from "../common/components/NavLink";
+import { useEffect } from "react";
+import { trackEvent } from "../modules/analytics/utils/plausible";
 
 const _500: NextPage = () => {
+    useEffect(() => {
+        trackEvent("500", { path: document.location.pathname });
+    }, []);
+
     return (
         <PageContainer
             sx={{
