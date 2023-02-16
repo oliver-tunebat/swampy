@@ -22,6 +22,7 @@
         "@mui/material": "5.11.4",
         "@next/font": "13.1.1",
         "@prisma/client": "4.9.0",
+        "@sendgrid/mail": "7.7.0",
         "@supabase/auth-helpers-nextjs": "0.5.2",
         "@supabase/auth-helpers-react": "0.3.1",
         "@supabase/supabase-js": "2.4.0",

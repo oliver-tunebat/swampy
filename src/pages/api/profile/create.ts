@@ -1,6 +1,7 @@
 import { NextApiHandler } from "next";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { prismaClient } from "../../../common/utils/prismaClient";
+import { sendTransactionalEmail } from "../../../modules/messaging/utils/sendEmail";
 
 const handler: NextApiHandler = async (req, res) => {
     if (req.method === "POST") {
@@ -34,6 +35,11 @@ const handler: NextApiHandler = async (req, res) => {
         });
 
         res.status(200).send(profile);
+
+        if (profile?.email && process.env.WELCOME_EMAIL_TEMPLATE_ID) {
+            sendTransactionalEmail(profile?.email, user.id, process.env.WELCOME_EMAIL_TEMPLATE_ID);
+        }
+
         return;
     }
 
