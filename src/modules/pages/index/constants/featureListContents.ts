@@ -62,6 +62,17 @@ export const frontEndFeatures: FeatureListFeature[] = [
         nestLevel: 1,
     },
 
+    // blog
+    {
+        text: "Blog",
+        status: "unimplemented",
+    },
+    {
+        text: "Headless CMS",
+        status: "unimplemented",
+        nestLevel: 1,
+    },
+
     // seo optimization
     {
         text: "SEO Optimization",
@@ -197,7 +208,7 @@ export const backEndFeatures: FeatureListFeature[] = [
     {
         text: "Transactional Emails",
         detailText: "Implemented with SendGrid",
-        status: "unimplemented",
+        status: "implemented",
         href: "https://sendgrid.com/",
     },
 

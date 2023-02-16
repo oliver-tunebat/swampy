@@ -197,6 +197,15 @@ const Home: NextPage = () => {
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                     <TechnologyCard
+                        title="SendGrid"
+                        subheader="Emails"
+                        icon={<Email />}
+                        iconColor="#3368fa"
+                        href="https://sendgrid.com/"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
                         title="Zustand"
                         subheader="Client State"
                         icon={<TeddyBear />}
@@ -238,15 +247,6 @@ const Home: NextPage = () => {
                         icon={"S"}
                         iconColor="#635bff"
                         href="https://stripe.com/"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="SendGrid"
-                        subheader="Emails"
-                        icon={<Email />}
-                        iconColor="#3368fa"
-                        href="https://sendgrid.com/"
                     />
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
