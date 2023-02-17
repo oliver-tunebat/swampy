@@ -50,7 +50,6 @@ export async function callAxiosMethod<T>(
         }
 
         if (error.response) {
-            console.log(url);
             trackEvent("Axios Error", {
                 status: error.response.status,
                 // handle full urls and relative paths
