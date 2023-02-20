@@ -102,6 +102,14 @@ export default function Footer(props: FooterProps) {
                             >
                                 User Agreement
                             </NavLink>
+                            <NavLink
+                                href="/contact-us"
+                                color="text.secondary"
+                                underline="hover"
+                                variant="button"
+                            >
+                                Contact Us
+                            </NavLink>
                         </Stack>
                     </Box>
                 </Stack>

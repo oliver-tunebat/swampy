@@ -206,6 +206,15 @@ const Home: NextPage = () => {
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                     <TechnologyCard
+                        title="Plausible"
+                        subheader="Analytics"
+                        icon={"P"}
+                        iconColor="#5850ec"
+                        href="https://plausible.io/"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
                         title="Zustand"
                         subheader="Client State"
                         icon={<TeddyBear />}
@@ -251,15 +260,6 @@ const Home: NextPage = () => {
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                     <TechnologyCard
-                        title="Plausible"
-                        subheader="Analytics"
-                        icon={"P"}
-                        iconColor="#5850ec"
-                        href="https://plausible.io/"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
                         title="Rewardful"
                         subheader="Affiliate Program"
                         icon={<Bullseye />}
@@ -274,15 +274,6 @@ const Home: NextPage = () => {
                         icon={<CloudOutlined />}
                         iconColor="#f63"
                         href="https://www.cloudflare.com/"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="Bunny.net"
-                        subheader="CDN, Storage"
-                        icon={<Rabbit />}
-                        iconColor="#fd8d32"
-                        href="https://bunny.net/"
                     />
                 </Grid>
             </Grid>

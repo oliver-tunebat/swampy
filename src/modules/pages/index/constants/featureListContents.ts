@@ -427,8 +427,7 @@ export const userFeatures: FeatureListFeature[] = [
     // contact us page
     {
         text: "Contact Us Page",
-        detailText: "Secured with hCaptcha",
-        status: "progress",
+        status: "implemented",
         href: "/contact-us",
     },
 ];
@@ -487,12 +486,23 @@ export const developerFeatures: FeatureListFeature[] = [
     // ci/cd
     {
         text: "CI/CD",
-        status: "unimplemented",
+        detailText: "Using Vercel's built-in pipelines.",
+        status: "implemented",
+        href: "https://vercel.com/workflow",
     },
 
     // user management dashboard
     {
-        text: "User Management Dashboard",
+        text: "Admin Dashboard",
+        detailText: "Using Supabase's built-in dashboard.",
+        status: "implemented",
+        href: "https://supabase.com/",
+    },
+
+    // email campaigns
+    {
+        text: "Email Campaigns",
+        detailText: "Broadcast email newsletters and campaigns via Sendgrid.",
         status: "unimplemented",
     },
 ];

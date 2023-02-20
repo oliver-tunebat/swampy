@@ -8,7 +8,7 @@ import { LoadingButton } from "@mui/lab";
 import { sendMessage } from "../modules/messaging/apiCalls";
 import showSnackbar from "../modules/notifications/utils/showSnackbar";
 
-const Contact: NextPage = () => {
+const ContactUs: NextPage = () => {
     const [message, setMessage] = React.useState("");
     const [isButtonLoading, setIsButtonLoading] = React.useState(false);
 
@@ -84,7 +84,7 @@ const Contact: NextPage = () => {
     );
 };
 
-export default Contact;
+export default ContactUs;
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
     const supabase = createServerSupabaseClient(context);

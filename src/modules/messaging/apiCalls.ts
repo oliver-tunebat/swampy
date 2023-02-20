@@ -6,5 +6,5 @@ import { trackEvent } from "../analytics/utils/plausible";
 export async function sendMessage(message: string) {
     trackEvent("Sent Contact Us Message");
 
-    return await callAxios.post("/api/contact/send-message", true, { data: { message } });
+    return await callAxios.post("/api/contact-us/send-message", true, { data: { message } });
 }
