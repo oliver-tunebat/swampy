@@ -12,7 +12,6 @@ import {
     MaterialUi,
     TeddyBear,
     Elephant,
-    Rabbit,
     Bullseye,
     Pyramid,
     Eslint,

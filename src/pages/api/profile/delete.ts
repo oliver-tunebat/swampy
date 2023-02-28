@@ -1,7 +1,6 @@
 import { NextApiHandler } from "next";
 import { adminSupabaseClient } from "../../../common/utils/adminSupabaseClient";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { prismaClient } from "../../../common/utils/prismaClient";
 
 const handler: NextApiHandler = async (req, res) => {
     if (req.method === "DELETE") {
@@ -26,13 +25,6 @@ const handler: NextApiHandler = async (req, res) => {
             res.status(500).send({});
             return;
         }
-
-        // delete user from database
-        await prismaClient.profile.delete({
-            where: {
-                id: user.id,
-            },
-        });
 
         // clear auth token cookie to deauthenticate user
         res.setHeader("Set-Cookie", "supabase-auth-token=; Max-Age=0; Path=/");

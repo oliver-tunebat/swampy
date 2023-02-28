@@ -1,5 +1,5 @@
 /*
-run this in the SQL editor
+run this in the Supabase SQL editor
 */
 
 -- inserts a row into public.Profile
