@@ -2,7 +2,7 @@
     "crons": [
         {
             "path": "/api/functions/hello-world",
-            "schedule": "0 * * ? * *"
+            "schedule": "0 18 * * *"
         }
     ]
 }
