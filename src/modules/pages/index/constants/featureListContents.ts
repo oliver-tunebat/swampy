@@ -218,6 +218,13 @@ export const backEndFeatures: FeatureListFeature[] = [
         status: "implemented",
         href: "https://vercel.com/docs/concepts/functions/serverless-functions",
     },
+
+    // Cron Jobs
+    {
+        text: "Cron Jobs",
+        status: "implemented",
+        href: "https://vercel.com/guides/how-to-setup-cron-jobs-on-vercel",
+    },
 ];
 
 export const userFeatures: FeatureListFeature[] = [
