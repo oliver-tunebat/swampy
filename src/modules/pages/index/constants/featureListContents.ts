@@ -212,10 +212,11 @@ export const backEndFeatures: FeatureListFeature[] = [
         href: "https://sendgrid.com/",
     },
 
-    // background jobs
+    // serverless functions
     {
-        text: "Background Jobs",
-        status: "unimplemented",
+        text: "Serverless Functions",
+        status: "implemented",
+        href: "https://vercel.com/docs/concepts/functions/serverless-functions",
     },
 ];
 
