@@ -57,6 +57,7 @@
             "error",
             "always"
         ],
-        "key-spacing": "error"
+        "key-spacing": "error",
+        "arrow-spacing": "error"
     }
 }

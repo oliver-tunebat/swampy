@@ -12,7 +12,6 @@ import {
     MaterialUi,
     TeddyBear,
     Elephant,
-    Rabbit,
     Bullseye,
     Pyramid,
     Eslint,
@@ -197,11 +196,38 @@ const Home: NextPage = () => {
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                     <TechnologyCard
+                        title="SendGrid"
+                        subheader="Emails"
+                        icon={<Email />}
+                        iconColor="#3368fa"
+                        href="https://sendgrid.com/"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
+                        title="Plausible"
+                        subheader="Analytics"
+                        icon={"P"}
+                        iconColor="#5850ec"
+                        href="https://plausible.io/"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
                         title="Zustand"
-                        subheader="State Management"
+                        subheader="Client State"
                         icon={<TeddyBear />}
                         iconColor="#56283b"
                         href="https://github.com/pmndrs/zustand"
+                    />
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                    <TechnologyCard
+                        title="SWR"
+                        subheader="Client-Server State"
+                        icon={"S"}
+                        iconColor="#000"
+                        href="https://swr.vercel.app/"
                     />
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
@@ -233,24 +259,6 @@ const Home: NextPage = () => {
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                     <TechnologyCard
-                        title="SendGrid"
-                        subheader="Emails"
-                        icon={<Email />}
-                        iconColor="#3368fa"
-                        href="https://sendgrid.com/"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="Plausible"
-                        subheader="Analytics"
-                        icon={"P"}
-                        iconColor="#5850ec"
-                        href="https://plausible.io/"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
                         title="Rewardful"
                         subheader="Affiliate Program"
                         icon={<Bullseye />}
@@ -265,15 +273,6 @@ const Home: NextPage = () => {
                         icon={<CloudOutlined />}
                         iconColor="#f63"
                         href="https://www.cloudflare.com/"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="Bunny.net"
-                        subheader="CDN, Storage"
-                        icon={<Rabbit />}
-                        iconColor="#fd8d32"
-                        href="https://bunny.net/"
                     />
                 </Grid>
             </Grid>

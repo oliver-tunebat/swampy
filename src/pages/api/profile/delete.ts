@@ -6,18 +6,21 @@ const handler: NextApiHandler = async (req, res) => {
     if (req.method === "DELETE") {
         const supabaseClient = createServerSupabaseClient({ req, res });
 
+        // get authenticated user
         const {
-            data: { session },
-        } = await supabaseClient.auth.getSession();
+            data: { user },
+        } = await supabaseClient.auth.getUser();
 
-        if (!session) {
+        if (!user) {
             res.status(401).send("Unable to verify user.");
             return;
         }
 
+        // delete user from supabase
         const { error } = await adminSupabaseClient.auth.admin.deleteUser(
-            session?.user?.id,
+            user.id,
         );
+
         if (error) {
             res.status(500).send({});
             return;
@@ -30,6 +33,7 @@ const handler: NextApiHandler = async (req, res) => {
     }
 
     res.status(405).send("Operation unavailable.");
+    return;
 };
 
 export default handler;
