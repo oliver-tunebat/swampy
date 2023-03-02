@@ -46,8 +46,15 @@ const ContactUs: NextPage = () => {
                 <title>Contact Us | Swampy</title>
             </Head>
 
-            <Container maxWidth="xs" disableGutters>
-                <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
+            <Container
+                maxWidth="xs"
+                disableGutters
+            >
+                <Typography
+                    variant="h4"
+                    component="h1"
+                    sx={{ mb: 4 }}
+                >
                     Contact Us
                 </Typography>
 

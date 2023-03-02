@@ -8,7 +8,10 @@ import { inter } from "../getDesignTokens";
 export default class MyDocument extends Document {
     render() {
         return (
-            <Html lang="en" className={inter.className}>
+            <Html
+                lang="en"
+                className={inter.className}
+            >
                 <Head>
                     {/* generated with https://realfavicongenerator.net/ */}
                     <link
@@ -28,20 +31,36 @@ export default class MyDocument extends Document {
                         sizes="16x16"
                         href="/favicon-16x16.png"
                     />
-                    <link rel="manifest" href="/site.webmanifest" />
+                    <link
+                        rel="manifest"
+                        href="/site.webmanifest"
+                    />
                     <link
                         rel="mask-icon"
                         href="/safari-pinned-tab.svg"
                         color="#5bbad5"
                     />
-                    <meta name="msapplication-TileColor" content="#2e7d32" />
-                    <meta name="theme-color" content="#2e7d32" />
+                    <meta
+                        name="msapplication-TileColor"
+                        content="#2e7d32"
+                    />
+                    <meta
+                        name="theme-color"
+                        content="#2e7d32"
+                    />
                     {/* end generated with https://realfavicongenerator.net/ */}
 
-                    <meta name="emotion-insertion-point" content="" />
+                    <meta
+                        name="emotion-insertion-point"
+                        content=""
+                    />
                     {(this.props as any).emotionStyleTags}
 
-                    <script defer data-domain={process.env.NEXT_PUBLIC_CURRENT_DOMAIN} src="/js/script.js"></script>
+                    <script
+                        defer
+                        data-domain={process.env.NEXT_PUBLIC_CURRENT_DOMAIN}
+                        src="/js/script.js"
+                    ></script>
                 </Head>
                 <body>
                     <Main />
@@ -88,7 +107,10 @@ MyDocument.getInitialProps = async (ctx) => {
         originalRenderPage({
             enhanceApp: (App: any) =>
                 function EnhanceApp(props) {
-                    return <App emotionCache={cache} {...props} />;
+                    return <App
+                        emotionCache={cache}
+                        {...props}
+                    />;
                 },
         });
 

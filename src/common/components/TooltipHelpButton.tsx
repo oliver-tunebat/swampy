@@ -12,7 +12,10 @@ export function TooltipHelpButton(props: TooltipHelpButtonProps) {
     }
 
     return (
-        <Tooltip title={tooltipTitle} placement={placement ? placement : "top"}>
+        <Tooltip
+            title={tooltipTitle}
+            placement={placement ? placement : "top"}
+        >
             <IconButton
                 sx={{
                     p: 0,

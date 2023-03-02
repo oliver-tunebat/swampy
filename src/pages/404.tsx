@@ -26,7 +26,11 @@ const _404: NextPage = () => {
                 <title>404 - This page could not be found</title>
             </Head>
 
-            <Typography variant="h2" component="h1" sx={{ mb: 4 }}>
+            <Typography
+                variant="h2"
+                component="h1"
+                sx={{ mb: 4 }}
+            >
                 404
             </Typography>
             <Typography variant="body1">

@@ -30,7 +30,10 @@ export default function Footer(props: FooterProps) {
             }}
         >
             <Divider />
-            <Container maxWidth="maxSiteWidth" sx={{ py: 8 }}>
+            <Container
+                maxWidth="maxSiteWidth"
+                sx={{ py: 8 }}
+            >
                 <Stack
                     direction={{ xs: "column", sm: "row" }}
                     spacing={4}
@@ -51,7 +54,10 @@ export default function Footer(props: FooterProps) {
                         />
                     </NavLink>
                     <Box>
-                        <Typography variant="h6" component="h4">
+                        <Typography
+                            variant="h6"
+                            component="h4"
+                        >
                             Navigation
                         </Typography>
                         <Stack
@@ -78,7 +84,10 @@ export default function Footer(props: FooterProps) {
                         </Stack>
                     </Box>
                     <Box>
-                        <Typography variant="h6" component="h4">
+                        <Typography
+                            variant="h6"
+                            component="h4"
+                        >
                             Company
                         </Typography>
                         <Stack
@@ -138,9 +147,15 @@ export default function Footer(props: FooterProps) {
                     <Stack
                         direction="row"
                         spacing={1}
-                        divider={<Divider orientation="vertical" flexItem />}
+                        divider={<Divider
+                            orientation="vertical"
+                            flexItem
+                        />}
                     >
-                        <Tooltip title="GitHub" placement="top">
+                        <Tooltip
+                            title="GitHub"
+                            placement="top"
+                        >
                             <Link
                                 href="https://github.com/oliver-tunebat/swampy"
                                 color="text.secondary"
@@ -156,7 +171,10 @@ export default function Footer(props: FooterProps) {
                                 </IconButton>
                             </Link>
                         </Tooltip>
-                        <Tooltip title="Twitter" placement="top">
+                        <Tooltip
+                            title="Twitter"
+                            placement="top"
+                        >
                             <Link
                                 href="https://twitter.com"
                                 color="text.secondary"

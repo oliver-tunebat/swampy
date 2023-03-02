@@ -26,7 +26,11 @@ const _500: NextPage = () => {
                 <title>Error</title>
             </Head>
 
-            <Typography variant="h2" component="h1" sx={{ mb: 4 }}>
+            <Typography
+                variant="h2"
+                component="h1"
+                sx={{ mb: 4 }}
+            >
                 Error
             </Typography>
             <Typography variant="body1">

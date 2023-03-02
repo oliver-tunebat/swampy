@@ -20,11 +20,18 @@ export function FeaturesList(props: FeaturesListProps) {
     return (
         <>
             {heading && (
-                <Typography variant="h5" component="h3" sx={{ mt: 8 }}>
+                <Typography
+                    variant="h5"
+                    component="h3"
+                    sx={{ mt: 8 }}
+                >
                     {heading}
                 </Typography>
             )}
-            <List sx={{ mt: 2 }} disablePadding>
+            <List
+                sx={{ mt: 2 }}
+                disablePadding
+            >
                 {features.map((feature, i) => {
                     const { text, detailText, status, nestLevel, href } =
                         feature;

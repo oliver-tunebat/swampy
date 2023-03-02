@@ -21,7 +21,10 @@ const Account: NextPage<AccountProps> = (props: AccountProps) => {
             <Head>
                 <title>Account | Swampy</title>
             </Head>
-            <Typography variant="h4" component="h1">
+            <Typography
+                variant="h4"
+                component="h1"
+            >
                 Your Account
             </Typography>
             <SWRConfig value={{ fallback }}>

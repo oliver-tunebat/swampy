@@ -166,9 +166,16 @@ export default function AuthForm(props: AuthFormProps) {
     };
 
     return (
-        <Container maxWidth="xxsContainer" disableGutters>
+        <Container
+            maxWidth="xxsContainer"
+            disableGutters
+        >
             {showTitle && (
-                <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
+                <Typography
+                    variant="h4"
+                    component="h1"
+                    sx={{ mb: 4 }}
+                >
                     {title}
                 </Typography>
             )}
@@ -184,11 +191,17 @@ export default function AuthForm(props: AuthFormProps) {
                             ? "create a Swampy account and "
                             : " "}
                         agree to our{" "}
-                        <NavLink href="/user-agreement" target="_blank">
+                        <NavLink
+                            href="/user-agreement"
+                            target="_blank"
+                        >
                             User Agreement
                         </NavLink>{" "}
                         and{" "}
-                        <NavLink href="/privacy-policy" target="_blank">
+                        <NavLink
+                            href="/privacy-policy"
+                            target="_blank"
+                        >
                             Privacy Policy
                         </NavLink>
                         .
@@ -206,7 +219,10 @@ export default function AuthForm(props: AuthFormProps) {
                         sx={{ mb: 4 }}
                     />
                     <Divider>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography
+                            variant="body2"
+                            color="text.secondary"
+                        >
                             OR
                         </Typography>
                     </Divider>
@@ -276,7 +292,10 @@ export default function AuthForm(props: AuthFormProps) {
                 {(viewType === "completeSignUp" ||
                     viewType === "recoverPassword" ||
                     (viewType === "login" && emailIsValid)) && (
-                    <Container disableGutters sx={{ mt: 4 }}>
+                    <Container
+                        disableGutters
+                        sx={{ mt: 4 }}
+                    >
                         <Captcha
                             onVerify={(token) => setCaptchaToken(token)}
                             ref={captchaRef}
@@ -301,7 +320,11 @@ export default function AuthForm(props: AuthFormProps) {
                 </LoadingButton>
             </form>
             {(viewType === "signUp" || viewType === "completeSignUp") && (
-                <Box textAlign="center" sx={{ mt: 2 }} color="text.secondary">
+                <Box
+                    textAlign="center"
+                    sx={{ mt: 2 }}
+                    color="text.secondary"
+                >
                     <Typography variant="caption">
                         Already have an account?{" "}
                     </Typography>
@@ -314,7 +337,11 @@ export default function AuthForm(props: AuthFormProps) {
                 </Box>
             )}
             {(viewType === "login" || viewType === "recoverPassword") && (
-                <Box textAlign="center" sx={{ mt: 2 }} color="text.secondary">
+                <Box
+                    textAlign="center"
+                    sx={{ mt: 2 }}
+                    color="text.secondary"
+                >
                     <Typography variant="caption">
                         Don't have an account?{" "}
                     </Typography>
@@ -327,7 +354,11 @@ export default function AuthForm(props: AuthFormProps) {
                 </Box>
             )}
             {viewType === "login" && (
-                <Box textAlign="center" sx={{ mt: 1 }} color="text.secondary">
+                <Box
+                    textAlign="center"
+                    sx={{ mt: 1 }}
+                    color="text.secondary"
+                >
                     <Typography variant="caption">Forgot </Typography>
                     <Link
                         component="button"
@@ -339,7 +370,11 @@ export default function AuthForm(props: AuthFormProps) {
                 </Box>
             )}
             {viewType === "recoverPassword" && (
-                <Box textAlign="center" sx={{ mt: 1 }} color="text.secondary">
+                <Box
+                    textAlign="center"
+                    sx={{ mt: 1 }}
+                    color="text.secondary"
+                >
                     <Link
                         component="button"
                         onClick={() => setViewType("login")}

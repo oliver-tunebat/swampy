@@ -29,11 +29,19 @@ const Unsubscribe: NextPage<UsnubscribeProps> = (props: UsnubscribeProps) => {
                 <title>Unsubscribe | Swampy</title>
             </Head>
             {success ?
-                <Typography variant="h5" component="h1" sx={{ mb: 4 }}>
+                <Typography
+                    variant="h5"
+                    component="h1"
+                    sx={{ mb: 4 }}
+                >
                     You've unsubscribed from email notifications.
                 </Typography>
                 :
-                <Typography variant="h5" component="h1" sx={{ mb: 4 }}>
+                <Typography
+                    variant="h5"
+                    component="h1"
+                    sx={{ mb: 4 }}
+                >
                     Unable to unsubscribe from email notifications.
                 </Typography>
             }

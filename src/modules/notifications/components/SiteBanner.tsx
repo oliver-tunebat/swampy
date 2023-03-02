@@ -40,7 +40,10 @@ export default function SiteBanner() {
                 }}
             >
                 {/* hidden icon button to help center children */}
-                <IconButton size="small" sx={{ visibility: "hidden" }}>
+                <IconButton
+                    size="small"
+                    sx={{ visibility: "hidden" }}
+                >
                     <Close />
                 </IconButton>
                 {alertProps.children}

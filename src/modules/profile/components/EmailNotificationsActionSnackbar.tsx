@@ -49,7 +49,10 @@ export default function EmailNotificationsActionSnackbar() {
                 badgeContent=" "
                 anchorOrigin={{ vertical: "top", horizontal: "left" }}
             >
-                <Card variant="elevation" raised>
+                <Card
+                    variant="elevation"
+                    raised
+                >
                     <CardContent>
                         <Typography>
                             Would you like to receive news & updates regarding

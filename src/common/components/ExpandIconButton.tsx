@@ -7,7 +7,10 @@ export function ExpandIconButton(props: ExpandIconButtonProps) {
     const { isExpanded, setIsExpanded, ...other } = props;
 
     return (
-        <IconButton onClick={() => setIsExpanded(!isExpanded)} {...other}>
+        <IconButton
+            onClick={() => setIsExpanded(!isExpanded)}
+            {...other}
+        >
             {isExpanded ? <ExpandLess /> : <ExpandMore />}
         </IconButton>
     );

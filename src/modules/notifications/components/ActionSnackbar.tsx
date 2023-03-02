@@ -17,7 +17,10 @@ export default function ActionSnackbar(props: SiteActionSnackbarProps) {
 }
 
 function SlideComponent(props: SlideProps) {
-    return <Slide {...props} direction="up" />;
+    return <Slide
+        {...props}
+        direction="up"
+    />;
 }
 
 interface SiteActionSnackbarProps {
