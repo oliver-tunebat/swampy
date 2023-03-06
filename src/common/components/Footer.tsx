@@ -5,7 +5,6 @@ import {
     Container,
     Divider,
     IconButton,
-    Link,
     Stack,
     Tooltip,
     Typography,
@@ -135,14 +134,14 @@ export default function Footer(props: FooterProps) {
                         sx={{ mt: 2 }}
                     >
                         © {new Date().getFullYear()}{" "}
-                        <Link
+                        <NavLink
                             href="https://tunebat.com"
                             color="text.secondary"
                             underline="hover"
                             target="_blank"
                         >
                             Tunebat LLC
-                        </Link>
+                        </NavLink>
                     </Typography>
                     <Stack
                         direction="row"
@@ -156,39 +155,29 @@ export default function Footer(props: FooterProps) {
                             title="GitHub"
                             placement="top"
                         >
-                            <Link
+                            <IconButton
+                                aria-label="Github"
+                                size="small"
                                 href="https://github.com/oliver-tunebat/swampy"
-                                color="text.secondary"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <IconButton
-                                    aria-label="Github"
-                                    size="small"
-                                    color="inherit"
-                                >
-                                    <GitHub />
-                                </IconButton>
-                            </Link>
+                                <GitHub />
+                            </IconButton>
                         </Tooltip>
                         <Tooltip
                             title="Twitter"
                             placement="top"
                         >
-                            <Link
+                            <IconButton
+                                aria-label="Twitter"
+                                size="small"
                                 href="https://twitter.com"
-                                color="text.secondary"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <IconButton
-                                    aria-label="Twitter"
-                                    size="small"
-                                    color="inherit"
-                                >
-                                    <Twitter />
-                                </IconButton>
-                            </Link>
+                                <Twitter />
+                            </IconButton>
                         </Tooltip>
                     </Stack>
                     <Button

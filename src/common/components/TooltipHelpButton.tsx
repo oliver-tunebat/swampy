@@ -1,11 +1,9 @@
 import * as React from "react";
 import { HelpOutlineRounded } from "@mui/icons-material";
-import { IconButton, IconButtonProps, Tooltip, useTheme } from "@mui/material";
+import { IconButton, IconButtonProps, Tooltip } from "@mui/material";
 
 export function TooltipHelpButton(props: TooltipHelpButtonProps) {
     const { tooltipTitle, placement, sx, ...other } = props;
-
-    const theme = useTheme();
 
     if (!tooltipTitle) {
         return <></>;
@@ -20,7 +18,6 @@ export function TooltipHelpButton(props: TooltipHelpButtonProps) {
                 sx={{
                     p: 0,
                     cursor: "default",
-                    color: theme.palette.text.secondary,
                     ...sx,
                 }}
                 aria-label="Show help text"

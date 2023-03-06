@@ -169,7 +169,7 @@ const ResponsiveAppBar = () => {
                                             </Typography>
                                         </MenuItem>
                                     </NavLink>
-                                    <Link
+                                    <NavLink
                                         href="https://github.com/oliver-tunebat/swampy"
                                         color="inherit"
                                         underline="none"
@@ -181,7 +181,7 @@ const ResponsiveAppBar = () => {
                                                 GitHub
                                             </Typography>
                                         </MenuItem>
-                                    </Link>
+                                    </NavLink>
                                 </Menu>
                             </Box>
 
@@ -207,7 +207,7 @@ const ResponsiveAppBar = () => {
                                 >
                                     Guide
                                 </NavLink>
-                                <Link
+                                <NavLink
                                     href="https://github.com/oliver-tunebat/swampy"
                                     underline="hover"
                                     color="inherit"
@@ -219,7 +219,7 @@ const ResponsiveAppBar = () => {
                                     rel="noopener noreferrer"
                                 >
                                     GitHub
-                                </Link>
+                                </NavLink>
                                 {!user && (
                                     <Link
                                         component="button"

@@ -150,7 +150,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
 
                         let sourceColor = "#000";
                         if (ownerState.color === "default") {
-                            sourceColor = isLightMode ? "#000" : "#fff";
+                            sourceColor = theme.palette.text.secondary;
                         } else if (ownerState.color === "primary") {
                             sourceColor = isLightMode
                                 ? theme.palette.primary.dark
@@ -175,12 +175,17 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                             sourceColor = isLightMode
                                 ? theme.palette.info.dark
                                 : theme.palette.info.light;
+                        } else if (ownerState.color === "neutral") {
+                            sourceColor = isLightMode
+                                ? theme.palette.neutral?.dark ?? ""
+                                : theme.palette.neutral?.light ?? "";
                         } else {
                             return { ...constantStyles };
                         }
 
                         return {
                             ...constantStyles,
+                            color: sourceColor,
                             ":hover": {
                                 backgroundColor: alpha(sourceColor, 0.08),
                             },
@@ -290,6 +295,12 @@ declare module "@mui/material/styles" {
 // custom button color prop options
 declare module "@mui/material/Button" {
     interface ButtonPropsColorOverrides {
+        neutral: true;
+        spotify: true;
+    }
+}
+declare module "@mui/material/IconButton" {
+    interface IconButtonPropsColorOverrides {
         neutral: true;
         spotify: true;
     }
