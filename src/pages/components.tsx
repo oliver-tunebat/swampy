@@ -3,18 +3,18 @@ import type { NextPage } from "next";
 import PageContainer from "../common/components/PageContainer";
 import Head from "next/head";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import markdown from "../../README.md";
+import markdown from "../modules/content/markdown/components.md";
 import remarkGfm from "remark-gfm";
 import { markdownMappings } from "../modules/content/markdown/markdownMappings";
 
-const Guide: NextPage = () => {
+const Components: NextPage = () => {
     return (
         <PageContainer>
             <Head>
-                <title>Swampy Guide - How to use Swampy</title>
+                <title>Swampy | Components</title>
                 <meta
                     name="description"
-                    content="Get started with Swampy by following the guide."
+                    content="Examples of components and mark down included in Swampy."
                 />
             </Head>
             <ReactMarkdown
@@ -27,4 +27,4 @@ const Guide: NextPage = () => {
     );
 };
 
-export default Guide;
+export default Components;

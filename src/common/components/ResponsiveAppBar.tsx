@@ -170,6 +170,17 @@ const ResponsiveAppBar = () => {
                                         </MenuItem>
                                     </NavLink>
                                     <NavLink
+                                        href="/components"
+                                        color="inherit"
+                                        underline="none"
+                                    >
+                                        <MenuItem>
+                                            <Typography variant="button">
+                                                Components
+                                            </Typography>
+                                        </MenuItem>
+                                    </NavLink>
+                                    <NavLink
                                         href="https://github.com/oliver-tunebat/swampy"
                                         color="inherit"
                                         underline="none"
@@ -206,6 +217,22 @@ const ResponsiveAppBar = () => {
                                     variant="button"
                                 >
                                     Guide
+                                </NavLink>
+                                <NavLink
+                                    href="/components"
+                                    underline="hover"
+                                    color="inherit"
+                                    sx={{
+                                        mx: 2,
+                                        fontWeight: router.route.startsWith(
+                                            "/components",
+                                        )
+                                            ? 600
+                                            : "auto",
+                                    }}
+                                    variant="button"
+                                >
+                                    Components
                                 </NavLink>
                                 <NavLink
                                     href="https://github.com/oliver-tunebat/swampy"

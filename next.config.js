@@ -13,4 +13,22 @@ module.exports = {
             },
         ];
     },
+    webpack: function(config) {
+        config.module.rules.push({
+            test: /\.md$/,
+            use: "raw-loader",
+        });
+        return config;
+    },
+    // domains from which Next images can be requested
+    images: {
+        remotePatterns: [
+            // {
+            //     protocol: "https",
+            //     hostname: "example.com",
+            //     port: "",
+            //     pathname: "/account123/**",
+            // },
+        ],
+    },
 };

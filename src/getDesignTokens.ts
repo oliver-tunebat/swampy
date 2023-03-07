@@ -202,6 +202,16 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                         textTransform: "none",
                     },
                 },
+                // defaultProps: {
+                //     variantMapping: {
+                //         h1: "h3",
+                //         h2: "h4",
+                //         h3: "h5",
+                //         h4: "h6",
+                //         h5: "h6",
+                //         h6: "h6",
+                //     },
+                // },
             },
             MuiPaper: {
                 defaultProps: {

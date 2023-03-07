@@ -57,7 +57,20 @@ export const frontEndFeatures: FeatureListFeature[] = [
         nestLevel: 1,
     },
     {
-        text: "Action & Consent Popup ",
+        text: "Action & Consent Popup",
+        status: "implemented",
+        nestLevel: 1,
+    },
+    {
+        text: "Markdown Renderer",
+        detailText: "Implemented with react-markdown using customizable mappings to react components.",
+        status: "implemented",
+        nestLevel: 1,
+        href: "https://github.com/remarkjs/react-markdown",
+    },
+    {
+        text: "Code Block",
+        detailText: "Renders a code block. Works but throws a warning.",
         status: "implemented",
         nestLevel: 1,
     },

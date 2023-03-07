@@ -332,7 +332,7 @@ const Home: NextPage = () => {
                     <TechnologyCard
                         title="And more"
                         subheader="..."
-                        tooltip="Emotion, Axios, hCaptcha, raw-loader, RemarkJS"
+                        tooltip="Emotion, Axios, hCaptcha, raw-loader, react-markdown"
                     />
                 </Grid>
             </Grid>
