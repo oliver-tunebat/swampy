@@ -428,7 +428,9 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Tracking Consent Management",
-        detailText: "Swampy provides a component that can be customized for retreiving consent.",
+        detailText: `Swampy provides a component that can be customized for retreiving consent. 
+            Vanilla Swampy may not require tracking consent. 
+            Consult with a lawyer to verify.`,
         status: "progress",
         nestLevel: 1,
     },
