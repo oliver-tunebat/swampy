@@ -27,6 +27,7 @@ import useNotificationsStore from "../../notifications/store";
 import AccountActivationBannerBody from "../../notifications/components/banner-bodies/AccountActivationBannerBody";
 import showSnackbar from "../../notifications/utils/showSnackbar";
 import GoogleSignInButton from "./GoogleSignInButton";
+import FacebookSignInButton from "./FacebookSignInButton";
 
 export default function AuthForm(props: AuthFormProps) {
     const { showTitle } = props;
@@ -207,6 +208,11 @@ export default function AuthForm(props: AuthFormProps) {
                         .
                     </Typography>
                     <GoogleSignInButton
+                        size="large"
+                        fullWidth
+                        sx={{ mb: 2 }}
+                    />
+                    <FacebookSignInButton
                         size="large"
                         fullWidth
                         sx={{ mb: 2 }}

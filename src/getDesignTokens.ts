@@ -52,6 +52,12 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                 dark: darken("#1db954", tonalOffset),
                 light: lighten("#1db954", tonalOffset),
             },
+            facebook: {
+                main: "#1877F2",
+                contrastText: grey[50],
+                dark: darken("#1877F2", tonalOffset),
+                light: lighten("#1877F2", tonalOffset),
+            },
             background: {
                 paper: isLightMode ? grey[50] : grey[900],
             },
@@ -91,6 +97,8 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 sourceColor = theme.palette.neutral?.dark ?? "";
                             } else if (ownerState.color === "spotify") {
                                 sourceColor = theme.palette.spotify?.dark ?? "";
+                            } else if (ownerState.color === "facebook") {
+                                sourceColor = theme.palette.facebook?.dark ?? "";
                             }
 
                             style[":active"] = {
@@ -136,6 +144,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 sourceColor = isLightMode
                                     ? theme.palette.spotify?.dark ?? ""
                                     : theme.palette.spotify?.light ?? "";
+                            } else if (ownerState.color === "facebook") {
+                                sourceColor = isLightMode
+                                    ? theme.palette.facebook?.dark ?? ""
+                                    : theme.palette.facebook?.light ?? "";
                             }
 
                             style[":hover"] = {
@@ -293,10 +305,12 @@ declare module "@mui/material/styles" {
     interface Palette {
         neutral?: Palette["primary"];
         spotify?: Palette["primary"];
+        facebook?: Palette["primary"];
     }
     interface PaletteOptions {
         neutral?: PaletteOptions["primary"];
         spotify?: PaletteOptions["primary"];
+        facebook?: PaletteOptions["primary"];
     }
     interface BreakpointOverrides {
         xs: true;
@@ -314,11 +328,13 @@ declare module "@mui/material/Button" {
     interface ButtonPropsColorOverrides {
         neutral: true;
         spotify: true;
+        facebook: true;
     }
 }
 declare module "@mui/material/IconButton" {
     interface IconButtonPropsColorOverrides {
         neutral: true;
         spotify: true;
+        facebook: true;
     }
 }

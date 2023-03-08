@@ -297,7 +297,7 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Facebook",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 2,
         href: "https://supabase.com/docs/guides/auth/auth-facebook",
     },
