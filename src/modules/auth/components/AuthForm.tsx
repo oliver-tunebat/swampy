@@ -254,6 +254,7 @@ export default function AuthForm(props: AuthFormProps) {
                                     aria-label="change email"
                                     onClick={() => setViewType("signUp")}
                                     size="small"
+                                    color="neutral"
                                 >
                                     <Edit />
                                 </IconButton>

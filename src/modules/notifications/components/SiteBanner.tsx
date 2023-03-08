@@ -49,8 +49,10 @@ export default function SiteBanner() {
                 {alertProps.children}
                 <IconButton
                     size="small"
+                    color="neutral"
                     sx={{ color: "inherit" }}
                     onClick={closeBanner}
+                    aria-label="close"
                 >
                     <Close />
                 </IconButton>

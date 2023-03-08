@@ -76,6 +76,20 @@
             "always"
         ],
         "key-spacing": "error",
-        "arrow-spacing": "error"
+        "arrow-spacing": "error",
+        "keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "space-before-function-paren": [
+            "error",
+            {
+                "named": "never",
+                "asyncArrow": "always"
+            }
+        ]
     }
 }

@@ -15,6 +15,7 @@ export function TooltipHelpButton(props: TooltipHelpButtonProps) {
             placement={placement ? placement : "top"}
         >
             <IconButton
+                color="neutral"
                 sx={{
                     p: 0,
                     cursor: "default",

@@ -25,6 +25,7 @@ export default function SecureTextField(props: TextFieldProps) {
                                     : "show password"
                             }
                             size="small"
+                            color="neutral"
                         >
                             {textIsVisible ? <VisibilityOff /> : <Visibility />}
                         </IconButton>

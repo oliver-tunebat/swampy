@@ -158,6 +158,7 @@ export default function Footer(props: FooterProps) {
                             <IconButton
                                 aria-label="Github"
                                 size="small"
+                                color="neutral"
                                 href="https://github.com/oliver-tunebat/swampy"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -172,6 +173,7 @@ export default function Footer(props: FooterProps) {
                             <IconButton
                                 aria-label="Twitter"
                                 size="small"
+                                color="neutral"
                                 href="https://twitter.com"
                                 target="_blank"
                                 rel="noopener noreferrer"

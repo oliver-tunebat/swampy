@@ -118,7 +118,6 @@ const ResponsiveAppBar = () => {
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
                                     onClick={handleOpenNavMenu}
-                                    color="inherit"
                                 >
                                     <MenuIcon />
                                 </IconButton>
@@ -273,6 +272,9 @@ const ResponsiveAppBar = () => {
                                             marginLeft: { xs: 1, md: 2 },
                                             borderRadius: "50%",
                                         }}
+                                        aria-label="account"
+                                        aria-controls="account-menu-appbar"
+                                        aria-haspopup="true"
                                     >
                                         <Avatar
                                             alt={user.user_metadata.name}
@@ -293,7 +295,7 @@ const ResponsiveAppBar = () => {
                                 )}
                                 <Menu
                                     sx={{ mt: "45px" }}
-                                    id="menu-appbar"
+                                    id="account-menu-appbar"
                                     anchorEl={anchorElUser}
                                     anchorOrigin={{
                                         vertical: "top",

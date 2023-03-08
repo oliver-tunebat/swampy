@@ -9,6 +9,7 @@ export function ExpandIconButton(props: ExpandIconButtonProps) {
     return (
         <IconButton
             onClick={() => setIsExpanded(!isExpanded)}
+            aria-label="expand"
             {...other}
         >
             {isExpanded ? <ExpandLess /> : <ExpandMore />}

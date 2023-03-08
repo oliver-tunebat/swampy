@@ -157,7 +157,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
 
                         let sourceColor = "#000";
                         if (ownerState.color === "default") {
-                            sourceColor = theme.palette.text.secondary;
+                            sourceColor = theme.palette.neutral?.main ?? "";
                         } else if (ownerState.color === "primary") {
                             sourceColor = isLightMode
                                 ? theme.palette.primary.dark

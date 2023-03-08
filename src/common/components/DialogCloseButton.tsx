@@ -8,11 +8,13 @@ export default function DialogCloseButton(props: IconButtonProps) {
     return (
         <IconButton
             size="small"
+            color="neutral"
             sx={{
                 position: "absolute",
                 right: theme.spacing(2),
                 top: theme.spacing(2),
             }}
+            aria-label="close"
             {...props}
         >
             <Close />
