@@ -28,6 +28,7 @@ import AccountActivationBannerBody from "../../notifications/components/banner-b
 import showSnackbar from "../../notifications/utils/showSnackbar";
 import GoogleSignInButton from "./GoogleSignInButton";
 import FacebookSignInButton from "./FacebookSignInButton";
+import DiscordSignInButton from "./DiscordSignInButton";
 
 export default function AuthForm(props: AuthFormProps) {
     const { showTitle } = props;
@@ -213,6 +214,11 @@ export default function AuthForm(props: AuthFormProps) {
                         sx={{ mb: 2 }}
                     />
                     <FacebookSignInButton
+                        size="large"
+                        fullWidth
+                        sx={{ mb: 2 }}
+                    />
+                    <DiscordSignInButton
                         size="large"
                         fullWidth
                         sx={{ mb: 2 }}

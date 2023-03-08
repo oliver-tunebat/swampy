@@ -21,7 +21,8 @@ export default function GoogleSignInButton(props: ButtonProps) {
                     alt="Google Icon"
                     width={18}
                     height={18}
-                />}
+                />
+            }
             sx={{
                 fontFamily: roboto.style.fontFamily,
                 backgroundColor: "#fff",

@@ -303,7 +303,7 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Discord",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 2,
         href: "https://supabase.com/docs/guides/auth/auth-discord",
     },
