@@ -93,7 +93,7 @@ const ContactUs: NextPage = () => {
 
 export default ContactUs;
 
-export const getServerSideProps: GetServerSideProps = async(context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const supabase = createServerSupabaseClient(context);
 
     const {

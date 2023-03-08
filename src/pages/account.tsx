@@ -106,7 +106,7 @@ function AccountActionList() {
 
 export default Account;
 
-export const getServerSideProps: GetServerSideProps = async(context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const supabase = createServerSupabaseClient(context);
 
     const {

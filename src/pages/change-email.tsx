@@ -103,7 +103,7 @@ const ChangeEmail: NextPage = () => {
 
 export default ChangeEmail;
 
-export const getServerSideProps: GetServerSideProps = async(context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const supabase = createServerSupabaseClient(context);
 
     const {

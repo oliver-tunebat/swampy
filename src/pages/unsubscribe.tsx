@@ -55,7 +55,7 @@ const Unsubscribe: NextPage<UsnubscribeProps> = (props: UsnubscribeProps) => {
 
 export default Unsubscribe;
 
-export const getServerSideProps: GetServerSideProps = async(context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const { id } = context.query;
 
     try {
@@ -69,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
         });
 
         return { props: { success: true } };
-    } catch(e){
+    } catch (e){
         return { props: { success: false } };
     }
 };

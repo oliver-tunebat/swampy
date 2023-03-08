@@ -135,7 +135,7 @@ function specifyTextAlign(textAlign?:
 
     let align: "inherit" | "left" | "center" | "right" | "justify" | undefined;
 
-    switch(textAlign) {
+    switch (textAlign) {
     case "center":
         align = "center";
         break;
