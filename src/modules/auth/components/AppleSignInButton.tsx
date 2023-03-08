@@ -1,32 +1,33 @@
 import React from "react";
-import { Button, ButtonProps } from "@mui/material";
-import { supabaseClient } from "../../../common/utils/supabaseClient";
+import { ButtonProps } from "@mui/material";
 import { Apple } from "@mui/icons-material";
 import getCurrentURL from "../../../common/utils/getCurrentURL";
-import showSnackbar from "../../notifications/utils/showSnackbar";
+import { roboto } from "../../../getDesignTokens";
+import SignInButton from "./SignInButton";
 
-export default function AppleLoginButton(props: ButtonProps) {
-    const handleClick = async () => {
-        const { error } = await supabaseClient.auth.signInWithOAuth({
-            provider: "apple",
-            options: {
-                redirectTo: getCurrentURL(true),
-            },
-        });
-
-        if (error) {
-            showSnackbar("Unable to login with Apple.");
-        }
-    };
+export default function AppleSignInButton(props: ButtonProps) {
+    const { sx, ...otherProps } = props;
 
     return (
-        <Button
+        <SignInButton
             color="neutral"
+            variant="contained"
             startIcon={<Apple />}
-            onClick={handleClick}
-            {...props}
-        >
-            Continue with Apple
-        </Button>
+            sx={{
+                fontFamily: roboto.style.fontFamily,
+                "& .MuiButton-startIcon": {
+                    mr: 3,
+                },
+                ...sx,
+            }}
+            providerName="Apple"
+            providerOptions={{
+                provider: "apple",
+                options: {
+                    redirectTo: getCurrentURL(true),
+                },
+            }}
+            {...otherProps}
+        />
     );
 }

@@ -60,14 +60,11 @@ export const markdownMappings:
             id={children as string}
         >{children}</Typography>,
     hr: ({}) => <Divider sx={{ width: "100%", mt: 1 }} />,
-    p: ({ children }) => {
-        console.log(children);
-
-        return <Typography
+    p: ({ children }) =>
+        <Typography
             variant="body1"
             sx={{ mt: 2 }}
-        >{children}</Typography>;
-    },
+        >{children}</Typography>,
     code: ({ children, inline }) =>
         <Code inline={inline}>
             {children}

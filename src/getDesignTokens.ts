@@ -1,7 +1,7 @@
 import { alpha, darken, ThemeOptions } from "@mui/material/styles";
 import { green, grey, orange, red } from "@mui/material/colors";
 import { CSSInterpolation, lighten, PaletteMode } from "@mui/material";
-import { Inter } from "@next/font/google";
+import { Inter, Roboto } from "@next/font/google";
 
 const tonalOffset = 0.2;
 
@@ -10,6 +10,13 @@ export const inter = Inter({
     subsets: ["latin"],
     display: "swap",
     fallback: ["Helvetica", "Arial", "sans-serif"],
+});
+
+export const roboto = Roboto({
+    weight: ["500"],
+    subsets: ["latin"],
+    display: "swap",
+    fallback: ["Inter", "Helvetica", "Arial", "sans-serif"],
 });
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => {

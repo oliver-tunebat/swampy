@@ -71,7 +71,7 @@ export const frontEndFeatures: FeatureListFeature[] = [
     {
         text: "Code Block",
         detailText: "Renders a code block. Works but throws a warning.",
-        status: "implemented",
+        status: "progress",
         nestLevel: 1,
     },
 
@@ -285,7 +285,7 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Google",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 2,
         href: "https://supabase.com/docs/guides/auth/auth-google",
     },

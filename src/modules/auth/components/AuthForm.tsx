@@ -14,7 +14,6 @@ import {
     Typography,
 } from "@mui/material";
 import { Edit } from "@mui/icons-material";
-import AppleSignInButton from "./AppleSignInButton";
 import SpotifySignInButton from "./SpotifySignInButton";
 import NavLink from "../../../common/components/NavLink";
 import { validateEmail } from "../../../common/utils/validateEmail";
@@ -27,6 +26,7 @@ import { validatePassword } from "../../../common/utils/validatePassword";
 import useNotificationsStore from "../../notifications/store";
 import AccountActivationBannerBody from "../../notifications/components/banner-bodies/AccountActivationBannerBody";
 import showSnackbar from "../../notifications/utils/showSnackbar";
+import GoogleSignInButton from "./GoogleSignInButton";
 
 export default function AuthForm(props: AuthFormProps) {
     const { showTitle } = props;
@@ -206,15 +206,13 @@ export default function AuthForm(props: AuthFormProps) {
                         </NavLink>
                         .
                     </Typography>
-                    <AppleSignInButton
+                    <GoogleSignInButton
                         size="large"
-                        variant="contained"
                         fullWidth
                         sx={{ mb: 2 }}
                     />
                     <SpotifySignInButton
                         size="large"
-                        variant="contained"
                         fullWidth
                         sx={{ mb: 4 }}
                     />
