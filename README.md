@@ -1,4 +1,56 @@
-# Swampy
+
+Swampy is an open source web app with generic features (like authentication) that every app needs. With it, you can fast forward through project set up and get right into developing the core features of your app.
+
+For a list of technologies and features included with Swampy, check out [Swampy.rocks](https://swampy.rocks).
+
+## Project Structure
+---
+
+Swampy has an intuitive project structure where it’s easy to add and customize functionality while maintaining organization. 
+
+### /swampy
+
+The top level directory contains standard configuration files. This is where you can configure:
+
+- Environment variables
+- Code formatting rules
+- NPM Packages
+- Library/Technology specific configuration
+
+### /swampy/public
+
+Public resources are stored here. This is mainly for images, but any public file can be included here.
+
+### /swampy/scripts
+
+Scripts that are meant to run somewhere outside of the normal application code are kept here. Swampy includes some database scripts that set up a few important triggers on the database.
+
+### /swampy/prisma
+
+Files for managing Prisma’s object-relational-mapping for the PostgresSQL database. Here you can manage schema and look through past migrations.
+
+### /swampy/src
+
+This is where the main body of your application’s code lives. 
+
+In the top level there are files for enabling the overarching style settings. Most importantly, ```getDesignTokens.ts``` contains the custom theming for Swampy. This file can be modified to support any custom theming. Check out MUI’s [documentation](https://mui.com/material-ui/customization/theming/) on custom theming.
+
+#### …/pages
+
+This folder contains components that render each page for a given path. See the Next JS [routing documentation](https://nextjs.org/docs/routing/introduction) for additional details. 
+
+#### …/pages/api
+
+The ```api``` folder allows you to create API paths using Next JS [routing](https://nextjs.org/docs/api-routes/introduction). We've already added some routes as modules to contain grouped end points. The routes can be freely customized. There's a functions folder to illustrate a hello-world function which is used in the example cron job. Technically every API end point is a function in Next JS when deployed with Vercel, so you may not want a dedicated functions folder.
+
+
+
+
+
+
+
+
+
 
 ## How to use
 
