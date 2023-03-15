@@ -5,7 +5,6 @@ import {
     RadioButtonUnchecked,
 } from "@mui/icons-material";
 import {
-    Link,
     List,
     ListItem,
     ListItemIcon,
@@ -13,6 +12,7 @@ import {
     Typography,
 } from "@mui/material";
 import { TooltipHelpButton } from "../../../../common/components/TooltipHelpButton";
+import NavLink from "../../../../common/components/NavLink";
 
 export function FeaturesList(props: FeaturesListProps) {
     const { features, heading } = props;
@@ -20,11 +20,18 @@ export function FeaturesList(props: FeaturesListProps) {
     return (
         <>
             {heading && (
-                <Typography variant="h5" component="h3" sx={{ mt: 8 }}>
+                <Typography
+                    variant="h5"
+                    component="h3"
+                    sx={{ mt: 8 }}
+                >
                     {heading}
                 </Typography>
             )}
-            <List sx={{ mt: 2 }} disablePadding>
+            <List
+                sx={{ mt: 2 }}
+                disablePadding
+            >
                 {features.map((feature, i) => {
                     const { text, detailText, status, nestLevel, href } =
                         feature;
@@ -56,14 +63,14 @@ export function FeaturesList(props: FeaturesListProps) {
                             </ListItemIcon>
                             <ListItemText>
                                 {href ? (
-                                    <Link
+                                    <NavLink
                                         href={href}
                                         color="text.primary"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
                                         {text}
-                                    </Link>
+                                    </NavLink>
                                 ) : (
                                     text
                                 )}

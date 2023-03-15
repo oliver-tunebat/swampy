@@ -21,7 +21,8 @@
         "@mui/lab": "5.0.0-alpha.115",
         "@mui/material": "5.11.4",
         "@next/font": "13.1.1",
-        "@prisma/client": "4.9.0",
+        "@prisma/client": "4.11.0",
+        "@sendgrid/mail": "7.7.0",
         "@supabase/auth-helpers-nextjs": "0.5.2",
         "@supabase/auth-helpers-react": "0.3.1",
         "@supabase/supabase-js": "2.4.0",
@@ -29,8 +30,11 @@
         "cookies-next": "2.1.1",
         "mdi-material-ui": "7.6.0",
         "next": "13.1.1",
+        "plausible-tracker": "0.3.8",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "react-markdown": "8.0.5",
+        "remark-gfm": "3.0.1",
         "swr": "2.0.0",
         "zustand": "4.3.1"
     },
@@ -42,7 +46,8 @@
         "eslint": "8.31.0",
         "eslint-config-next": "13.1.1",
         "eslint-plugin-react": "7.32.0",
-        "prisma": "4.9.0",
+        "prisma": "4.11.0",
+        "raw-loader": "4.0.2",
         "typescript": "4.9.4"
     }
 }

@@ -118,7 +118,6 @@ const ResponsiveAppBar = () => {
                                     aria-controls="menu-appbar"
                                     aria-haspopup="true"
                                     onClick={handleOpenNavMenu}
-                                    color="inherit"
                                 >
                                     <MenuIcon />
                                 </IconButton>
@@ -169,7 +168,18 @@ const ResponsiveAppBar = () => {
                                             </Typography>
                                         </MenuItem>
                                     </NavLink>
-                                    <Link
+                                    <NavLink
+                                        href="/components"
+                                        color="inherit"
+                                        underline="none"
+                                    >
+                                        <MenuItem>
+                                            <Typography variant="button">
+                                                Components
+                                            </Typography>
+                                        </MenuItem>
+                                    </NavLink>
+                                    <NavLink
                                         href="https://github.com/oliver-tunebat/swampy"
                                         color="inherit"
                                         underline="none"
@@ -181,7 +191,7 @@ const ResponsiveAppBar = () => {
                                                 GitHub
                                             </Typography>
                                         </MenuItem>
-                                    </Link>
+                                    </NavLink>
                                 </Menu>
                             </Box>
 
@@ -207,7 +217,23 @@ const ResponsiveAppBar = () => {
                                 >
                                     Guide
                                 </NavLink>
-                                <Link
+                                <NavLink
+                                    href="/components"
+                                    underline="hover"
+                                    color="inherit"
+                                    sx={{
+                                        mx: 2,
+                                        fontWeight: router.route.startsWith(
+                                            "/components",
+                                        )
+                                            ? 600
+                                            : "auto",
+                                    }}
+                                    variant="button"
+                                >
+                                    Components
+                                </NavLink>
+                                <NavLink
                                     href="https://github.com/oliver-tunebat/swampy"
                                     underline="hover"
                                     color="inherit"
@@ -219,7 +245,7 @@ const ResponsiveAppBar = () => {
                                     rel="noopener noreferrer"
                                 >
                                     GitHub
-                                </Link>
+                                </NavLink>
                                 {!user && (
                                     <Link
                                         component="button"
@@ -246,6 +272,9 @@ const ResponsiveAppBar = () => {
                                             marginLeft: { xs: 1, md: 2 },
                                             borderRadius: "50%",
                                         }}
+                                        aria-label="account"
+                                        aria-controls="account-menu-appbar"
+                                        aria-haspopup="true"
                                     >
                                         <Avatar
                                             alt={user.user_metadata.name}
@@ -266,7 +295,7 @@ const ResponsiveAppBar = () => {
                                 )}
                                 <Menu
                                     sx={{ mt: "45px" }}
-                                    id="menu-appbar"
+                                    id="account-menu-appbar"
                                     anchorEl={anchorElUser}
                                     anchorOrigin={{
                                         vertical: "top",

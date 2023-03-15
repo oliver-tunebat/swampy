@@ -53,7 +53,10 @@ const ChangeEmail: NextPage = () => {
             <Head>
                 <title>Change Email | Swampy</title>
             </Head>
-            <Typography variant="h4" component="h1">
+            <Typography
+                variant="h4"
+                component="h1"
+            >
                 Change Email
             </Typography>
             <form>
@@ -86,7 +89,10 @@ const ChangeEmail: NextPage = () => {
                 </LoadingButton>
             </form>
             {isSuccess && (
-                <Typography sx={{ mt: 4 }} variant="body2">
+                <Typography
+                    sx={{ mt: 4 }}
+                    variant="body2"
+                >
                     A link was sent to both your old and new email addresses.
                     Click both links to finish updating your email.
                 </Typography>
@@ -97,7 +103,7 @@ const ChangeEmail: NextPage = () => {
 
 export default ChangeEmail;
 
-export const getServerSideProps: GetServerSideProps = async(context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const supabase = createServerSupabaseClient(context);
 
     const {

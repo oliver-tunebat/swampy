@@ -5,7 +5,6 @@ import {
     Container,
     Divider,
     IconButton,
-    Link,
     Stack,
     Tooltip,
     Typography,
@@ -30,7 +29,10 @@ export default function Footer(props: FooterProps) {
             }}
         >
             <Divider />
-            <Container maxWidth="maxSiteWidth" sx={{ py: 8 }}>
+            <Container
+                maxWidth="maxSiteWidth"
+                sx={{ py: 8 }}
+            >
                 <Stack
                     direction={{ xs: "column", sm: "row" }}
                     spacing={4}
@@ -51,7 +53,10 @@ export default function Footer(props: FooterProps) {
                         />
                     </NavLink>
                     <Box>
-                        <Typography variant="h6" component="h4">
+                        <Typography
+                            variant="h6"
+                            component="h4"
+                        >
                             Navigation
                         </Typography>
                         <Stack
@@ -78,7 +83,10 @@ export default function Footer(props: FooterProps) {
                         </Stack>
                     </Box>
                     <Box>
-                        <Typography variant="h6" component="h4">
+                        <Typography
+                            variant="h6"
+                            component="h4"
+                        >
                             Company
                         </Typography>
                         <Stack
@@ -102,6 +110,14 @@ export default function Footer(props: FooterProps) {
                             >
                                 User Agreement
                             </NavLink>
+                            <NavLink
+                                href="/contact-us"
+                                color="text.secondary"
+                                underline="hover"
+                                variant="button"
+                            >
+                                Contact Us
+                            </NavLink>
                         </Stack>
                     </Box>
                 </Stack>
@@ -118,51 +134,52 @@ export default function Footer(props: FooterProps) {
                         sx={{ mt: 2 }}
                     >
                         © {new Date().getFullYear()}{" "}
-                        <Link
+                        <NavLink
                             href="https://tunebat.com"
                             color="text.secondary"
                             underline="hover"
                             target="_blank"
                         >
                             Tunebat LLC
-                        </Link>
+                        </NavLink>
                     </Typography>
                     <Stack
                         direction="row"
                         spacing={1}
-                        divider={<Divider orientation="vertical" flexItem />}
+                        divider={<Divider
+                            orientation="vertical"
+                            flexItem
+                        />}
                     >
-                        <Tooltip title="GitHub" placement="top">
-                            <Link
+                        <Tooltip
+                            title="GitHub"
+                            placement="top"
+                        >
+                            <IconButton
+                                aria-label="Github"
+                                size="small"
+                                color="neutral"
                                 href="https://github.com/oliver-tunebat/swampy"
-                                color="text.secondary"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <IconButton
-                                    aria-label="Github"
-                                    size="small"
-                                    color="inherit"
-                                >
-                                    <GitHub />
-                                </IconButton>
-                            </Link>
+                                <GitHub />
+                            </IconButton>
                         </Tooltip>
-                        <Tooltip title="Twitter" placement="top">
-                            <Link
+                        <Tooltip
+                            title="Twitter"
+                            placement="top"
+                        >
+                            <IconButton
+                                aria-label="Twitter"
+                                size="small"
+                                color="neutral"
                                 href="https://twitter.com"
-                                color="text.secondary"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <IconButton
-                                    aria-label="Twitter"
-                                    size="small"
-                                    color="inherit"
-                                >
-                                    <Twitter />
-                                </IconButton>
-                            </Link>
+                                <Twitter />
+                            </IconButton>
                         </Tooltip>
                     </Stack>
                     <Button

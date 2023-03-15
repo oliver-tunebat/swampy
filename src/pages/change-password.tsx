@@ -48,7 +48,10 @@ const ChangePassword: NextPage = () => {
             <Head>
                 <title>Change Password | Swampy</title>
             </Head>
-            <Typography variant="h4" component="h1">
+            <Typography
+                variant="h4"
+                component="h1"
+            >
                 Change Password
             </Typography>
             <form>

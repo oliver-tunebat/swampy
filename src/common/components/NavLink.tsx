@@ -46,7 +46,10 @@ export const NextLinkComposed = React.forwardRef<
             locale={locale}
             legacyBehavior={legacyBehavior}
         >
-            <Anchor ref={ref} {...other} />
+            <Anchor
+                ref={ref}
+                {...other}
+            />
         </NextLink>
     );
 });
@@ -107,7 +110,12 @@ const NavLink = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
         }
 
         return (
-            <MuiLink className={className} href={href} ref={ref} {...other} />
+            <MuiLink
+                className={className}
+                href={href}
+                ref={ref}
+                {...other}
+            />
         );
     }
 

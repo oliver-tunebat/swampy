@@ -12,7 +12,6 @@ import {
     MaterialUi,
     TeddyBear,
     Elephant,
-    Rabbit,
     Bullseye,
     Pyramid,
     Eslint,
@@ -59,7 +58,11 @@ const Home: NextPage = () => {
             >
                 An accessible, feature-rich, boilerplate project for web apps.
             </Typography>
-            <Box display="flex" justifyContent="center" sx={{ mt: 8 }}>
+            <Box
+                display="flex"
+                justifyContent="center"
+                sx={{ mt: 8 }}
+            >
                 <Button
                     component={NavLink}
                     href="/guide"
@@ -69,32 +72,52 @@ const Home: NextPage = () => {
                     Get Started
                 </Button>
             </Box>
-            <Typography variant="body1" sx={{ mt: 8 }}>
+            <Typography
+                variant="body1"
+                sx={{ mt: 8 }}
+            >
                 Swampy is an open source web app with generic features (like
                 authentication) that every app needs. With it, you can fast
                 forward through project set up and get right into developing the
                 core features of your app.
             </Typography>
-            <Typography variant="body1" sx={{ mt: 2 }}>
+            <Typography
+                variant="body1"
+                sx={{ mt: 2 }}
+            >
                 This website is Swampy. You can experience the features and UI
                 just by clicking around.
             </Typography>
             {/* section end */}
 
             {/* section start */}
-            <Typography variant="h4" component="h2" sx={{ mt: 10 }}>
+            <Typography
+                variant="h4"
+                component="h2"
+                sx={{ mt: 10 }}
+            >
                 Technologies Used
             </Typography>
             <Divider sx={{ width: "100%", mt: 1 }} />
-            <Typography variant="body1" sx={{ mt: 4 }}>
+            <Typography
+                variant="body1"
+                sx={{ mt: 4 }}
+            >
                 Swampy is built with a variety of industry leading technologies
                 that you're probably already familiar with.
             </Typography>
-            <Typography variant="body1" sx={{ mt: 2 }}>
+            <Typography
+                variant="body1"
+                sx={{ mt: 2 }}
+            >
                 We choose technologies based on <b>WHARF</b> (an acronym we made
                 up):
             </Typography>
-            <Typography variant="body1" sx={{ mt: 2 }} component="span">
+            <Typography
+                variant="body1"
+                sx={{ mt: 2 }}
+                component="span"
+            >
                 <ul>
                     <li>
                         <b>W</b>idely used
@@ -113,8 +136,17 @@ const Home: NextPage = () => {
                     </li>
                 </ul>
             </Typography>
-            <Grid container spacing={4} sx={{ mt: 4 }}>
-                <Grid item md={4} sm={6} xs={12}>
+            <Grid
+                container
+                spacing={4}
+                sx={{ mt: 4 }}
+            >
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="TypeScript"
                         subheader="Language"
@@ -123,7 +155,12 @@ const Home: NextPage = () => {
                         href="https://www.typescriptlang.org/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="React"
                         subheader="Frontend"
@@ -132,7 +169,12 @@ const Home: NextPage = () => {
                         href="https://reactjs.org/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="Next.js"
                         subheader="Backend"
@@ -141,7 +183,12 @@ const Home: NextPage = () => {
                         href="https://nextjs.org/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="Supabase"
                         subheader="Auth, DB Host, Storage"
@@ -150,7 +197,12 @@ const Home: NextPage = () => {
                         href="https://supabase.com/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="PostgreSQL"
                         subheader="Database"
@@ -159,7 +211,12 @@ const Home: NextPage = () => {
                         href="https://www.postgresql.org/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="Material UI"
                         subheader="UI Components"
@@ -168,7 +225,12 @@ const Home: NextPage = () => {
                         href="https://mui.com/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="ESLint"
                         subheader="Code Formatting"
@@ -177,7 +239,12 @@ const Home: NextPage = () => {
                         href="https://eslint.org/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="Vercel"
                         subheader="Hosting"
@@ -186,7 +253,12 @@ const Home: NextPage = () => {
                         href="https://vercel.com/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="Prisma"
                         subheader="ORM"
@@ -195,43 +267,12 @@ const Home: NextPage = () => {
                         href="https://www.prisma.io/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="Zustand"
-                        subheader="State Management"
-                        icon={<TeddyBear />}
-                        iconColor="#56283b"
-                        href="https://github.com/pmndrs/zustand"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="And more"
-                        subheader="..."
-                        tooltip="Emotion, Axios, hCaptcha"
-                    />
-                </Grid>
-            </Grid>
-            <Typography variant="h5" component="h3" sx={{ mt: 8 }}>
-                Recommended and Upcoming
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 4 }}>
-                Here's some other great technologies & services that play nice
-                with Swampy. Consider using them, and expect to see some of them
-                integrated into the Swampy code base in the future.
-            </Typography>
-
-            <Grid container spacing={4} sx={{ mt: 4 }}>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="Stripe"
-                        subheader="Payments"
-                        icon={"S"}
-                        iconColor="#635bff"
-                        href="https://stripe.com/"
-                    />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="SendGrid"
                         subheader="Emails"
@@ -240,7 +281,12 @@ const Home: NextPage = () => {
                         href="https://sendgrid.com/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="Plausible"
                         subheader="Analytics"
@@ -249,7 +295,88 @@ const Home: NextPage = () => {
                         href="https://plausible.io/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
+                    <TechnologyCard
+                        title="Zustand"
+                        subheader="Client State"
+                        icon={<TeddyBear />}
+                        iconColor="#56283b"
+                        href="https://github.com/pmndrs/zustand"
+                    />
+                </Grid>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
+                    <TechnologyCard
+                        title="SWR"
+                        subheader="Client-Server State"
+                        icon={"S"}
+                        iconColor="#000"
+                        href="https://swr.vercel.app/"
+                    />
+                </Grid>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
+                    <TechnologyCard
+                        title="And more"
+                        subheader="..."
+                        tooltip="Emotion, Axios, hCaptcha, raw-loader, react-markdown"
+                    />
+                </Grid>
+            </Grid>
+            <Typography
+                variant="h5"
+                component="h3"
+                sx={{ mt: 8 }}
+            >
+                Recommended and Upcoming
+            </Typography>
+            <Typography
+                variant="body1"
+                sx={{ mt: 4 }}
+            >
+                Here's some other great technologies & services that play nice
+                with Swampy. Consider using them, and expect to see some of them
+                integrated into the Swampy code base in the future.
+            </Typography>
+
+            <Grid
+                container
+                spacing={4}
+                sx={{ mt: 4 }}
+            >
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
+                    <TechnologyCard
+                        title="Stripe"
+                        subheader="Payments"
+                        icon={"S"}
+                        iconColor="#635bff"
+                        href="https://stripe.com/"
+                    />
+                </Grid>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="Rewardful"
                         subheader="Affiliate Program"
@@ -258,7 +385,12 @@ const Home: NextPage = () => {
                         href="https://www.rewardful.com/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={12}
+                >
                     <TechnologyCard
                         title="Cloudflare"
                         subheader="Security, CDN, More"
@@ -267,24 +399,22 @@ const Home: NextPage = () => {
                         href="https://www.cloudflare.com/"
                     />
                 </Grid>
-                <Grid item md={4} sm={6} xs={12}>
-                    <TechnologyCard
-                        title="Bunny.net"
-                        subheader="CDN, Storage"
-                        icon={<Rabbit />}
-                        iconColor="#fd8d32"
-                        href="https://bunny.net/"
-                    />
-                </Grid>
             </Grid>
             {/* section end */}
 
             {/* section start */}
-            <Typography variant="h4" component="h2" sx={{ mt: 10 }}>
+            <Typography
+                variant="h4"
+                component="h2"
+                sx={{ mt: 10 }}
+            >
                 Features
             </Typography>
             <Divider sx={{ width: "100%", mt: 1 }} />
-            <Typography variant="body1" sx={{ mt: 4 }}>
+            <Typography
+                variant="body1"
+                sx={{ mt: 4 }}
+            >
                 Implemented features are marked with a green check. In progress
                 features have three blue dots. Upcoming features have an empty
                 circle.
@@ -297,7 +427,10 @@ const Home: NextPage = () => {
                 features={backEndFeatures}
                 heading="Back End Features"
             />
-            <FeaturesList features={userFeatures} heading="User Features" />
+            <FeaturesList
+                features={userFeatures}
+                heading="User Features"
+            />
             <FeaturesList
                 features={developerFeatures}
                 heading="Developer Features"

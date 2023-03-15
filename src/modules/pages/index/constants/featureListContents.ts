@@ -56,6 +56,35 @@ export const frontEndFeatures: FeatureListFeature[] = [
         status: "implemented",
         nestLevel: 1,
     },
+    {
+        text: "Action & Consent Popup",
+        status: "implemented",
+        nestLevel: 1,
+    },
+    {
+        text: "Markdown Renderer",
+        detailText: "Implemented with react-markdown using customizable mappings to react components.",
+        status: "implemented",
+        nestLevel: 1,
+        href: "https://github.com/remarkjs/react-markdown",
+    },
+    {
+        text: "Code Block",
+        detailText: "Renders a code block. Works but throws a warning.",
+        status: "progress",
+        nestLevel: 1,
+    },
+
+    // blog
+    {
+        text: "Blog",
+        status: "unimplemented",
+    },
+    {
+        text: "Headless CMS",
+        status: "unimplemented",
+        nestLevel: 1,
+    },
 
     // seo optimization
     {
@@ -156,7 +185,7 @@ export const frontEndFeatures: FeatureListFeature[] = [
         text: "404",
         status: "implemented",
         nestLevel: 1,
-        href: "/400",
+        href: "/404",
     },
     {
         text: "5XX",
@@ -192,14 +221,22 @@ export const backEndFeatures: FeatureListFeature[] = [
     {
         text: "Transactional Emails",
         detailText: "Implemented with SendGrid",
-        status: "unimplemented",
+        status: "implemented",
         href: "https://sendgrid.com/",
     },
 
-    // background jobs
+    // serverless functions
     {
-        text: "Background Jobs",
-        status: "unimplemented",
+        text: "Serverless Functions",
+        status: "implemented",
+        href: "https://vercel.com/docs/concepts/functions/serverless-functions",
+    },
+
+    // Cron Jobs
+    {
+        text: "Cron Jobs",
+        status: "implemented",
+        href: "https://vercel.com/guides/how-to-setup-cron-jobs-on-vercel",
     },
 ];
 
@@ -248,7 +285,7 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Google",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 2,
         href: "https://supabase.com/docs/guides/auth/auth-google",
     },
@@ -260,13 +297,13 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Facebook",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 2,
         href: "https://supabase.com/docs/guides/auth/auth-facebook",
     },
     {
         text: "Discord",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 2,
         href: "https://supabase.com/docs/guides/auth/auth-discord",
     },
@@ -374,6 +411,11 @@ export const userFeatures: FeatureListFeature[] = [
         nestLevel: 1,
         href: "https://supabase.com/docs/reference/javascript/auth-admin-deleteuser",
     },
+    {
+        text: "Configure Email Preferences",
+        status: "implemented",
+        nestLevel: 1,
+    },
 
     // privacy
     {
@@ -382,11 +424,14 @@ export const userFeatures: FeatureListFeature[] = [
             long way in complying with privacy regulations. 
             It is your responsibility to ensure anything you create with 
             Swampy complies with privacy regulations.`,
-        status: "unimplemented",
+        status: "progress",
     },
     {
         text: "Tracking Consent Management",
-        status: "unimplemented",
+        detailText: `Swampy provides a component that can be customized for retreiving consent. 
+            Vanilla Swampy may not require tracking consent. 
+            Consult with a lawyer to verify.`,
+        status: "progress",
         nestLevel: 1,
     },
     {
@@ -396,15 +441,16 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Privacy First Analytics",
-        status: "unimplemented",
+        detailText: "Implemented with Plausible",
+        status: "implemented",
         nestLevel: 1,
+        href: "https://plausible.io/data-policy#gdpr-ccpa-and-pecr-compliant-web-analytics",
     },
 
     // contact us page
     {
         text: "Contact Us Page",
-        detailText: "Secured with hCaptcha",
-        status: "progress",
+        status: "implemented",
         href: "/contact-us",
     },
 ];
@@ -414,19 +460,19 @@ export const developerFeatures: FeatureListFeature[] = [
     {
         text: "Analytics",
         detailText: "Implimented with Plausible",
-        status: "unimplemented",
+        status: "implemented",
         href: "https://plausible.io/",
     },
     {
         text: "Event Tracking",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 1,
         href: "https://plausible.io/docs/goal-conversions",
     },
     {
         text: "Proxy",
         detailText: "For circumventing adblockers",
-        status: "unimplemented",
+        status: "implemented",
         nestLevel: 1,
         href: "https://plausible.io/docs/proxy/introduction",
     },
@@ -434,7 +480,8 @@ export const developerFeatures: FeatureListFeature[] = [
     // error tracking
     {
         text: "Error Tracking",
-        status: "unimplemented",
+        detailText: "Tracking added for http errors.",
+        status: "progress",
     },
 
     // clean project structure
@@ -462,12 +509,23 @@ export const developerFeatures: FeatureListFeature[] = [
     // ci/cd
     {
         text: "CI/CD",
-        status: "unimplemented",
+        detailText: "Using Vercel's built-in pipelines.",
+        status: "implemented",
+        href: "https://vercel.com/workflow",
     },
 
     // user management dashboard
     {
-        text: "User Management Dashboard",
+        text: "Admin Dashboard",
+        detailText: "Using Supabase's built-in dashboard.",
+        status: "implemented",
+        href: "https://supabase.com/",
+    },
+
+    // email campaigns
+    {
+        text: "Email Campaigns",
+        detailText: "Broadcast email newsletters and campaigns via Sendgrid.",
         status: "unimplemented",
     },
 ];

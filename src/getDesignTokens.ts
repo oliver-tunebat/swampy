@@ -1,7 +1,7 @@
 import { alpha, darken, ThemeOptions } from "@mui/material/styles";
 import { green, grey, orange, red } from "@mui/material/colors";
 import { CSSInterpolation, lighten, PaletteMode } from "@mui/material";
-import { Inter } from "@next/font/google";
+import { Inter, Roboto } from "@next/font/google";
 
 const tonalOffset = 0.2;
 
@@ -10,6 +10,13 @@ export const inter = Inter({
     subsets: ["latin"],
     display: "swap",
     fallback: ["Helvetica", "Arial", "sans-serif"],
+});
+
+export const roboto = Roboto({
+    weight: ["500"],
+    subsets: ["latin"],
+    display: "swap",
+    fallback: ["Inter", "Helvetica", "Arial", "sans-serif"],
 });
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
@@ -44,6 +51,18 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                 contrastText: grey[50],
                 dark: darken("#1db954", tonalOffset),
                 light: lighten("#1db954", tonalOffset),
+            },
+            facebook: {
+                main: "#1877F2",
+                contrastText: grey[50],
+                dark: darken("#1877F2", tonalOffset),
+                light: lighten("#1877F2", tonalOffset),
+            },
+            discord: {
+                main: "#5865F2",
+                contrastText: grey[50],
+                dark: darken("#5865F2", tonalOffset),
+                light: lighten("#5865F2", tonalOffset),
             },
             background: {
                 paper: isLightMode ? grey[50] : grey[900],
@@ -84,6 +103,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 sourceColor = theme.palette.neutral?.dark ?? "";
                             } else if (ownerState.color === "spotify") {
                                 sourceColor = theme.palette.spotify?.dark ?? "";
+                            } else if (ownerState.color === "facebook") {
+                                sourceColor = theme.palette.facebook?.dark ?? "";
+                            } else if (ownerState.color === "discord") {
+                                sourceColor = theme.palette.discord?.dark ?? "";
                             }
 
                             style[":active"] = {
@@ -129,6 +152,14 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                                 sourceColor = isLightMode
                                     ? theme.palette.spotify?.dark ?? ""
                                     : theme.palette.spotify?.light ?? "";
+                            } else if (ownerState.color === "facebook") {
+                                sourceColor = isLightMode
+                                    ? theme.palette.facebook?.dark ?? ""
+                                    : theme.palette.facebook?.light ?? "";
+                            } else if (ownerState.color === "discord") {
+                                sourceColor = isLightMode
+                                    ? theme.palette.discord?.dark ?? ""
+                                    : theme.palette.discord?.light ?? "";
                             }
 
                             style[":hover"] = {
@@ -150,7 +181,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
 
                         let sourceColor = "#000";
                         if (ownerState.color === "default") {
-                            sourceColor = isLightMode ? "#000" : "#fff";
+                            sourceColor = theme.palette.neutral?.main ?? "";
                         } else if (ownerState.color === "primary") {
                             sourceColor = isLightMode
                                 ? theme.palette.primary.dark
@@ -175,12 +206,17 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                             sourceColor = isLightMode
                                 ? theme.palette.info.dark
                                 : theme.palette.info.light;
+                        } else if (ownerState.color === "neutral") {
+                            sourceColor = isLightMode
+                                ? theme.palette.neutral?.dark ?? ""
+                                : theme.palette.neutral?.light ?? "";
                         } else {
                             return { ...constantStyles };
                         }
 
                         return {
                             ...constantStyles,
+                            color: sourceColor,
                             ":hover": {
                                 backgroundColor: alpha(sourceColor, 0.08),
                             },
@@ -197,6 +233,16 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
                         textTransform: "none",
                     },
                 },
+                // defaultProps: {
+                //     variantMapping: {
+                //         h1: "h3",
+                //         h2: "h4",
+                //         h3: "h5",
+                //         h4: "h6",
+                //         h5: "h6",
+                //         h6: "h6",
+                //     },
+                // },
             },
             MuiPaper: {
                 defaultProps: {
@@ -271,10 +317,14 @@ declare module "@mui/material/styles" {
     interface Palette {
         neutral?: Palette["primary"];
         spotify?: Palette["primary"];
+        facebook?: Palette["primary"];
+        discord?: Palette["primary"];
     }
     interface PaletteOptions {
         neutral?: PaletteOptions["primary"];
         spotify?: PaletteOptions["primary"];
+        facebook?: PaletteOptions["primary"];
+        discord?: PaletteOptions["primary"];
     }
     interface BreakpointOverrides {
         xs: true;
@@ -292,5 +342,15 @@ declare module "@mui/material/Button" {
     interface ButtonPropsColorOverrides {
         neutral: true;
         spotify: true;
+        facebook: true;
+        discord: true;
+    }
+}
+declare module "@mui/material/IconButton" {
+    interface IconButtonPropsColorOverrides {
+        neutral: true;
+        spotify: true;
+        facebook: true;
+        discord: true;
     }
 }

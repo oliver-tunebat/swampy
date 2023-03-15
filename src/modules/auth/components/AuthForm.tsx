@@ -14,7 +14,6 @@ import {
     Typography,
 } from "@mui/material";
 import { Edit } from "@mui/icons-material";
-import AppleSignInButton from "./AppleSignInButton";
 import SpotifySignInButton from "./SpotifySignInButton";
 import NavLink from "../../../common/components/NavLink";
 import { validateEmail } from "../../../common/utils/validateEmail";
@@ -27,6 +26,9 @@ import { validatePassword } from "../../../common/utils/validatePassword";
 import useNotificationsStore from "../../notifications/store";
 import AccountActivationBannerBody from "../../notifications/components/banner-bodies/AccountActivationBannerBody";
 import showSnackbar from "../../notifications/utils/showSnackbar";
+import GoogleSignInButton from "./GoogleSignInButton";
+import FacebookSignInButton from "./FacebookSignInButton";
+import DiscordSignInButton from "./DiscordSignInButton";
 
 export default function AuthForm(props: AuthFormProps) {
     const { showTitle } = props;
@@ -144,7 +146,7 @@ export default function AuthForm(props: AuthFormProps) {
                 await supabaseClient.auth.resetPasswordForEmail(email, {
                     captchaToken,
                     redirectTo:
-                        `http://${process.env.NEXT_PUBLIC_CURRENT_DOMAIN}/change-password` ??
+                        `${process.env.NEXT_PUBLIC_CURRENT_URL}/change-password` ??
                         undefined,
                 });
             captchaRef.current?.resetCaptcha();
@@ -166,9 +168,16 @@ export default function AuthForm(props: AuthFormProps) {
     };
 
     return (
-        <Container maxWidth="xxsContainer" disableGutters>
+        <Container
+            maxWidth="xxsContainer"
+            disableGutters
+        >
             {showTitle && (
-                <Typography variant="h4" component="h1" sx={{ mb: 4 }}>
+                <Typography
+                    variant="h4"
+                    component="h1"
+                    sx={{ mb: 4 }}
+                >
                     {title}
                 </Typography>
             )}
@@ -184,29 +193,46 @@ export default function AuthForm(props: AuthFormProps) {
                             ? "create a Swampy account and "
                             : " "}
                         agree to our{" "}
-                        <NavLink href="/user-agreement" target="_blank">
+                        <NavLink
+                            href="/user-agreement"
+                            target="_blank"
+                        >
                             User Agreement
                         </NavLink>{" "}
                         and{" "}
-                        <NavLink href="/privacy-policy" target="_blank">
+                        <NavLink
+                            href="/privacy-policy"
+                            target="_blank"
+                        >
                             Privacy Policy
                         </NavLink>
                         .
                     </Typography>
-                    <AppleSignInButton
+                    <GoogleSignInButton
                         size="large"
-                        variant="contained"
+                        fullWidth
+                        sx={{ mb: 2 }}
+                    />
+                    <FacebookSignInButton
+                        size="large"
+                        fullWidth
+                        sx={{ mb: 2 }}
+                    />
+                    <DiscordSignInButton
+                        size="large"
                         fullWidth
                         sx={{ mb: 2 }}
                     />
                     <SpotifySignInButton
                         size="large"
-                        variant="contained"
                         fullWidth
                         sx={{ mb: 4 }}
                     />
                     <Divider>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography
+                            variant="body2"
+                            color="text.secondary"
+                        >
                             OR
                         </Typography>
                     </Divider>
@@ -240,6 +266,7 @@ export default function AuthForm(props: AuthFormProps) {
                                     aria-label="change email"
                                     onClick={() => setViewType("signUp")}
                                     size="small"
+                                    color="neutral"
                                 >
                                     <Edit />
                                 </IconButton>
@@ -276,7 +303,10 @@ export default function AuthForm(props: AuthFormProps) {
                 {(viewType === "completeSignUp" ||
                     viewType === "recoverPassword" ||
                     (viewType === "login" && emailIsValid)) && (
-                    <Container disableGutters sx={{ mt: 4 }}>
+                    <Container
+                        disableGutters
+                        sx={{ mt: 4 }}
+                    >
                         <Captcha
                             onVerify={(token) => setCaptchaToken(token)}
                             ref={captchaRef}
@@ -301,7 +331,11 @@ export default function AuthForm(props: AuthFormProps) {
                 </LoadingButton>
             </form>
             {(viewType === "signUp" || viewType === "completeSignUp") && (
-                <Box textAlign="center" sx={{ mt: 2 }} color="text.secondary">
+                <Box
+                    textAlign="center"
+                    sx={{ mt: 2 }}
+                    color="text.secondary"
+                >
                     <Typography variant="caption">
                         Already have an account?{" "}
                     </Typography>
@@ -314,7 +348,11 @@ export default function AuthForm(props: AuthFormProps) {
                 </Box>
             )}
             {(viewType === "login" || viewType === "recoverPassword") && (
-                <Box textAlign="center" sx={{ mt: 2 }} color="text.secondary">
+                <Box
+                    textAlign="center"
+                    sx={{ mt: 2 }}
+                    color="text.secondary"
+                >
                     <Typography variant="caption">
                         Don't have an account?{" "}
                     </Typography>
@@ -327,7 +365,11 @@ export default function AuthForm(props: AuthFormProps) {
                 </Box>
             )}
             {viewType === "login" && (
-                <Box textAlign="center" sx={{ mt: 1 }} color="text.secondary">
+                <Box
+                    textAlign="center"
+                    sx={{ mt: 1 }}
+                    color="text.secondary"
+                >
                     <Typography variant="caption">Forgot </Typography>
                     <Link
                         component="button"
@@ -339,7 +381,11 @@ export default function AuthForm(props: AuthFormProps) {
                 </Box>
             )}
             {viewType === "recoverPassword" && (
-                <Box textAlign="center" sx={{ mt: 1 }} color="text.secondary">
+                <Box
+                    textAlign="center"
+                    sx={{ mt: 1 }}
+                    color="text.secondary"
+                >
                     <Link
                         component="button"
                         onClick={() => setViewType("login")}
