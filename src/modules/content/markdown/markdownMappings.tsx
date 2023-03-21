@@ -5,8 +5,7 @@ import * as complexTypes from "react-markdown/lib/complex-types.js";
 import { Code } from "../../../common/components/Code";
 import NavLink from "../../../common/components/NavLink";
 import Image from "next/legacy/image";
-
-const hmargin = 8;
+import { LinkableHeadingTypography } from "../../../common/components/LinkableHeadingTypography";
 
 export const markdownMappings:
 | Partial<
@@ -18,45 +17,45 @@ export const markdownMappings:
 >
 | undefined = {
     h1: ({ children }) =>
-        <Typography
+        <LinkableHeadingTypography
             variant="h3"
             component="h1"
-            sx={{ mb: hmargin }}
+            sx={{ mb: 8 }}
             id={children as string}
-        >{children}</Typography>,
+        >{children}</LinkableHeadingTypography>,
     h2: ({ children }) =>
-        <Typography
+        <LinkableHeadingTypography
             variant="h4"
             component="h2"
-            sx={{ mt: hmargin }}
+            sx={{ mt: 8 }}
             id={children as string}
-        >{children}</Typography>,
+        >{children}</LinkableHeadingTypography>,
     h3: ({ children }) =>
-        <Typography
+        <LinkableHeadingTypography
             variant="h5"
             component="h3"
-            sx={{ mt: hmargin }}
+            sx={{ mt: 6 }}
             id={children as string}
-        >{children}</Typography>,
+        >{children}</LinkableHeadingTypography>,
     h4: ({ children }) =>
-        <Typography
+        <LinkableHeadingTypography
             variant="h6"
             component="h4"
-            sx={{ mt: hmargin }}
+            sx={{ mt: 4 }}
             id={children as string}
-        >{children}</Typography>,
+        >{children}</LinkableHeadingTypography>,
     h5: ({ children }) =>
         <Typography
             variant="h6"
             component="h5"
-            sx={{ mt: hmargin, fontSize: "1.1rem" }}
+            sx={{ mt: 4, fontSize: "1.1rem" }}
             id={children as string}
         >{children}</Typography>,
     h6: ({ children }) =>
         <Typography
             variant="h6"
             component="h6"
-            sx={{ mt: hmargin, fontSize: "0.9rem" }}
+            sx={{ mt: 4, fontSize: "0.9rem" }}
             id={children as string}
         >{children}</Typography>,
     hr: ({}) => <Divider sx={{ width: "100%", mt: 1 }} />,
