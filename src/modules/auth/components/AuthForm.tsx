@@ -194,10 +194,10 @@ export default function AuthForm(props: AuthFormProps) {
                             : " "}
                         agree to our{" "}
                         <NavLink
-                            href="/user-agreement"
+                            href="/terms-of-service"
                             target="_blank"
                         >
-                            User Agreement
+                            Terms of Service
                         </NavLink>{" "}
                         and{" "}
                         <NavLink

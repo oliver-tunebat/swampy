@@ -5,13 +5,13 @@ import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { markdownMappings } from "../modules/content/markdown/markdownMappings";
-import markdown from "../modules/content/markdown/privacy-policy.md";
+import markdown from "../modules/content/markdown/terms-of-service.md";
 
-const PrivacyPolicy: NextPage = () => {
+const TermsOfService: NextPage = () => {
     return (
         <PageContainer>
             <Head>
-                <title>Privacy Policy | Swampy</title>
+                <title>Terms of Service | Swampy</title>
             </Head>
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -23,4 +23,4 @@ const PrivacyPolicy: NextPage = () => {
     );
 };
 
-export default PrivacyPolicy;
+export default TermsOfService;

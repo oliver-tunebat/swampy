@@ -73,7 +73,7 @@ export const markdownMappings:
             return null;
         }
 
-        const isExternal = !href.startsWith("/");
+        const isExternal = !href.startsWith("/") && !href.startsWith("#") && !href.startsWith("mailto");
 
         return <NavLink
             href={href}

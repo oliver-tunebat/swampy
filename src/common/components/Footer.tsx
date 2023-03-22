@@ -103,12 +103,12 @@ export default function Footer(props: FooterProps) {
                                 Privacy Policy
                             </NavLink>
                             <NavLink
-                                href="/user-agreement"
+                                href="/terms-of-service"
                                 color="text.secondary"
                                 underline="hover"
                                 variant="button"
                             >
-                                User Agreement
+                                Terms of Service
                             </NavLink>
                             <NavLink
                                 href="/contact-us"

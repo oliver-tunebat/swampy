@@ -1,13 +1,13 @@
 import { FeatureListFeature } from "../components/FeaturesList";
 
 export const frontEndFeatures: FeatureListFeature[] = [
-    // single page appliation
+    // single page application
     {
         text: "Single-Page Application",
         status: "implemented",
     },
 
-    // single page appliation
+    // single page application
     {
         text: "Responsive",
         status: "implemented",
@@ -161,19 +161,23 @@ export const frontEndFeatures: FeatureListFeature[] = [
     // terms pages
     {
         text: "Terms Pages",
-        status: "progress",
+        detailText: `You may modify and use our policies for your own purposes. 
+            They have been adapted from Basecamp's open-source policies.
+            Attribution is required.`,
+        status: "implemented",
+        href: "https://github.com/basecamp/policies",
     },
     {
         text: "Privacy Policy",
-        status: "progress",
+        status: "implemented",
         nestLevel: 1,
         href: "/privacy-policy",
     },
     {
-        text: "User Agreement",
-        status: "progress",
+        text: "Terms of Service",
+        status: "implemented",
         nestLevel: 1,
-        href: "/user-agreement",
+        href: "/terms-of-service",
     },
 
     // error pages
@@ -277,6 +281,13 @@ export const userFeatures: FeatureListFeature[] = [
         status: "implemented",
         nestLevel: 1,
         href: "https://www.hcaptcha.com/",
+    },
+    {
+        text: "Multi-Factor Authentication",
+        detailText: "Implemented with Supabase",
+        status: "unimplemented",
+        nestLevel: 1,
+        href: "https://supabase.com/docs/guides/auth/auth-mfa",
     },
     {
         text: "Social Login",
@@ -428,7 +439,7 @@ export const userFeatures: FeatureListFeature[] = [
     },
     {
         text: "Tracking Consent Management",
-        detailText: `Swampy provides a component that can be customized for retreiving consent. 
+        detailText: `Swampy provides a component that can be customized for retrieving consent. 
             Vanilla Swampy may not require tracking consent. 
             Consult with a lawyer to verify.`,
         status: "progress",
@@ -453,13 +464,19 @@ export const userFeatures: FeatureListFeature[] = [
         status: "implemented",
         href: "/contact-us",
     },
+
+    // status & uptime dashboard
+    {
+        text: "Status & Uptime Dashboard",
+        status: "unimplemented",
+    },
 ];
 
 export const developerFeatures: FeatureListFeature[] = [
     // analytics
     {
         text: "Analytics",
-        detailText: "Implimented with Plausible",
+        detailText: "Implemented with Plausible",
         status: "implemented",
         href: "https://plausible.io/",
     },
