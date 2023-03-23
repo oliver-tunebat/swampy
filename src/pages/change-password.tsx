@@ -31,7 +31,7 @@ const ChangePassword: NextPage = () => {
         if (error) {
             showSnackbar("Unable to update password.", "error");
         } else {
-            showSnackbar("Succesfully updated password!", "success");
+            showSnackbar("Successfully updated password!", "success");
         }
     };
 

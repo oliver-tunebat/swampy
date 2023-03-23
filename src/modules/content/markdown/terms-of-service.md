@@ -145,7 +145,6 @@ Swampy provides an option for users to authenticate by linking accounts with Spo
 3. We prohibit decompiling, reverse-engineering, disassembling, and otherwise reducing the Spotify Platform, Spotify Service, and Spotify Content to source code or other human-perceivable form, to the full extent allowed by law;
 4. We disclaim any liability on the part of Spotify;
 5. Spotify is a third party beneficiary of our end user license agreement and privacy policy and is entitled to directly enforce our end user license agreement.
- 
 
 \
 If you have a question about any of these Terms, please [contact our Support team](mailto:info@swampy.rocks).

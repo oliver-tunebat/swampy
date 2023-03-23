@@ -14,7 +14,6 @@ import {
     Typography,
 } from "@mui/material";
 import { Edit } from "@mui/icons-material";
-import SpotifySignInButton from "./SpotifySignInButton";
 import NavLink from "../../../common/components/NavLink";
 import { validateEmail } from "../../../common/utils/validateEmail";
 import SecureTextField from "../../../common/components/SecureTextField";
@@ -75,7 +74,7 @@ export default function AuthForm(props: AuthFormProps) {
 
     // disable button if email is not valid
     // or if the password isn't valid for sign up complete
-    // or if captcha isn't valie for sign up complete or recover password
+    // or if captcha isn't valid for sign up complete or recover password
     const continueButtonDisabled =
         !emailIsValid ||
         (captchaToken.length < 1 && viewType !== "signUp") ||
@@ -105,7 +104,7 @@ export default function AuthForm(props: AuthFormProps) {
                 showSnackbar("The email or password is incorrect.", "error");
             } else {
                 closeAuthDialog();
-                showSnackbar("You succesfully logged in!", "success");
+                showSnackbar("You successfully logged in!", "success");
             }
         } else if (viewType === "completeSignUp") {
             setContinueButtonLoading(true);
@@ -133,7 +132,7 @@ export default function AuthForm(props: AuthFormProps) {
                         if (event === "SIGNED_IN") {
                             setBanner(false, {});
                             showSnackbar(
-                                "You succesfully logged in!",
+                                "You successfully logged in!",
                                 "success",
                             );
                             removeBannerSignInListener.data.subscription.unsubscribe();
@@ -222,11 +221,6 @@ export default function AuthForm(props: AuthFormProps) {
                         size="large"
                         fullWidth
                         sx={{ mb: 2 }}
-                    />
-                    <SpotifySignInButton
-                        size="large"
-                        fullWidth
-                        sx={{ mb: 4 }}
                     />
                     <Divider>
                         <Typography
