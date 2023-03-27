@@ -13,6 +13,8 @@ import { grey } from "@mui/material/colors";
 import { DarkMode, GitHub, LightMode, Twitter } from "@mui/icons-material";
 import NavLink from "./NavLink";
 import Image from "next/image";
+import logoBlack from "../../../public/images/swampy-logo-black.svg";
+import logoWhite from "../../../public/images/swampy-logo-white.svg";
 
 export default function Footer(props: FooterProps) {
     const { mode, toggleColorMode } = props;
@@ -43,8 +45,8 @@ export default function Footer(props: FooterProps) {
                         <Image
                             src={
                                 isLightMode
-                                    ? "/images/swampy-logo-black.svg"
-                                    : "/images/swampy-logo-white.svg"
+                                    ? logoBlack
+                                    : logoWhite
                             }
                             alt="Swampy Logo"
                             width="164"

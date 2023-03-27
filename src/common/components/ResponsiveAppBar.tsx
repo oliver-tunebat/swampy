@@ -25,6 +25,8 @@ import { useTheme } from "@mui/material/styles";
 import useAuthStore from "../../modules/auth/store";
 import SiteBanner from "../../modules/notifications/components/SiteBanner";
 import { supabaseClient } from "../utils/supabaseClient";
+import logoBlack from "../../../public/images/swampy-logo-black.svg";
+import logoWhite from "../../../public/images/swampy-logo-white.svg";
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -61,6 +63,8 @@ const ResponsiveAppBar = () => {
         (state) => () => state.setAuthDialogOpen(true, "signUp"),
     );
 
+    const isLightMode = theme.palette.mode === "light";
+
     return (
         <>
             <Slide
@@ -87,9 +91,9 @@ const ResponsiveAppBar = () => {
                             >
                                 <Image
                                     src={
-                                        theme.palette.mode === "dark"
-                                            ? "/images/swampy-logo-white.svg"
-                                            : "/images/swampy-logo-black.svg"
+                                        isLightMode
+                                            ? logoBlack
+                                            : logoWhite
                                     }
                                     alt="Swampy Logo"
                                     width="164"

@@ -4,6 +4,7 @@ import getCurrentURL from "../../../common/utils/getCurrentURL";
 import { roboto } from "../../../getDesignTokens";
 import SignInButton from "./SignInButton";
 import Image from "next/image";
+import logo from "../../../../public/images/discord-mark-white.svg";
 
 export default function DiscordSignInButton(props: ButtonProps) {
     const { sx, ...otherProps } = props;
@@ -14,7 +15,7 @@ export default function DiscordSignInButton(props: ButtonProps) {
             variant="contained"
             startIcon={
                 <Image
-                    src="/images/discord-mark-white.svg"
+                    src={logo}
                     alt="Discord Icon"
                     width={24}
                     height={18}
