@@ -5,6 +5,7 @@ import { roboto } from "../../../getDesignTokens";
 import { grey } from "@mui/material/colors";
 import Image from "next/image";
 import SignInButton from "./SignInButton";
+import logo from "../../../../public/images/google-icon.png";
 
 export default function GoogleSignInButton(props: ButtonProps) {
     const { sx, ...otherProps } = props;
@@ -17,7 +18,7 @@ export default function GoogleSignInButton(props: ButtonProps) {
             variant="outlined"
             startIcon={
                 <Image
-                    src="/images/google-icon.png"
+                    src={logo}
                     alt="Google Icon"
                     width={18}
                     height={18}
