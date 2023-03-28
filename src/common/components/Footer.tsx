@@ -82,6 +82,14 @@ export default function Footer(props: FooterProps) {
                             >
                                 Guide
                             </NavLink>
+                            <NavLink
+                                href="/components"
+                                color="text.secondary"
+                                underline="hover"
+                                variant="button"
+                            >
+                                Components
+                            </NavLink>
                         </Stack>
                     </Box>
                     <Box>
