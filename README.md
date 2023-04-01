@@ -1,4 +1,6 @@
-Swampy is an open source web app boilerplate with generic features (like authentication) that every app needs. With it, you can fast forward through project set up and get right into developing the core features of your app.
+Swampy is a web app that doesn't do anything. Well except for authentication, transactional emails, database migrations, analytics, theming, accessibility, and pretty much everything that most SaaS web apps need. And it's built with the best, modern technologies like Typescript and NextJS, which are combined with services like Supabase and Vercel into an accessible and easily extendible code-base.
+
+Swampy is a modern web app boilerplate. It comes with pre-built authentication, analytics, transactional emails, and many more features. It's built with Typescript and NextJS,  ready to be deployed on Vercel.
 
 For a list of technologies and features included with Swampy, check out [Swampy.rocks](https://swampy.rocks).
 

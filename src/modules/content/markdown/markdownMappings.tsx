@@ -135,29 +135,29 @@ function specifyTextAlign(textAlign?:
     let align: "inherit" | "left" | "center" | "right" | "justify" | undefined;
 
     switch (textAlign) {
-    case "center":
-        align = "center";
-        break;
-    case "end":
-        align = "right";
-        break;
-    case "justify":
-        align = "justify";
-        break;
-    case "left":
-        align = "left";
-        break;
-    case "start":
-        align = "left";
-        break;
-    case "right":
-        align = "right";
-        break;
-    case "inherit":
-        align = "inherit";
-        break;
-    default:
-        break;
+        case "center":
+            align = "center";
+            break;
+        case "end":
+            align = "right";
+            break;
+        case "justify":
+            align = "justify";
+            break;
+        case "left":
+            align = "left";
+            break;
+        case "start":
+            align = "left";
+            break;
+        case "right":
+            align = "right";
+            break;
+        case "inherit":
+            align = "inherit";
+            break;
+        default:
+            break;
     }
 
     return align;

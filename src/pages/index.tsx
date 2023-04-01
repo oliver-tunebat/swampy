@@ -30,7 +30,7 @@ const Home: NextPage = () => {
     return (
         <PageContainer>
             <Head>
-                <title>Swampy - A Boilerplate for Web Apps</title>
+                <title>Swampy - Modern Web App Boilerplate for SaaS</title>
                 <meta
                     name="description"
                     content="Swampy is a boilerplate project that can be used to create any kind of web app.
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
                 sx={{ mt: 8 }}
                 color="text.secondary"
             >
-                An accessible, feature-rich, boilerplate project for web apps.
+                A modern web app boilerplate for SaaS
             </Typography>
             <Box
                 display="flex"
