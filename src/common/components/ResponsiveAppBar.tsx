@@ -96,7 +96,6 @@ const ResponsiveAppBar = () => {
                                             : logoWhite
                                     }
                                     alt="Swampy Logo"
-                                    width="164"
                                     height="32"
                                     priority
                                 />
