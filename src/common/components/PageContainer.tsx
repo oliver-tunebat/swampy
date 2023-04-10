@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Container, ContainerProps } from "@mui/material";
+import { Container, ContainerProps, Typography } from "@mui/material";
 
-export default function PageContainer(props: ContainerProps) {
-    const { sx, ...other } = props;
+export default function PageContainer(props: PageContainerProps) {
+    const { sx, heading, children, ...other } = props;
 
     return (
         <Container
@@ -18,6 +18,19 @@ export default function PageContainer(props: ContainerProps) {
                 ...sx,
             }}
             {...other}
-        />
+        >
+            {heading && <Typography
+                variant="h3"
+                component="h1"
+                sx={{ mb: 8 }}
+            >
+                {heading}
+            </Typography>}
+            {children}
+        </Container>
     );
+}
+
+interface PageContainerProps extends ContainerProps {
+    heading?: string
 }
