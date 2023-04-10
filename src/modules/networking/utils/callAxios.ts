@@ -78,13 +78,13 @@ export async function callAxiosMethod<T>(
 }
 
 export const callAxios = {
-    get: async (
+    get: async <T>(
         url: string,
         showErrorSnack = false,
         config?: AxiosRequestConfig,
         errorSnackMessage?: string,
     ) => {
-        return await callAxiosMethod(
+        return await callAxiosMethod<T>(
             "get",
             url,
             showErrorSnack,
