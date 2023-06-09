@@ -13,8 +13,8 @@ datasource db {
 
 model Profile {
     // the profile's supabase user id
-    id                          String    @id @db.Uuid
-    email                       String    @unique
-    createdAt                   DateTime? @db.Timestamptz(3)
+    id                          String   @id @db.Uuid
+    email                       String   @unique
+    createdAt                   DateTime @default(now()) @db.Timestamptz(3)
     isEmailNotificationsEnabled Boolean?
 }
